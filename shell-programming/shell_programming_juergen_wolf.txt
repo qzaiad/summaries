@@ -1,0 +1,506 @@
+Meine Ablage
+1. Introduction
+- buildin commando -> implemented directly in shell
+- alias gohome="cd ~"
+- who -> which user is logged it (you      tty1         Jan 30 11:14)
+- whoami
+- ps -f -> current process list. PPID=Parent PID. bash scripts (or here 'ps') are executed in an additional bash -> PPID(7742) = PID(3672)
+  UID        PID  PPID  C STIME TTY          TIME CMD
+  you       3672  3658  0 Jan20 pts/38   00:00:00 /bin/bash
+  you       7742  3672  0 03:03 pts/38   00:00:00 ps -f
+- ps PID
+    PID TTY      STAT   TIME COMMAND
+  63138 pts/6    Ss     0:00 /bin/bash
+
+- scrip finduser -> find / -user you -print 2>/dev/null
+- $! -> contains PID of last started background process
+- $$ - > own PID
+- #!/bin/bash -> She-Bang line
+- ./script or bash script -> executes script in a subshell -> e.g. useful to avoid changing environment variables
+- source ./script == . ./script (point + space) -> executes scipt in current bash
+- Debuggen: enable debugging #!/bin/bash -x or set -x or bash -x script. disable debugging set +x
+ - before each script line is executed, it is printed after '+' (actually after $PS4)
+ - e.g ps -ef | wc -l -> +ps -ef \n +wc -l 
+ - export PS4='[--- LINE: $LINENO ---] ' -> this will print line number when debugging a script
+ - $LINENO, die nach der Ausführung immer durch die entsprechende Zeilennummer ersetzt wird.
+- Redirection:
+ - command > file -> same as command 1> file -> redirect standard stream to file
+ - command 2> file -> redirect standard error  stream to file
+ - command > file 2>&1 -> redirect both streams to file
+ - command >> file -> append to file
+ - input redirection: grep audio < find_tot.dat
+ - command | tee file -> redirect to standard output AND to file
+- Piping cmd1 | cmd 2: connecting standard output of one cmd1 to the standard input of cmd2
+- du -c: prints size of directory and its sub directories
+- Wildcards (filename expansion): * ? []
+ -  [ab] [a-z] datei[12][a] datei[!12] datei[[:digit:]].txt
+    [:alnum:]	Buchstaben, Unterstrich und dezimale Ziffern
+    [:alpha:]	Groß- und Kleinbuchstaben
+    [:digit:]	Dezimale Ziffern
+    [:lower:]	Kleinbuchstaben
+    [:upper:]	Großbuchstaben
+    [:print:]	Nur druckbare Zeichen
+    [:space:]	Leerzeichen, Tabulator ...
+ - prefix{ muster1, muster2 }suffix -> prefixmuster1suffix prefixmuster2suffix
+  - touch datei{orginal{.bak,.txt},kopie{.bak,.txt}} -> dateikopie.bak  dateikopie.txt  dateiorginal.bak  dateiorginal.txt
+  - ls datei*{.bak,.txt} -> dateikopie.bak  dateikopie.txt  dateiorginal.bak  dateiorginal.txt
+  
+- Muster alternatives:
+ - shopt [-pqsu] [-o] [optname ...] -> Set and unset shell options.
+ - shopt –s extglob: ls @(prozess|promess|process|propan).dat; ls !(prozess|promess|process|propan).dat
+ @(pattern1 | patter2 | ... | patternN)	Eines der Muster
+ !(pattern1 | patter2 | ... | patternN)	Keines der Muster
+ +(pattern1 | patter2 | ... | patternN)	Mindestens eines der Muster
+ ?(pattern1 | patter2 | ... | patternN)	Keines oder eines der Muster
+ *(pattern1 | patter2 | ... | patternN)	Keines, eines oder mehrere Muster
+ - Tilde-Expansion: ~ home folder, ~USER home folder of USER, ~- previsited folder, ~+ same as pwd -> echo ~ ~- ~+ -> /home/qahmad /home/qahmad /home/qahmad/scripts
+
+2. Variables
+- Variable-Interpolation: datum=$(date +%Y_%m_%d); mkdir backup_$datum
+- undefined variables -> empty string. Use option -u to catch show warning about undefined variables
+ - sh -u ./aerror -> ./aerror: line 10: var3: unbound variable
+- varialbes should be used with {} in order to avoid problems:
+ - file=back_; cp datei.txt $filedatei.txt -> datei.txt copied into ".txt" because there is no variable $filedatei.txt
+ - file=back_; cp datei.txt ${file}datei.txt -> datei.txt copied into "back_datei.txt"
+- delete variables: unset variable-name
+- Constants using readonly: readonly x=5; x=6 -> bash: x: readonly variable
+ - Bei der Verwendung von readonly handelt es sich um eine Zuweisung! Daher erfolgt auch das Setzen des Schreibschutzes ohne das Zeichen $.
+- Integer Arithmetik (UNIX-Befehl expr) -> expr 5 + 4 (must be separated by ' ')
+ - preceed * with \: expr 2 \* 2 -> 4
+ - command substitution using `` (Gravis character): z=`expr $x + $y` -> store result in z
+- Integer Arithmetik (Bash and Korn Shell only)
+ - ((z=5+5)) or z=$((5+5)) -> z=10: '((' tells the shell that an arethmetik expression follows
+ - bash only z=$[5+5]
+ - let z=x+y (builtin command) equivalent to z=$((x+y))
+ - Arithmetic Operators: + - * / % (modulo) << >> & ^ | += -= *= /= %= <<= >>=  &= ^= |=
+ - typeset or declate: set or declyre variable type
+  - typeset -i a b c; a=1; b=2; c=a+b (without $ symbol); d=\(a+b\)*c
+- Floating Point Arithmetik with bc (UNIX command)
+ - Variable=`echo "[scale=n ;] Rechenoperation" | bc [-l]`
+ - bc -l -> use mathematic library funcs s(x) c(x) a(x) l(x) e(x) / sin cos atan log e^
+ - bc expects lines of arithmetic expressions from stdin and outputs result lines into stdout
+- Convert Numbers with bc: bin/hex/dec
+ - ibase/obase: input/output base -> any number between 2 and 16
+  - dez=`echo "obase=10 ; ibase=2 ; 1111011" | bc` -> 123
+- Strings:
+ - cut -c5 gedicht.txt: cut only the 5th character of each line - cut 
+ -c5-10; -c5-; -c1,3,5,6,7–12 - cut -d\; -f1,3 datei.csv: -d for 
+ delimiter   -f for field -> cut the first and the third columns - 
+ paste: opposite of cut - paste -d\; namen.txt nummer.txt > 
+ zusammen.txt -> Qassem;+97246... - tr - translate or delete characters 
+ - tr von_Zeichen nach_Zeichen - tr a b < gedicht.txt: replace all 
+ occurrences of a by b - cut -d\; -f1,3 datei.csv | tr \; '\t' -> 
+ tot;17:32------->tot     17:32 (replace ; by tabulator) - tr '[a-z]' 
+ '[A-Z]' < gedicht.txt -> ranges must be included in '' to avoid file 
+ expansion by the shell - tr -d ' ','\n' < gedicht.txt -> delete all 
+ spaces and newlines - tr -s ' ' ' ' < datei.txt: -s --squeeze-repeats 
+ replaces all sequances of ' ' by a ' ': "Q.   Abu   Ahmad" -> "Q. Abu 
+ Ahmad" - awk: laenge=`echo $zeichen | awk '{print length($zeichen)}'` 
+ -> assign value by command substitution using `` - Awks 
+ Builtin-Stringfunktionen
+	Funktion				Bedeutung
+	tolower str				Komplette Zeichenkette in Kleinbuchstaben
+	toupper str				Komplette Zeichenkette in Großbuchstaben
+	index(str, substr)		Gibt die Position zurück, wo substr in str anfängt
+	match(str, regexpr)		Überprüft, ob der reguläre Ausdruck regexpr in str enthalten ist
+	substr(str, start, len)	Gibt einen Teilstring ab Postion start mit der Länge len aus str zurück.
+	split(str, array, sep)	Teilt einen String in einzelne Felder auf und gibt diese an ein Array. sep dient dabei als Feldtrenner.
+	gsub(alt, neu, str)		Ersetzt in str den String alt durch neu
+	sub(alt, neu, str)		Ersetzt erstes Vorkommen von alt durch neu in str
+	sprintf("fmt",expr)		Verwendet die printf-Formatbeschreibung für expr
+- Extended String Funktions for Bash and Korn Shells
+ - $(#zeichenkette): String-Length
+ - x="./home/you/Dokuments/shell/kapitel2.txt"
+ - ${var#pattern}:  find shortest match from left and return var without matched pattern: echo ${x#*/} -> home/you/Dokuments/shell/kapitel2.txt
+ - ${var##pattern}: find longest match from left and return var without matched pattern:  echo ${x##*/} -> kapitel2.txt
+ - ${var%pattern}:  find shortest match from right and return var without matched pattern: echo ${x%/*} -> ./home/you/Dokuments/shell
+ - ${var%%pattern}: find longest match from right and return var without matched pattern: echo ${x%%/*} -> .
+ - String rechts oder links abschneiden (Korn-Shell only)
+  - typeset -L5 str; str=1234567890 -> 12345
+  - typeset -R3 str; str=1234567890 -> 890
+ - (Teil-)Strings ausschneiden (Bash only)
+  - ${var:start:length} or ${var:start}: str=1234567890; echo ${str:3:6} -> 456789; echo ${str:5} -> 67890
+- Quoting and Command-Substitution
+	'	Single Quote, einfaches Anführungszeichen
+	"	Double Quote, doppeltes Anführungszeichen (oder Gänsefüßchen)
+	`	Back Quote, Backtick, Gravis-Zeichen, umgekehrtes einfaches Anführungszeichen
+ - Hinweis   Wie bei einer Pipe, geht auch bei einer Kommando-Substitution die Fehlermeldung verloren.
+ - Die Verwendung von $(...) gegenüber `...` hat natürlich nur einen rein optischen Vorteil. Die Form $(...) lässt sich erheblich einfacher lesen, aber wem nützt das was, wenn es die Bourne-Shell nicht kennt. Wer sich sicher sein kann, dass seine Scripts auch immer in einer Bash oder einer Korn-Shell ausgeführt werden, der kann sich frohen Herzens damit anfreunden. Damit fällt wenigstens bei der Quoterei die Back Quote weg, und Sie müssen nur noch die Single und Double Quotes beachten.
+- Arrays (Bash and Korn-Shell only)
+ - Assigning by: a[x]=value; Accessing by: ${a[x]}
+ - it would be better to declare a variable as an array: typeset –ir array
+ - initializing:
+  - Bash-Shell
+   - no limits to array size
+   - a=(null eins zwei drei vier fuenf ...)
+   - a=([2]=zwei drei) -> a[0] and a[1] would unset a then initializes a
+  - Korn-Shell
+   - set -A array null eins zwei drei vier fuenf
+   - limit to array size: 512, 1024 oder maximal 4096
+ - ${array[*]} or ${array[@]} would print the whole array (space separated)
+ - ${#array[*]} or ${#array[@]}: array size
+ - delete an array or an element: unset array; unsert array[2]
+ - array_kopie=(${array_quelle[*]}) (bash) or set -A array_kopie ${array_quelle[*]} (Korn)
+  - Achtung: Hierbei gibt es noch eine üble Stolperfalle. So löscht man beispielsweise in der Bash array[1] mit unset und kopiert dann das array, so steht in array_kopie[1] der Inhalt von array[2].
+ - x=(Muhammad Rashid Qassem Samih); echo ${x[0]:0:3} ; echo ${x[*]:1:3} -> Muh\nRashid Qassem Samih
+- Export Variables: sometimes there is a need to share a variable among multiple scripts -> export variable
+ - export variable=1234; export var1 var2 var3 var4
+ - scripts are executed in a subshell. all exported variables are copied by value, that is, subshells cannot modify variables of the parent shell
+ - The POINT-COMMAND: Executing scripts in the current shell: ". ./script" or "source ./script"
+  - main usage: reloading of config files: . ./bashrc
+  - Es gibt außerdem noch zwei Anwendungsfälle, wo bei einem Script die benutzerdefinierten Variablen ohne einem Export sichtbar sind. Dies geschieht durch die Verwendung von Kommando-Substitution `...` und bei einer Gruppierung von Befehlen (...). In beiden Fällen bekommt die Subshell (bzw. das Shellscript) eine komplette Kopie aller Variablen der Eltern-Shell kopiert.
+  - automatic export: typeset -x var=value -> x is exported automatically in subshells
+  - automatic export is stopped by: typeset +x var
+  - 'declare' is a synonym to 'typeset'
+  - typing typeset or declare alone with print all the exported variables
+- Environment Variables: Wenn Sie ein Script, eine neue Shell oder ein Programm starten, so wird diesem Programm eine Liste von Zeichenketten (genauer Array von Zeichenketten) übergeben. Diese Liste wird als Umgebung des Prozesses bezeichnet. Gewöhnlich enthält eine solche Umgebung zeilenweise Einträge in Form von: variable=wert
+  Somit sind Umgebungsvariablen zunächst nichts anderes als global mit dem Kommando export oder typeset –x definierte Variablen.
+- Automatic Shell-Variables: 
+ - $0 script name: für Fehlermeldungen verwendet, zum Beispiel um anzuzeigen, wie man ein Script richtig anwendet bzw. aufruft
+ - $$: PID of the current shell
+ - $?: last exit code
+ - $!: PID of last process started in background
+ - $1 bis $n	Argumente aus der Kommandozeile
+ - $*	Alle Argumente aus der Kommandozeile in einer Zeichenkette
+ - $@	Alle Argumente aus der Kommandozeile als einzelne Zeichenketten (Array von Zeichenketten)
+ - $#	Anzahl aller Argumente in der Kommandozeile
+ - $_	(Bash only) Letztes Argument in der Kommandozeile des zuletzt aufgerufenen Kommandos
+ - $RANDOM: random number between 0 and 32767 -> RANDOM=1; echo $RANDOM -> 17767
+ - LINENO	Diese Variable enthält immer die aktuelle Zeilennummer im Shellscript. Wird die Variable innerhalb einer Scriptfunktion aufgerufen, entspricht der Wert von LINENO den bis zum Aufruf innerhalb der Funktion ausgeführten einfachen Kommandos. Außerhalb von Shellscripts ist diese Variable nicht sinnvoll belegt. Wird die LINENO-Shell-Variable mit unset gelöscht, kann sie nicht wieder mit ihrer automatischen Funktion erzeugt werden.
+ - OLDPWD	Der Wert ist das zuvor besuchte Arbeitsverzeichnis; wird vom Kommando cd gesetzt.
+ - OPTARG	Der Wert ist das Argument der zuletzt von getopts ausgewerteten Option.
+ - OPTIND	Enthält die Nummer (Index) der zuletzt von getopts ausgewerteten Option
+ - PPID	Prozess-ID des Elternprozesses (Parent Process ID = PPID); eine Subshell, die als Kopie einer Shell erzeugt wird, setzt PPID nicht.
+ - PWD	Aktuelles Arbeitsverzeichnis
+ - RANDOM	Pseudo-Zufallszahl zwischen 0 bis 32767; weisen Sie RANDOM einen neuen Wert zu, so führt dies dazu, dass der Zufallsgenerator neu initialisiert wird.
+ - REPLY	Wird vom Shell-Kommando read gesetzt, wenn keine andere Variable als Rückgabeparameter benannt ist und bei Menüs (select) enthält REPLY die ausgewählte Nummer.
+ - SECONDS	Enthält die Anzahl von Sekunden, die seit dem Start (Login) der aktuellen Shell vergangen ist. Wird SECONDS ein Wert zugewiesen, erhöht sich dieser Wert jede Sekunde automatisch um eins.
+ - ERRNO	Fehlernummer des letzten fehlgeschlagenen Systemaufrufs
+ - BASH	Kompletter Pfadname der aktuellen Shell
+ - BASH_VERSION	Versionsnummer der Shell
+ - EUID	Beinhaltet die effektive Benutzerkennung des Anwenders. Diese Nummer wird während der Ausführung von Programmen, bei denen das SUID-Bit aktiviert ist, gesetzt.
+ - HISTCMD	Enthält die Nummer des aktuellen Kommandos aus der Historydatei
+ - HOSTTYPE	Typ des Rechners. Für Linux kommen u. a. die Typen i386 oder i486 in Frage.
+ - OSTYPE	Name des Betriebssystems. Da allerdings die Variable OSTYPE den aktuellen Wert zum Übersetzungszeitpunkt der Bash anzeigt, ist dieser Wert nicht zuverlässig. Re-kompilieren Sie bspw. alles neu, ändert sich dieser Wert nicht mehr. Zuverlässiger ist da wohl das Kommando uname.
+ - PROMPT_COMMAND	Hier kann ein Kommando angegeben werden, das vor jeder Eingabeaufforderung automatisch ausgeführt wird.
+ - SHLVL	Steht für den Shell-Level. Bei jedem Aufruf einer neuen Shell in der Shell wird der Shell-Level um eins erhöht; der Wert 2 kann z. B. innerhalb eines Scripts bestehen, das aus einer Login-Shell gestartet wurde. Eine Möglichkeit, zwischen den Levels zu wechseln, gibt es nicht.
+ - UID	Die User-ID des Anwenders. Diese Kennung ist in der Datei /etc/passwd dem Benutzernamen zugeordnet.
+- Parameter and Arguments
+ - ls -l file: arguments are 'l' and 'file'
+ - CLI-Parameter (also called Position-Parameters) $1 bis $9. $0 contains the command name. The Shalee-Variable $IFS
+ - i.e. IFS="," -> script_file arg1,arg2,arg3...
+ - $*	Alle Argumente aus der Kommandozeile in einer Zeichenkette
+  - for i in $*; do echo i done:
+    - if $*=eine variable Anzahl von Argumenten -> 5 arguments are printed
+    - if $*="eine variable Anzahl von Argumenten" -> 1 argument but the for loop would print 5 lines, because for uses IFS=" " to separate between tokens
+    - for i in "$*" -> would see one argument and would print only one line
+ - $@	Alle Argumente aus der Kommandozeile als einzelne Zeichenketten (Array von Zeichenketten)
+ - Merke   Alle Argumente (auch mehr als 9) sind durch $* oder $@ erreichbar. $* liefert sie als ein Wort, verkettet mit Leerzeichen, und $@ liefert sie als ein Argument pro Wort.
+ - $#	Anzahl aller Argumente in der Kommandozeile
+ - shift [n]: $1...$n; shift -> $2=$1 $3=$2 ...$n-1=$n $#=$#-1
+ - ./script Jürgen von Braunschweig 30 -> there are 4 arguments
+ - ./script Jürgen "von Braunschweig" 30 -> there are 3 arguments
+ - If there is more than 9 arguments, then the are accessed as followed: ${n}, e.g. echo ${99}
+ - set arguments $1...$n: set arg1 arg2 ... argn -> $1...$n are set (IFS must contain at least one space)
+ - set -- -a -b -c -> use -- in order to set -arg into $1...n variable
+ - set --: unsets all position arguments (Korn/Bash). Other Shells use: set ""
+ - example: IFS=" "; set `who | grep qahmad'
+ -                   set `date`; echo "$3.$2.$6 um $4"
+ - getopts: Evaluating CLI Options -> getopts Options Variable [Arguments]
+  - Options must be before filenames
+  - learn by example
+	while getopts abc:D: opt 2>/dev/null # 2>/dev/null to supress error generated by getopts. c: and D: -> Options c and D expects an argument
+	do
+	   case $opt in
+		   a) echo "Option a";;
+		   b) echo "Option b";;
+		   c) echo "Option c : ($OPTARG)";; # OPTARG contains argument for option c
+		   D) echo "Option D : ($OPTARG)";;
+		   ?) echo "($0): Ein Fehler bei der Optionsangabe" # if ?) not found -> getopts outputs an error and exit with error code (e.g. missing argument or unknown option)
+	   esac
+	done
+  - OPTIND: contains option index. it is initialized by one and is increased by one for each call of getopts
+            Wenn eine Kommandozeile mehrfach eingelesen werden soll, muss der Index manuell zurückgesetzt werden.
+  - getopts:
+   - return 0: Option found
+   - return error code:
+    - end of arguments reached, or
+    - error found:
+     - to supress error messages:
+      - ':' must be first in getopts options, i.e. 	while getopts :abc:D:, or
+      - OPTERR=0
+ - Defaults for Variables
+  - directory=${1:-`pwd`}; ls -ld $directory | grep ^d -> if $1 is missing, set directoy to pwd
+ ${var:–wort}	return var.size() ? var : wort
+ ${var:+wort}	return var.size() ? wort : null
+ ${var:=wort}	return var.size() ? var : (var = wort && return var)
+ ${var:?wort}	if(var.size()) return var; else{ echo "bash: xx: " (wort.size() ? wort : "parameter null or not set") }
+ NULL = Variable is unset or is ""
+4. Control Structures:
+- if [ bedingung ]; then befehl(e); elif [ bedingun ]; then... else befehl(e) fi # OR
+ if [ bedingung ]
+then
+   # Ja, Bedingung war erfolgreich
+   # ... hier Befehle für erfolgreiche Bedingung verwenden
+else
+...
+fi
+- Example: if grep "^$1" /etc/passwd > /dev/null 2>&1; then .... fi # OR
+- grep "^$1" /etc/passwd > /dev/null
+  if [ $? -ne 0 ]; then ... fi
+- Command chaining via pipes with if:
+ - @? -> result of last command in the chain
+ - e.g.: if ls -l /usr/include | grep $1 | wc -l -> $?==0, even if $1 is Null or pattern not found
+- Evaluating PIPESTATUS (Bash only)
+ - PIPESTATUS is an array and contains the exit codes of the last executed commands (${PIPESTATUS[0]}...${PIPESTATUS[n]})
+ - 
+- The Command test:
+ - if test Ausdruck <-> if [ Ausdruck ] (symbolic form of test)
+ - there MUST BE a space after each expresion. [ 1 -lt 2 ] or test 1 -lt 2.
+ - Integer comparison: var1 -eq -ne -lt -gt -le -ge var2
+ - Integer comparison with let command (Bash and Korn-Shell only):
+  - let z=x+y; ((z=x+y))
+  - if (( $a > $b )) or if let "$a > $b"
+ - String Comparison: [ "$var1" = "$var2" ] [ "$var1" != "$var2" ] [ –z "$var" ] [ –n "$var" ]
+  - We should include each variable in double quotes in order to avoid errors when $var does not exist or var consists of multiple tokes (separated by ' ')
+ - String Comparison (Bash and Korn-Shell only):
+  - [[ "$var1" == "$var2" ]] [[ "$var1" != "$var2" ]] [[ –z "$var" ]] [[ –n "$var" ]] [[ "$var1" > "$var2" ]] [[ "$var1" < "$var2" ]]
+    [[ "$var" ==/!= pattern ]] -> pattern must be on the right side and must not include double quotes
+                                  pattern might include *, ? und [ ]. E.g. if [[ "$1" = *ist* ]]
+ - Status of files: if [ -Operator Datei ]
+-Operatoren zum Testen des Dateityps 
+	–b DATEI	Datei existiert und ist ein block special device (Gerätedatei).
+	–c DATEI	Datei existiert und ist ein character special file (Gerätedatei).
+	–d DATEI	Datei existiert und ist ein Verzeichnis.
+	–f DATEI	Datei existiert und ist eine reguläre Datei.
+	–h DATEI	Datei existiert und ist ein symbolischer Link (dasselbe wie –L).
+	–L DATEI	Datei existiert und ist ein symbolischer Link (dasselbe wie –h).
+	–p DATEI	Datei existiert und ist eine named Pipe.
+	–S DATEI	Datei existiert und ist ein (UNIX-Domain-)Socket (Gerätedatei im Netzwerk).
+	–t [FD] 	Ein Filedescriptor (FD) ist auf einem seriellen Terminal geöffnet.
+- Operatoren zum Testen der Zugriffsrechte auf eine Datei
+	–g DATEI	Datei existiert und das setgid-Bit ist gesetzt.
+	–k DATEI	Datei existiert und das sticky-Bit ist gesetzt.
+	–r DATEI	Datei existiert und ist lesbar.
+	–u DATEI	Datei existiert und das setuid-Bit ist gesetzt.
+	–w DATEI	Datei existiert und ist beschreibbar.
+	–x DATEI	Datei existiert und ist ausführbar.
+	–O DATEI	Datei existiert und der Benutzer des Scripts ist der Eigentümer (owner) der Datei.
+	–G DATEI	Datei existiert und der Benutzer des Scripts hat dieselbe GID wie die Datei.
+- Operatoren zum Testen von charakteristischen Eigenschaften
+	–e DATEI	Datei existiert.
+	–s DATEI	Datei existiert und ist nicht leer.
+	DATEI1 –ef DATEI2	Datei1 und Datei2 haben dieselbe Geräte- und Inodennummer und sind somit Hardlinks.
+	DATEI1 –nt DATEI2	Datei1 ist neueren Datums (Modifikationsdatum, nt = newer time) als Datei2.
+	DATEI1 –ot DATEI2	Datei1 ist älter (Modifikationsdatum, ot = older time) als Datei2. 
+- Logical Operators
+ - Bash and Korn-Shell only: && || !
+ - All: [ expr1 -a expr2 ] [ expr1 -o expr2 ] [ ! expr ]
+ - Example: if [ -f $file -a -w $file ] <-> if [ -f $file ] && [ -w $file ]
+            number=${1:-"5"}; if [ $number -gt 0 -a $number -lt 11 ] or if (( $number > 0 )) && (( $number < 11 ))
+            if (( $number == 1 )) || (( $number == 2 )) <-> if [ $number -eq 1 -o $number -eq 2 ]
+            if [ $answer = "j" -o $answer = "ja" ] <-> if [[ $answer == "n" ]] || [[ $answer == "nein" ]]
+ - Klammerung muss außerhalb von [[ ]] stattfinden: if ([[ $var1 == "abc" ]] && [[ $var2 == "cde" ]]) || ( [[ $var3 == "abc" ]] )           
+ - # Innerhalb von eckigen Klammern müssen runde Klammern ausgeschaltet werden: if [ \( "$var1" = "abc" -a  "$var2" = "cde" \)  -o "$var3" = "abc" ]
+ - # Bash und Korn-Shell: if (( $var1 == 4 )) || ( (( $var2 == 2 )) && (( $var3 == 3 )) )
+   # alle Shells: if [ $var1 -eq 4 -o \( $var2 -eq 2 -a $var3 -eq 3 \) ]
+ - Verwendung von Klammern bei Ausdrücken
+	Ausdruck für	Ohne Klammern	Klammerung	Shell
+	Zeichenketten	[[ Ausdruck ]]	([[ Ausdruck ]])	Bash und Korn
+	Zeichenketten	[ Ausdruck ]	[ \( Ausdruck \) ]	alle Shells
+	Zahlenwerte	(( Ausdruck ))	( (( Ausdruck )) )	Bash und Korn
+	Zahlenwerte	[ Ausdruck ]	[ \( Ausdruck \) ]	alle Shells
+	Dateitest	[ Ausdruck ]	[ \( Ausdruck \) ]	alle Shells
+	Dateitest	[[ Ausdruck ]]	([[ Ausdruck ]])	nur Korn
+- Short Circuit-Tests: using && || with commands:
+ - cmd1 && cmd2: execute cmd2 iff cmd1 succeeds
+ - cmd1 || cmd2: execute cmd2 iff cm1 fails
+- case:
+case "$var" in
+   muster1)   kommando		# or (muster1) -> Dies verhindert, dass bei Verwendung von case in einer Kommando-Substitution ein Syntaxfehler auftritt
+              ...			# muster might include *, ? oder [ ]. Ebenso können Sie eine Muster-Alternative wie *(...|...|...); @(...|...|...)
+              kommando ;; 	# ;; := break -> if does not exists it continues to muster2 and if matches muster2 -> execute muster2.commands...
+   muster2)   kommando
+              ...
+              kommando ;;
+   mustern)   kommando
+              ...
+              kommando ;;
+   *)         default action
+esac
+ - examples:
+  - Mo)   echo "Mo : Backup Datenbank machen" ;;
+  - Mo|Mon)   echo "Mo : Backup Datenbank machen" ;;
+  - [jJ])
+  - [jJ][aA])
+  - [jJ]|[jJ][aA])
+  - case with options
+   - -[tT]|-test)
+   - -[hH]|-help|-hilfe)
+   - while getopts tThH opt 2>/dev/null; do case $opt in t|T) echo "Option test";; h|H) echo "Option hilfe";; ?) echo "($0): Ein Fehler bei der Optionsangabe"...
+4.9 Loops
+- for var in liste_von_parameter; do kommandos...; done
+- for x in 1 2 3 9; do echo "x=$x"; done
+- Process argeuments with for: for datei in "$@"; do...; done <-> for datei; do...; done
+ - Lassen Sie den Zusatz in "$@" weg, setzt die for-Schleife diesen automatisch ein -> for datei; do...; done
+- For and filename substitution: for file in *; for file in *.txt *.c log[1-9].txt; for file in * .*; 
+- handle failed muster-resolving ->
+	for datei in *.jpg
+	do
+	   case "$datei" in # this is not a switch statement -> it handles failing muster resolving (*.jpg)
+		  *.jpg)   echo "Keine Datei zum Muster *.jpg vorhanden" ;;
+		  *)       echo $datei ;;
+	   esac
+	done
+- For and Arrays (Bash and Korn-Shell only): array=( 1 2 3 4 5 6 7 8 9 ); for value in ${array[*]}
+- For and Counters (Bash only Ab Version 2.0.4): for (( var=Anfangswert ; Bedingung ; Zähler /*i++ or i-- or ((i+=x)) or ((i-=x))*/ )); do...done
+- example:
+	array=( $* )
+	for((i=0; i<$#; i++)); do echo "Argument $i ist ${array[$i]}"; done
+	for((i=5; i>0; i--)); do echo $i; sleep 1; done
+	for((i=100; i>0; ((i=i/2)) )); do echo $i; done
+- while loop: [bedingung or command]; do.....done -> while [ $i -lt $# ]  or  while [ "$input" != "ende" ]
+- until loop: opposite of while -> execute as long as condition is false
+ - while [ ! "$input" = "ende" ] <-> until [ "$input" = "ende" ]
+- control jumps: continue; break; exit; -> analog to c++
+5. Terminal-In- and Output
+- Terminal: at first unix time there was only one PCs. Multiple terminals (screens) were connected to the same PC.
+ - A proccess called getty (in linux called mingetty) waits for a terminal to connect and authenticate -> then it opens a session
+ - Session := The time after authentication until exit
+ - Nowadays there are Terminal-Emulators -> are programms which pretend to be a real terminal
+ - Virtual-Terminals: CTRL+ALT+F1...CTRL+ALT+F7
+ - ps -e | grep getty -> (...3092 tty1     00:00:00 getty...). if e.g. tty3 is not in the list -> then some user is logged in tty3. when the user logs out -> a getty process will then start on tty3
+ - Pseudo-Terminal (pts or ttyp under unix) -> the commay tty tells you in which pseudo terminal you are logged in (e.g /dev/pts/4 or /dev/ttyp1)
+ - ls -l /dev/pts -> crw--w----  1 tot tty 136, 37 2005–03–01 22:46 37
+- 5.2) Outputs
+ - echo [-option] argument1 argument2 ... argument_n -> prints argument1...n + new line
+ - echo -n arguments <-> echo -e "arguments\c": does not print newline 
+ - echo -e: activate interpretation of escape sequencies
+ - Escape Sequencies: \a Alarm-Ton (Beep); \b Backspace; ein Zeichen zurück; \c continue; das Newline-Zeichen unterdrücken; \f	Form Feed; einige Zeilen weiterspringen
+   \n Newline; Zeilenumbruch; \r return; zurück zum Anfang der Zeile; \t Tabulator (horizontal); \v Tabulator (vertikal); meistens eine Zeile vorwärts
+   \\ das Backslash-Zeichen ausgeben; \0nnn	ASCII-Zeichen in oktaler Form (nur sh und ksh); z. B. aus \0102 wird B (dezimal 66)
+   \nnn	ASCII-Zeichen in oktaler Form (nur Bash); z. B. aus \102 wird wird B (dezimal 66)
+ - printf format argument1 argument2 ... argument_n
+ - printf "Kunde: %-10s Anzahl: %-5d Gegenstand: %15s\n" $1 $2 $3 -> %-10s allign $1 to left ; %15s allign $3 to the right -> "Kunde: J.Wolf     Anzahl: 10    Gegenstand:          Socken"
+	text=Kopfstand
+	a=3
+	b=12345
+	printf "|01234567890123456789|\n"
+	printf "|%s|\n" $text
+	printf "|%20s|\n" $text
+	printf "|%-20s|\n" $text
+	printf "|%20.4s|\n" $text
+	printf "|%-20.4s|\n\n" $text
+	printf "Fließkommazahl: %f\n" $a
+	printf "gekürzt       : %.2f\n" $a
+	printf "Ganzzahl      : %d\n" $b
+	printf "gekürzt       : %.2d\n" $b
+	printf "erweitert     : %.8d\n" $b
+	Das Script bei der Ausführung:
+
+	|01234567890123456789|
+	|Kopfstand|
+	|           Kopfstand|
+	|Kopfstand           |
+	|                Kopf|
+	|Kopf                |
+	Fließkommazahl: 3,000000
+	gekürzt       : 3,00
+	Ganzzahl      : 12345
+	gekürzt       : 12345
+	erweitert     : 00012345
+- tput for terminal control:
+ - tput is a program (not builtin) and knows the terminal libraty terminfo (previously /etc/termcap). It contains many attributes for controlling the terminal
+ - tput clear | tr '\033' 'X' ; echo -> X[HX[2J (\033 replaced by X)
+ - echo -en '\033[H\033[2J' -> clears the screen -> works only for echo $TERM = xterm*
+ - tput cols -> #columns; tput lines -> #lines; tput colors -> #colors supported by terminal; tput pairs -> color pairs
+ - tput {bold, boldoff, blink, rev (inverse font), smul (underline), rmul (underline off), sgr0 (reload defaults)}
+  - echo "Text wird `tput bold``tput rev``tput smul`Hervorgehoben`tput sgr0`"
+  - echo "`tput setaf 2``tput setab 5`QASSEM" -> set background and forderground colors (argument 0..7)
+  - tput clear -> clear screen; tput home -> move cursor to (0,0); tput cup n m; move cursor to (n,m)
+  - tput dl1/il1 -> delete current line/add a new line at current line; tput dch1 -> delete one character at current position
+- xxd: make a hexdump or do the reverse: echo ABCD | xxd -> "00000000: 4142 4344 0a                             ABCD."
+- od: dump files in octal and other formats:
+ - echo ABCD | od -> 0000000 041101 042103 000012
+ - echo ABCD | od -c -> 0000000   A   B   C   D  \n
+ - echo ABCD | od -x -> 0000000 4241 4443 (alignment?)
+- 5.2) Inputs
+ - read variable: store standard input (keyboard until pressing ENTER) into variable
+ - read a b -> 'Qassem Abu\t\t Ahmad' -> a=Qassem  b=Abu Ahmad -> whitespaces replaced by one space
+ - read -option variable: 
+  - -n number, e.g. read -n 5 x -> QASSE -> x=QASSE -> no need to press enter to exit command -> after reading n-th char it will exit automatically
+  - -s: silent -> dont show what is beeing typed, e.g. for passwords
+  - -t s: wait s seconds for input. after a timeout the read commands returns error=1 and the script continue execution
+ - read variable < zitat.txt: reading one line from file and store it in variable
+ - WARNING: while read var < datei; -> this will always read the same line
+  - Solution:
+   - while read line; do ... done < datei, or
+   - cat datei | while read line; do ... done -> nach jedem erneuten Schleifendurchlauf die Pipe geschlossen und die Variable somit verworfen wird
+ - Heredoc (Here Document): command substitution is done
+Command <<TEXT_MARKE
+Heute ist `date`
+TEXT_MARKE
+ - Backslash before TEXT_MARKE or 'TEST_MARKE' will prevent command substitution, i.e. exactly Heute ist `date` is inserted to command's stdin
+Command <<\TEXT_MARKE
+Heute ist `date`
+TEXT_MARKE
+ - setting variable using heredoc
+count=`cat <<TEXT_MARKE
+\`ls -l | wc -l\`
+TEXT_MARKE`
+ - "<<- TEXT_MARKE" should remove leading TABs (not spaces). Thid did not work in my tests 
+ - heredoc and read:
+while read line; do...done <<TEXT_MARKE
+line1
+...
+line_n
+TEXT_MARKE
+- The Variable IFS (Internal Field Separator):
+ - echo -n "$IFS" | xxd -> 00000000: 2009 0a; 20 space; 09 tab; 0a newline
+ - echo -n "$IFS" | od -c -> 0000000      \t  \n
+ - BACKIFS="$IFS"; IFS=\; echo -n "$IFS" | od -c -> 0000000; read nachname vorname alter (input=Wolf;Jürgen;30)
+ - IFS=: ; set $PATH; for path in "$@"; do echo "$path" done; IFS=$BACKIFS <-> echo $PATH | tr ':' '\n'
+- read and Arrays (Bash and Korn-Shell only):
+ - typeset -i i=0; while [ $i -lt 5 ]; do printf "Eingabe machen : "; read valarr[$i]; i=i+1; done -> for i < 5 -> echo ${valarr[$i]}
+ - typeset -i i=0; while read vararray[$i]; do i=i+1; done < datei_zum_einlesen
+- read string and store tokens in an array (depending on IFS)
+read -a array <<TEXTMARKE
+$variable
+TEXTMARKE
+- read -p "Ihr Vorname : " vorname (only bash)  <-> read name?"Ihr Name bitte: " (only Korn)
+- Default-Variable for read: if no variable given to read -> stroe input in $REPLY
+- Reading n characters (only Bash?): read -n 1 var -> presseing one char will store it in var and exit
+- Reading n characters using dd:
+# Terminal in den "rohen" Modus schalten, weil Terminal zeilengepuffert ist
+stty raw -echo
+# In Schleife überprüfen, ob 'q' gedrückt wurde
+while [ "$char" != "q" ]
+do
+   char=`dd bs=1 count=1 2>/dev/null`
+done
+# Den "rohen" Modus wieder abschalten
+stty -raw echo
+- examples for dd (data duplicator https://linuxconfig.org/learning-linux-commands-dd):
+ - dd if=$input_data of=$output_data [options] (https://linuxconfig.org/learning-linux-commands-dd)
+  - dd if=/dev/urandom of=/dev/sda bs=4k: Fills the drive with random data
+  - dd if=/dev/sda of=/dev/sdb bs=4096: Drive-to-drive duplication
+  - dd if=/dev/zero of=/dev/sda bs=4k: Clean up a hard drive (may need to be repeated)
+  - dd if=inputfile of=/dev/st0 bs=32k conv=sync: Copy from file to tape device
+  - dd if=/dev/st0 of=outfile bs=32k conv=sync: The above, reversed
+  - dd if=/dev/sda | hexdump -C | grep [^00]: Check if drive is really zeroed out
+  - dd if=/dev/urandom of=/home/$user/hugefile bs=4096: Fills out a partition (careful with system partitions!)
+  - ls -l myfile -> -rw-r--r-- 6703104 Oct 31 18:25 myfile -> dd if=/dev/urandom of=myfile bs=6703104 count=1: Scramble a file (maybe before deleting it)
+- Catching ESCAPE-SEQUENCIES
+ - Some buttons like ARROWN and Fn consists of a sequence of chars starting with \E (ESC=ASCII-27). This sequence might have variable lenth depending on terminal type and encoding
+ - TERMINAL-ESCAPE-SEQUENCIES using infocmp -> ...cup=\E[%i%p1%d;%p2%dH, cuu=\E[%p1%dA, cuu1=\E[A,...
+  - man 5 terminfo | grep cuu1 -> "cursor_up                 cuu1   up   up one line"
+  - ARROW_UP=\E[A = ESC + [A
+  - C\C++: if(read(STDIN_FILENO, &c, 1) > 0) if(c == 27) if(strcmp(buffer,"[A") == SUCCESS) -> ARROW_UP clicked
+- Reading Passwords:
+ - stty -echo; read password; stty echo -> turn off/on output
+- 5.4) Redirection using exec: exec > file; exec >> file; exec 2> file; exec 2>> file; exec < file
+ - echo "$0 wird ausgeführt" (output on screen); exec >ausgabe.txt (redirect all outputs to ausgabe.txt); val=`ls -l | wc -l`; echo "Im Verzeichnis $HOME befinden sich $val Dateien"; echo "Hier der Inhalt: "; ls -l
+ - exec <data.dat; printf "%-15s %-15s %-8s\n" "Nachname" "Vorname" "Telefon"; printf "+%-15s+%-15s+%-8s\n" "--------" "-------" "-------"
+   while read vorname nachname telefon; do printf " %-15s  %-15s  %-8d\n" $nachname $vorname $telefon; done
+   - each loop will read 3 new tokens
+ 
