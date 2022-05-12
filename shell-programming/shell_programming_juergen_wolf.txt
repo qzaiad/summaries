@@ -527,6 +527,16 @@ stty -raw echo
  - 5.5.2) Redirection with [n]<> file
   - open file for both reading and writing on file descriptor n, or on file descriptor 0 if n is not specified. If the file does not exist, it is created.
   - exec 3<> $1; while read line <&3; do echo $line; printf "Hier eine neue Zeile einfügen? [j/n] : "; read; [ "$REPLY" = "j" ] && break; done; printf "Bitte hier die neue Zeile eingeben : "; read; echo $REPLY >&3 -> Des Ruhmes Würdigkeit verliert an Wert,\nHier eine neue Zeile\nder selbst mit Lob sich ehrt.
-
-
-
+- 5.6) Named Pipes: 
+ - rarely used. same as normal pipe but it can be accessed be multiple processes
+ - eine Konstruktion,welche die Ausgabe eines Prozesses als Eingabe zur Verfügung stellt. Bei normalen Pipes mussten die Prozesse vom selben Elternprozess abstammen (um an die Dateideskriptoren heranzukommen)
+ - created by: mknod name p   or   mkfifo name -> e.g. mknod apipe p    prw-r--r--  1 tot users 0 2005–03–07 06:10 apipe (type p for named pipe)
+   echo "Hallo User" > apipe; wait blockingly until data is read from another process. open o new terminal and type: tail -f apipe -> Hallo User
+  - Prozess1, der in die Pipe schreibt, kann erst dann weiterarbeiten, wenn Prozess2 aus dieser Pipe liest, also ein weiterer Prozess die Leseseite einer Pipe öffnet (liest immer alles auf einmal)
+ - name pipe file exists until it is deleted (exactly as normal files)
+ - don't forget to adjust file permission if a different user should access the named pipe
+ - Im Unterschied zu einer normalen Pipe, die in einem Schritt erzeugt wird (ein Inode-Eintrag, zwei Datei-Objekte und die Speicherseite) und sofort zum Lesen und Schreiben bereitsteht, werden die Named Pipes von den Prozessen im Userspace geöffnet und geschlossen. Dabei beachtet der Kernel, dass eine Pipe zum Lesen geöffnet ist, bevor etwas hineingeschrieben wird, sowie dass eine Pipe zum Schreiben geöffnet ist, bevor sie auch zum Lesen geöffnet wurde. Auf der Kernelebene ist dies in etwa dasselbe wie beim Erzeugen einer Gerätedatei (Device File).
+ - echo a > apipe; in second terminal echo b > apipe; in third terminal cat apipe would print a\nb\n
+ - after writing in (echo) or reading from (read) a named pipe, it will be directly closed. to write multiple lines ar to read linewise use loops:
+  - while true; do echo 1; echo 2; echo 3; break; done > apipe
+    i=1; while read line; do echo "line $i: $line"; i=$((i+1)); done < apipe
