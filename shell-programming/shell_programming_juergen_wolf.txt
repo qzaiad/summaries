@@ -540,3 +540,26 @@ stty -raw echo
  - after writing in (echo) or reading from (read) a named pipe, it will be directly closed. to write multiple lines ar to read linewise use loops:
   - while true; do echo 1; echo 2; echo 3; break; done > apipe
     i=1; while read line; do echo "line $i: $line"; i=$((i+1)); done < apipe
+- 6.7) Menus with select (bash and korn shell only)
+ - select variable in menu_points; do cmd1;...cmdn; done -> produces a numbered list of menu points. the user selects a number and the corresponding point is stored in variable. The corresponding number is stored in $REPLY. If user selects an invalid point -> variable="". After each selections all commands between do and done are executed. Then the user is asked to select again a number (endless loop exited by a exit/break or CTRL+D=EOF). PS3 is used as a prompt (usually is #). menu_points misht expads, i.e. b< using *-, ?, [], ``...
+ - PS3="Ihre Wahl : "; select auswahl in Punkt1 Punkt2 Punkt3 Punkt4 Ende; do case "$auswahl" in
+      Ende)  echo "Ende"; break ;;
+        "")  echo "Ungültige Auswahl" ;;
+         *)  echo "Sie haben $auswahl gewählt"
+   esac
+done
+ - examples: select var in *.c *.sh *.txt; select var in `who | cut -c1–8 | grep -v $LOGNAME`; select var in `ls a*`
+ -  PS3="Datei zum Editieren auswählen : " # Ein neues Auswahl-Prompt
+    EDIT=vi # Hier den Editor Ihrer Wahl angeben
+    select auswahl in * Ende; do
+       case "$auswahl" in
+          Ende)  echo "Ende" ; break ;;
+            "")  echo "$REPLY: Ungültige Auswahl" ;;
+             *)  [ -d "$auswahl" ] && \
+                 echo "Verzeichnis kann nicht editiert werden" &&\
+                 continue
+                 $EDIT $auswahl
+                 break ;;
+       esac
+    done 
+ - Sub-Menus: in case statement write another select satement: A)  select auswahla in A1 A2 A3; do...
