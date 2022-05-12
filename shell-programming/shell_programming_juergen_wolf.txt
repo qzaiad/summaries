@@ -503,4 +503,30 @@ stty -raw echo
  - exec <data.dat; printf "%-15s %-15s %-8s\n" "Nachname" "Vorname" "Telefon"; printf "+%-15s+%-15s+%-8s\n" "--------" "-------" "-------"
    while read vorname nachname telefon; do printf " %-15s  %-15s  %-8d\n" $nachname $vorname $telefon; done
    - each loop will read 3 new tokens
- 
+- 5.5) File Descriptors (fd): an integer refering to an openned file. fds 0 stdin, 1 stdout, 2 stderr -> connected with the terminal tty
+ -  echo example > file <=> echo example 1> file : redirect stdout to file
+ - read x < file <=> read x 0< file : redirect stdin to file
+ - echo "Hallo Welt auf stderr" >&2 <=> echo "Hallo Welt auf stderr" 1>&2 : redirect stdout to stderr
+ - command <&fd : read from file or file descriptor
+ - command >&fd : write to file or file descriptor
+ - command >>&fd : append to file or file descriptor
+ - User Defined File Descriptors (only from 3 until 9):
+  - exec fd> destination; exec fd>> destination; exec fd< destination; releasing by exec fd>&-
+  - exec 3> `tty`; echo "Hallo neuer Kanal" >&3; exec 3>&-; echo "Hallo neuer Kanal" >&3 -> bash: 3: Ungültiger Dateideskriptor
+ - User-Defined fds are also usable in subshells
+ - Using exec >&- without channel will close stdout. the same applies for fds 0 and 2
+   REOPENING: exec 1> `tty`
+ - Useful Applications:
+  - read/write access posiotion is kept after each operation:
+   - who > user.dat; read user1 <user.dat; read user2 <user.dat -> user2 contains the same line as user1 because the read access points always at the beginning
+   - who > user.dat; exec 3< user.dat; read user1 <user.dat; read user2 <user.dat -> user1 contains line1 and user2 contains line2
+  - Reading from multiple files:
+   - exec 3< file1; exec 4< file2; exec 5< file3; exec 6< file4; while true; do read var1 <&3; do read var2 <&4; do read var3 <&5; do read var4 <&6; done
+  - Reading from stdin and from a file:
+   - exec 3< $1; while read line <&3; do echo $line; printf "Eine weitere Zeile einlesen? [j/n] : "; read; [ "$REPLY" = "n" ] && break; done
+ - 5.5.2) Redirection with [n]<> file
+  - open file for both reading and writing on file descriptor n, or on file descriptor 0 if n is not specified. If the file does not exist, it is created.
+  - exec 3<> $1; while read line <&3; do echo $line; printf "Hier eine neue Zeile einfügen? [j/n] : "; read; [ "$REPLY" = "j" ] && break; done; printf "Bitte hier die neue Zeile eingeben : "; read; echo $REPLY >&3 -> Des Ruhmes Würdigkeit verliert an Wert,\nHier eine neue Zeile\nder selbst mit Lob sich ehrt.
+
+
+
