@@ -563,3 +563,31 @@ done
        esac
     done 
  - Sub-Menus: in case statement write another select satement: A)  select auswahla in A1 A2 A3; do...
+- 5.8) dialog und Xdialog (have same format, just replace dialog with xdialog. xdialog has mor features)
+ - dialog --yesno [Text] [height] [width]: (height or width = 0 -> auto determined)
+  - dialog --yesno "Möchten Sie wirklich abbrechen?" 0 0; antwort=$? (0=ja, 1=no); clear
+ - [X]dialog --msgbox [Text] [Höhe] [Breite]: shows informational box
+  - dialog --msgbox "Die Antwort war JA." 5 40
+ - [X]dialog --infobox [Text] [Höhe] [Breite]: dialog --infobox "Dieser Vorgang kann ein wenig dauern" 5 50
+ - [X]dialog --inputbox [Text] [Höhe] [Breite] [[Vorgabetext]]
+  - name=`dialog --inputbox "Wie heißen Sie?" 0 0 "Jürgen" 3>&1 1>&2 2>&3`; dialog --clear; dialog --msgbox "Hallo $name, Willkommen bei $HOST!" 5 50; clear
+  - 3>&1 1>&2 2>&3 -> Nachteil von dialog: Ergebnis wird hier immer auf die stderr statt auf die stdout erfolgt. Und um die Dialogausgabe zur weiteren Verarbeitung in eine Variable zu schreiben, müssen Sie ebenso vorgehen.
+  - to understand --clear option see example:
+   - dialog --begin 2 2 --yesno "" 0 0 --and-widget --begin 4 4 --yesno "" 0 0 --and-widget --begin 6 6 --yesno "" 0 0
+     (Only the last widget is left visible)
+     dialog --clear       --begin 2 2 --yesno "" 0 0 --and-widget --clear       --begin 4 4 --yesno "" 0 0 --and-widget --begin 6 6 --yesno "" 0 0
+ - dialog --textbox "$0 (filename)" 0 0 -> shows $0 in a text box. we an scroll to all directions
+ - [X]dialog --menu [Text] [Höhe] [Breite] [Menühöhe] [Tag1] [Eintrag1] ...
+   os=`dialog --menu "Betriebssystem wählen" 0 0 0 "Linux" "" "BSD" "" "Solaris" "" 3>&1 1>&2 2>&3`; echo $os -> select from a menu
+ - [X]dialog --checklist [Text] [Höhe] [Breite] [Listenhöhe] [Tag1] [Eintrag1] [Status1] ...: select multiple tags
+   pizza=`dialog --checklist "Pizza mit ..." 0 0 4 Käse "" on Salami "" off Schinken "" off Thunfisch "" off 3>&1 1>&2 2>&3`; echo $pizza
+   -> e.g pizza = "Käse Thunfisch"
+ - [X]dialog --radiolist [Text] [Höhe] [Breite] [Listenhöhe] [Tag1] [Eintrag1] [Status1] ... -> select only one tag
+   pizza=`dialog --radiolist "Pizza mit ..." 0 0 3 Salami "" off Schinken "" off Thunfisch "" off 3>&1 1>&2 2>&3`; echo $pizza
+ - [X]dialog --gauge [Text] [Höhe] [Breite] [Prozent]
+   (echo 10; sleep 1; echo 20; sleep 1; echo 30; sleep 1; echo 40; sleep 1; echo 50; sleep 1; echo "XXX"; echo "WE REACHED 100%") | dialog --title "Fortschrittszustand" --gauge "Starte Backup-Script" 8 30 10
+  - gauge expect more info from stdin -> INT -> Percentage; echo "XXX" instructs gauge that a new text is coming
+ - Verändern von Aussehen und Ausgabe: Aussehen und die Ausgabe beeinflussen:
+  --title:	Eine Titelzeile für einen Dialog festlegen (Beschriftung für den oberen Rand)
+  --backtitle:	Eine Titelzeile am Bildschirmrand festlegen (hierbei wird häufig der Scriptname verwendet, der zum jeweiligen Dialog gehört)
+  --clear:	Dialog-Bildschirm löschen
