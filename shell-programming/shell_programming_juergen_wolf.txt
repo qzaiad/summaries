@@ -591,3 +591,22 @@ done
   --title:	Eine Titelzeile für einen Dialog festlegen (Beschriftung für den oberen Rand)
   --backtitle:	Eine Titelzeile am Bildschirmrand festlegen (hierbei wird häufig der Scriptname verwendet, der zum jeweiligen Dialog gehört)
   --clear:	Dialog-Bildschirm löschen
+- 5.9) Visualization of measurement data 2D and 3D. Examples in http://gnuplot.sourceforge.net/demo/ 
+ - plot [x_min:x_max] [y_min:y_max] sin(x),cos(x),tan(x),x**2
+ - Variables and Parameters: see 'help set' -> The `set` command can be used to set _lots_ of options.  No screen is drawn, however, until a `plot`, `splot`, or `replot` command is given.
+ - set xlabel "X-ACHSE"; set ylabel "Y-ACHSE"; set xrange [0:4]; set yrange [-1:1]; plot sin(x)
+ - Output Redirection: 'set terminal' shows all supported terminals
+  - set output file.endung; set terminal png/postscript/latex/windows(x11)/PRN(printer, note that terminal must be set with the correct driver); plot sin(x) -> output saved into file.endung
+  - '! bash-command': executes a bash command without exiting gnuplot
+  - Variables: var=value; print var -> var_a=1+var*sqrt(2); print var_a
+   - Pi=3.1415; set xrange [-2*Pi:2*Pi]; a=0.6; plot a*sin(x)
+   - Defining Functions: func(x)=var*sin(x); var=0.5; plot func(x); var=0.6; plot func(x)
+ - 5.9.7) Interpretation of data from files:
+    - set xrange [0:60]; set yrange [0:40]; set xlabel "Monat"; set ylabel "Grad/Celcius"; set style data lp; set title "Temperatur-Daten 1999-2002"; plot "messdat.dat" using 1:2 t "1999", "messdat.dat" using 1:3 t "2000", "messdat.dat" using 1:4 t "2001", "messdat.dat" using 1:5 t "2002"
+      using 1:2 -> use first  column for X-Achse and second column for Y-Achse
+ - 5.9.8)
+   
+   
+   
+   
+   
