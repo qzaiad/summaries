@@ -681,7 +681,7 @@ done
  - 7.1) Basics: Signals are asynchronous events that interrupts (from user level) a process -> used got interprocess communication by senging ints or MACROs
   - There are 3 Categories:
    - System signals: Hardware- und Systemfehler, ILL, TRAP, BUS, FPE, KILL, SEGV, XCPU, XFSZ, IO
-   - Device signals: HUP, INT, PIPE, ALRM, CHLD, CONT, STOP, TTIN, TTOU, URG, WINCH, IO
+   - Device signals: HUP (hang up), INT, PIPE, ALRM, CHLD, CONT, STOP, TTIN, TTOU, URG, WINCH, IO
    - User defined signals: QUIT, ABRT, USR1, USR2, TERM
   - kill l: shows all signal numbers and symbolic names
   - when an event occurrs -> event stored in Prozesstabelleneintrag. the kernel decides how to react on it when activating the process:
@@ -701,7 +701,7 @@ done
   - 7.3.1) Signal Handlers (Functions):
    - sighandler_INT() { printf "Habe das Signal SIGINT empfangen\nSoll das Script beendet werden (j/n) : "; read; if [[ $REPLY = "j" ]]; then echo "Bye!" exit 0; fi; }; trap 'sighandler_INT' 2;...
    - Verwenden Sie in der Korn-Shell innerhalb von Funktionen die trap-Anweisung, dann sind die mit ihr eingerichteten Signale nur innerhalb dieser Funktion gültig.
-   - kill -HUP PID_of_dämon_oder_server: Konfiguration neu laden fuer Daemonen
+   - kill -HUP PID_of_dämon_oder_server: Konfiguration neu laden fuer Daemonen or sent to a process when its controlling terminal is closed. (It was originally designed to notify the process of a serial line drop.)
     - trap 'readconfig' 1; readconfig() { . aconfigfile; /*contains values for a,b,c*/ } a=1; b=2; c=3; while [ 1 ]; do echo "Werte (PID:$$)"; echo "a=$a"; echo "b=$b"; echo "c=$c"; sleep 5; done
   - 7.3.2) exiting loops with signals: trap 'break' 2; while [ 1 ]; do echo "$i. Schleifendurchlauf"; sleep 1; i=`expr $i + 1`; done; echo "Nach dem $i Schleifendurchlauf abgebrochen"
    - 7.3.3) Exiting Scripts with Signals -> Free ressources before exiting: trap 'rm atempfile.tmp ; exit 1' 2
@@ -732,4 +732,10 @@ done
 - 8.3) background and foreground processes
  - cmd/script & -> execute cmd/script in background. If script need user input such as read-command -> script is stopped -> ps -l -> a stopped process has T (traced) -> 7249 pts/41   T      0:00 /bin/bash -> fg %1 (%job_specification)
 - 8.4) Protecting background processes (nohup)
- - 
+ - shell is closed -> SIHHUP=1 sent to all processes -> bg processes will be closed (not in SuSE 9.1!!!)
+ - nohup cmd args & -> stdout/stderr redirected to nohup.out, if failed to $HOME/nohup.out, if failed -> error
+  - return result 126: command could not be started. 127 -> command not found
+  - same effect by using trap '' 1; cmd args
+- 8.5) Subshells: ( kommando1 ; ... ; kommando_n ) or using new lines instead of ;
+ - starts a subshell, and returns the result of the last executed command. the subshell copies all environment variables by value
+- 8.6) 
