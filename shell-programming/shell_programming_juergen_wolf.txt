@@ -713,7 +713,23 @@ done
    - 7.3.5) Reseting Signals: trap Signalnummer-List
    - trap -> shows signals which should be catched
    
-   
-   
-   
-   
+- 8.1) Process Priorities:
+ - Each process hat a priority, e.g. system process has a higher priority that a user process
+ - Multitasking OS: 1 CPU can serve only on process at the same time -> multitasking. Scheduler assign each process a time slot. Moreover each process hat a priority
+  - System process: has a higher priority, which can not be changed by users
+  - Real time process: time critical processes -> has higher priority as time sharing processes
+  - Time sharing: processes share CPU as fair as possible. each process take a time slot (size depends on #processes and CPU perfomance)
+  - Each process has a priority.
+  - In order to stay fair and consider priorities -> process priority is recomputed after each execution
+  - Commands: nice/renice can affect the process priority. ps -l show NI (NICE) value. We can change process priority by setting -20 (highest) <= NI <= 19 (lowest) 
+  - Commands starting in a shell take the same prio as the shell
+  - renice PRIO PID: e.g. renice +10 1234 -> 1234: Old Priority: 0, new Priority: 10
+   - setting a higher priority (even to original prio) need a root rights, i.e. su -c 'renice -5 1234'
+- 8.2) Waing for other Processes:
+ - wait PID: wait until PID ends -> wait returns the return values of PID. value 127 means -> process does not exist
+ - wait (without PID): waits for all active child processes to end -> return value = 0
+ - e.g.: sleep 10 & -> wait $!; echo $? -> https://phoenixnap.com/kb/bash-wait-command
+- 8.3) background and foreground processes
+ - cmd/script & -> execute cmd/script in background. If script need user input such as read-command -> script is stopped -> ps -l -> a stopped process has T (traced) -> 7249 pts/41   T      0:00 /bin/bash -> fg %1 (%job_specification)
+- 8.4) Protecting background processes (nohup)
+ - 
