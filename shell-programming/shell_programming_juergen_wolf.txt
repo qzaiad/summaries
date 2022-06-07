@@ -738,4 +738,35 @@ done
   - same effect by using trap '' 1; cmd args
 - 8.5) Subshells: ( kommando1 ; ... ; kommando_n ) or using new lines instead of ;
  - starts a subshell, and returns the result of the last executed command. the subshell copies all environment variables by value
-- 8.6) 
+- 8.6) Communication between Scripts
+ - by exporting variables: all scripts will see the same variables
+ - by passing as arguments $1...$9...${n}: in script1: ./script2 $a $b $c
+ - by using temp files: e.g. one process writes in file and the other process reads from it
+  - script1: IFS='\n'; for var in `ls -l`; do echo $var; done > file.tmp; ./script2
+    script2: while read line; do echo $line; done < file.tmp
+    Without redirection -> use pipe: ./script1 | ./script2
+  - by returning data -> calling scripts use command substitution: script1: var=`./script2`; set $var; echo "$1; $2; $3". script2: echo var1=wert1; var2=wert2; var3=wert3; echo $var1 $var2 $var3
+    another example script1: var=`./script2`; i=1; for wert in $var; do echo "$i: $wert"; i=`expr $i + 1`; done
+    another example script1: ./script2 | while read wert; do for val in $wert; do echo "$val"; done ; done # linewise reading
+ - by using a named pipe:
+  - PipeServer: mknod meine_pipe p; while true; do read zeile < meine_pipe; echo $zeile; done
+    Vorteil: Die anderen Scripts, die Daten in diese Pipe schicken, werden nicht blockiert, weil immer auf der anderen Seite des Rohrs der Server »PipeServer« darauf wartet.
+ - 8.6.3) Synchronizing Scripts using signals:
+  - FILE=tmpfile.tmp; rm $FILE; touch $FILE; while true; do if [ -r $FILE ]; then echo "Datei wird gelesen ..."; sleep 1; ./script_zum_Lesen; chmod 0200 $FILE; fi
+                                                            if [ -w $FILE ]; then echo "Datei ist bereit zum Schreiben ..."; sleep 1; ./script_zum_Shreiben; chmod 0400 $FILE; fi; sleep 1; done
+- 8.7) Job Management:
+ - sleep 10 & -> [1] 5915 -> i.e. [JOB_NUMBER] PID
+ - jobs: shows all background jobs
+ - CTRL-Z stopping a foregrounf job (SIGSTOP) -> [1]+  Stopped (state)         du /
+  - kill -SIGCONT %1 or kill -SIGCONT PID continues job 1
+  - kill %1 == kill -SIGKILL %1 -> ends job 1
+  - kill -SIGTERM %1 -> terminates job 1
+  - bg %1: sends job 1 into background.  bg or bg %: send last stopped job (current job) into background.
+- 8.8) Execution of scheduled scripts: e.g. for backups/ checking consistency, logging
+ - Daemon (disk and execution monitors): Background process waiting for tasks to execute
+ - Cron Daemon: define and delegate tasks to cron for execution. This is done in crontab. The PC must run at execution time. Some distributions use anacron to guarantee that the tasts are executed even if the PC is shut down
+  - crond reads crontab in specific time intervals (usually each minute) and execute defined tasks. it is enough to define a task in crontab
+  - cron task should not use stdin (read) and stdout. stdin/stdout should be redirected. The output is sent usually to crontab's owner
+  - 
+ 
+
