@@ -767,6 +767,15 @@ done
  - Cron Daemon: define and delegate tasks to cron for execution. This is done in crontab. The PC must run at execution time. Some distributions use anacron to guarantee that the tasts are executed even if the PC is shut down
   - crond reads crontab in specific time intervals (usually each minute) and execute defined tasks. it is enough to define a task in crontab
   - cron task should not use stdin (read) and stdout. stdin/stdout should be redirected. The output is sent usually to crontab's owner
-  - 
- 
-
+  - cron task should be careful using environment variables, because you don't know if these vars exist in the shell, which is started by crond
+  -> crontab can contain env. vars -> shells started by crond use these env. vars.:
+   - LOGNAME or USER = crontab's owner
+   - HOME=LOGNAME/USER's home dir
+   - PATH: be sure that it contains $PATH when cron task (script) is executed -> scripts should use absolute paths to avid problems with PATH var
+   - if the cron task (script) want to know that it is in execution -> execute tty -s; assert echo $?==0 # -s := silent because crom tasks use no stdout/stdin
+   - crontab format: 0-59 (minutes) 0-23 (hours) 1-31 (day) 1-12 (month) 0-7 (dayOfMonth 0=7=sunday) [User] (name, only for root) command -> 6/7 columns for normal user/root
+   - * * * * * $HOME/meinscript -> each minute,  0 10–14 * * * $HOME/meinscript every day at 10,11,12,13,14 oclock,  0 10–12,16,20–23 * * * $HOME/meinscript every day at 10, 11, 12, 16, 20, 21, 22, 23 oclock
+     0 */4 * * * $HOME/meinscript every daty at 0,4,8,12,16,20 oclock,  0 23 15 * 6 $HOME/meinscript (every 15. of each month AND every saturday) at 23 oclock
+     0 23 * * 0–6/2 $HOME/meinscript jeden zweiten Tag um 23 UHr
+   - crontab -e: edit cron file;    contab -l: list all cron jobs;    crontab -r: delete all cron jobs
+     
