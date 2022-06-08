@@ -772,10 +772,30 @@ done
    - LOGNAME or USER = crontab's owner
    - HOME=LOGNAME/USER's home dir
    - PATH: be sure that it contains $PATH when cron task (script) is executed -> scripts should use absolute paths to avid problems with PATH var
-   - if the cron task (script) want to know that it is in execution -> execute tty -s; assert echo $?==0 # -s := silent because crom tasks use no stdout/stdin
+   - if the cron task (script) want to know that it is in execution -> execute tty -s; assert echo $?==0 # -s := silent because cron tasks use no stdout/stdin
    - crontab format: 0-59 (minutes) 0-23 (hours) 1-31 (day) 1-12 (month) 0-7 (dayOfMonth 0=7=sunday) [User] (name, only for root) command -> 6/7 columns for normal user/root
    - * * * * * $HOME/meinscript -> each minute,  0 10–14 * * * $HOME/meinscript every day at 10,11,12,13,14 oclock,  0 10–12,16,20–23 * * * $HOME/meinscript every day at 10, 11, 12, 16, 20, 21, 22, 23 oclock
      0 */4 * * * $HOME/meinscript every daty at 0,4,8,12,16,20 oclock,  0 23 15 * 6 $HOME/meinscript (every 15. of each month AND every saturday) at 23 oclock
      0 23 * * 0–6/2 $HOME/meinscript jeden zweiten Tag um 23 UHr
    - crontab -e: edit cron file;    contab -l: list all cron jobs;    crontab -r: delete all cron jobs
-     
+- 8.9) Shell-Starter-Process and Shell-Profile-Data
+ - interactive shell: like calling bash. Not interactive shell: e.g. like calling a script, or ( ... ) or command substitution. Login Shell: called directly after log in
+ - system wide initialization files: in /etc or /etc/profile or sometimes in /usr/etc. Some programs pur their config giles in /usr/share/packet/xxxxrc (rc=read command)
+  - after logging in  -> /etc/profile is executed -> editable only from admin. login start a shell (specified in /etc/passwd like HOME). This shell set env vars. usually calls /etc/profile more init files
+ - user specific init files: in home director
+ - Start of a login shell:
+  - Bourne-Shell:set environment -> /etc/profile -> $HOME/.profile
+  - Bash-Shell:set environment -> /etc/profile -> $HOME/.bash_profile, if not found -> $HOME/.bash_login, if not found -> $HOME/.profile
+  - Korn-Shell:set environment -> /etc/profile -> $HOME/.profile -> $ENV (usually $HOME/.kshrc)
+   - .kshrc contains aliases/functions which can not be exported
+ - Start of a not login shell: (remeber: aliases and functions can not be exported)
+  - Korn-Shell: $ENV=.kshrc is executed
+  - Bash-Shell: - interactive mode (e.g. calling bash): ~/.bashrc is executed
+                - interactive mode (e.g. calling a script): $BASH_ENV is executed (if exists -> default ~/.bashrc)
+  - Bourne-Shell: nothing
+ - Exceptions: Starting subshells by ( ... ) or command substitution or calling a script after a point (e.g. source .bashrc or '. ./bashrc'): nothing is executed -> only an exact copy of environment is copied
+ - More for Bash:
+  - $HOME/.bash_logout: called when ending/logging out -> should free ressources
+  - /etc/inputrc:	In dieser Datei wird die systemweite Vorbelegung der Tastatur für die Bash und andere Programme definiert, welche die C-Funktion readline zum Lesen der Eingabe verwenden. Veränderungen sind dem Systemadministrator (root) vorbehalten.
+  - $HOME/.inputrc:	Wie /etc/inputrc, nur dass hier der normale Benutzer eigene Einstellungen vornehmen darf.
+
