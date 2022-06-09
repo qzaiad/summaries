@@ -798,4 +798,20 @@ done
   - $HOME/.bash_logout: called when ending/logging out -> should free ressources
   - /etc/inputrc:	In dieser Datei wird die systemweite Vorbelegung der Tastatur für die Bash und andere Programme definiert, welche die C-Funktion readline zum Lesen der Eingabe verwenden. Veränderungen sind dem Systemadministrator (root) vorbehalten.
   - $HOME/.inputrc:	Wie /etc/inputrc, nur dass hier der normale Benutzer eigene Einstellungen vornehmen darf.
+- 8.10) Executing Shell Scripts:
+ - (./script or bash script) executes script in a subshell. The current shell is blocked until ending 
+ - (./script& or bash script&) executes script in a subshell. The current shell is not blocked
+ - (. ./script or source ./script) executes script in context of the caller shell
+ - There are 3 Phases for spcript execution:
+  - Syntax Checking: the script is read line by line and is checked for syntax
+  - Expansion: Aliases- und Tilde-Expansion, command substitution, Variable-Interpolation, Computations (nur Bash und Korn-Shell) and file expasions
+  - Command Execution: Execution Order: shell builtin commands (shell functions), Functions, extern commands (in PATH) or binary command or schell scripts
+- 8.11) Optimizing Shell Scripts (Advices): speed up 2x until 10x
+ - try to use builtin commands
+ - use bash/korn shells because they have more builtin commands
+ - use always the simplest version of a command (due to portability)
+ - use fast commands: e.g. cat is 10x faster than reading with awk and 100x faster than read command
+ - avoid reading big data with read command (specially in a loop). read is useful for user input and reading small files -> use cat, grep, sed or awk
+ - avoid working with big files: extract important data using grep/sed/awk and save them in tmp file for later work
+ - avoid using awk in loops and thus starting awk in each iteration -> write awk script and thus starting awk only once
 
