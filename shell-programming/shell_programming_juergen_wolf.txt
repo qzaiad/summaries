@@ -802,7 +802,7 @@ done
  - (./script or bash script) executes script in a subshell. The current shell is blocked until ending 
  - (./script& or bash script&) executes script in a subshell. The current shell is not blocked
  - (. ./script or source ./script) executes script in context of the caller shell
- - There are 3 Phases for spcript execution:
+ - There are 3 Phases for script execution:
   - Syntax Checking: the script is read line by line and is checked for syntax
   - Expansion: Aliases- und Tilde-Expansion, command substitution, Variable-Interpolation, Computations (nur Bash und Korn-Shell) and file expasions
   - Command Execution: Execution Order: shell builtin commands (shell functions), Functions, extern commands (in PATH) or binary command or schell scripts
@@ -814,4 +814,7 @@ done
  - avoid reading big data with read command (specially in a loop). read is useful for user input and reading small files -> use cat, grep, sed or awk
  - avoid working with big files: extract important data using grep/sed/awk and save them in tmp file for later work
  - avoid using awk in loops and thus starting awk in each iteration -> write awk script and thus starting awk only once
+- 9) Useful Functions:
+ - 9.1) eval command line: 
+ 
 
