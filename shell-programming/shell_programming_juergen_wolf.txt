@@ -834,4 +834,56 @@ done
    - find -print0: found files are separated by \0
   - find . -name "*.tmp" -print0 | xargs -0 rm: argument list are separated by \0. xargs -0: separates arguments by \0
   - if cmd2 expects more than one param such as "mv file dst_folder" -> use place holder {}: xargs -0 mv {} $HOME/backups
+ - 9.3) dirname and basename: basename filename [Suffix] / dirname  filename
+  - basename $HOME/Kap005graf.zip -> Kap005graf.zip
+  - dirname $HOME/Kap005graf.zip -> /home/qahmad
+  - basename $HOME/Kap005graf.zip .zip -> Kap005graf . basename $HOME/meinText.txt .txt -> meinText
+ - 9.4) umask (file mode creation mask): reduces rights for user, group and other by: access rights on creating file - umask
+  - umasks -> prints mask ; umask xyz -> sets umask to xyz -> only valid for the current shell session
+  - usually files/dirs are created with access rights rw-rw-rw/rwxrwxrwx (octal 666/777). umask is 0002 (ubuntu, first 0 means: this is an octal number)
+    666 - 002 = 664 -> i.e. files newly created will have rw-rw-r-- / 777 - 002 = 775 -> i.e. dirs bewly created will hav rwxrwxr-x
+  - umask is set in /etc/login.defs (ubuntu) /etc/login.conf (FreeBSD) or in /etc/profile or ~/.bashrc
+ - 9.5) ulimit [Options] [n]: builtin command: print or set a limit for a ressource
+ - Option -H: A hard limit can only be raised by root (any process can lower it). So it is useful for security: a non-root process cannot overstep a hard limit.
+              This will useful to mitigate DOS attacks -> set hard limits in /etc/profile
+ - Option -S: A soft limit can be changed by the process at any time. So it's convenient as long as processes cooperate, but no good for security
+ - ulimit -a
+    core file size          (blocks, -c) 0            Maximale Größe der Speicherabzüge (core-File)
+    data seg size           (kbytes, -d) unlimited    Maximale Größe eines Datensegments oder Heaps in Kilobyte
+    scheduling priority             (-e) 0
+    file size               (blocks, -f) unlimited    Maximale Anzahl an Dateien (Standardoption)
+    pending signals                 (-i) 30384
+    max locked memory       (kbytes, -l) 65536
+    max memory size         (kbytes, -m) unlimited    Maximale Größe des physischen Speichers in Kilobyte (Bash und Korn-Shell only)
+    open files                      (-n) 1024         Maximale Anzahl Filedeskriptoren i.e. open files (plus 1)
+    pipe size            (512 bytes, -p) 8            Größe des Pipe-Puffers (Bash und Korn-Shell only, meistens 512 Bytes)
+    POSIX message queues     (bytes, -q) 819200
+    real-time priority              (-r) 0
+    stack size              (kbytes, -s) 8192         Maximale Größe eines Stacksegments in Kilobyte
+    cpu time               (seconds, -t) unlimited    Maximale CPU-Zeit in Sekunden
+    max user processes              (-u) 30384        Maximale Anzahl von User-Prozessen
+    virtual memory          (kbytes, -v) unlimited    Maximale Größe des virtuellen Speichers in Kilobyte
+    file locks                      (-x) unlimited
+ - 9.6) time command: prints execution time:
+  - time sleep 3
+      real    0m3.029s: execution time from start until end
+      user    0m0.002s: execution time spent in user mode
+      sys     0m0.002s: execution time spent in kernel mode (CPU-Time/Hard-Disc/System-Calls)
+ - 9.7) typset [option] [variable] [=wert]: defines variable property (bash has only the equivalent command 'declare')
+  - typeset -i var=1 (defines integer variable) ; typeset +i var -> var is not integer any more
+      Option	Bash	ksh	Bedeutung
+      A	      X		      Array
+      I	      X	    x	  Integer-Variable
+      R	      X	    x	  Konstante (readonly-Variable)
+      X	      X	    x	  Variable exportieren
+      F	      X	    x	  Zeigt Funktionen mit ihrer Definition an
+      fx	    X	    x	  Exportiert eine Funktion
+      +f		        x	  Zeigt Funktionen ohne ihre Definition an
+      F	      X		      Zeigt Funktionen ohne ihre Definition an
+      fu		        x	  Deklariert Funktionen im Autoload-Mechanismus
+      l		          x	  Inhalt von Variablen in Kleinbuchstaben umwandeln.
+      u		          x	  Inhalt von Variablen in Großbuchstaben umwandeln.
+      Ln		        x	  Linksbündige Variable der Länge n
+      Rn		        x	  Rechtsbündige Variable der Länge n
+      Zn		        x	  Rechtsbündige Variable der Länge n. Leerer Raum wird mit Nullen gefüllt.
 
