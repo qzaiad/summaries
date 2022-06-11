@@ -815,6 +815,23 @@ done
  - avoid working with big files: extract important data using grep/sed/awk and save them in tmp file for later work
  - avoid using awk in loops and thus starting awk in each iteration -> write awk script and thus starting awk only once
 - 9) Useful Functions:
- - 9.1) eval command line: 
- 
+ - 9.1) eval command line: Useful for executing commands stored in a variable -> used in scripts where commands are known in run time
+  . eval ls -l | sort -r: same as without eval -> eval is not useful here
+  - LSSORT="ls -l | sort -r"; executing set -x; $LSSORT -> + ls -l '|' sort -r \n ls: |/sort: Datei oder Verzeichnis nicht gefunden
+    | and sort are considered arguments for command ls -> ls -l '|' sort -r needs a second evaluation. This is what eval does
+  - eval $LSSORT: works as expected
+  - example: while true; do printf "Kommando(s) : "; read; eval $REPLY; done -> executes commands read by user
+  - Another good reason to use eval is the indirect access on variables:
+   - Mo=backup1; Di=backup2;...So=backup7; tag=`date +"%a"` ; eval backup=\$$tag; echo "Heute wird das Backup-Script $backup ausgeführt"
+     eval \$$tag: 2 iterations: \$$tag -> $Mi -> backup3
+ - 9.2) xargs
+  - cmd1 xargs cmd2: call cmd3 with the arguments sent by cmd1 over stdout
+  - for var in `find . -name "*.tmp"`; do rm $var; done -> bad because rm is called for each file
+  - find . -name "*.tmp" -exec rm {} \; -> bad because rm is called for each file
+  - find . -name "*.tmp" -print | xargs rm -> good because rm is called only once for a list of file for deletion.
+    Problem here: Files containing a space or a new line will not be deleted -> use find -print0 and xargs -0
+   - find -print:  found files are separated by \n
+   - find -print0: found files are separated by \0
+  - find . -name "*.tmp" -print0 | xargs -0 rm: argument list are separated by \0. xargs -0: separates arguments by \0
+  - if cmd2 expects more than one param such as "mv file dst_folder" -> use place holder {}: xargs -0 mv {} $HOME/backups
 
