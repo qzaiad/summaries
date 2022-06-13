@@ -154,7 +154,7 @@ Meine Ablage
   - 'declare' is a synonym to 'typeset'
   - typing typeset or declare alone with print all the exported variables
 - Environment Variables: Wenn Sie ein Script, eine neue Shell oder ein Programm starten, so wird diesem Programm eine Liste von Zeichenketten (genauer Array von Zeichenketten) übergeben. Diese Liste wird als Umgebung des Prozesses bezeichnet. Gewöhnlich enthält eine solche Umgebung zeilenweise Einträge in Form von: variable=wert
-  Somit sind Umgebungsvariablen zunächst nichts anderes als global mit dem Kommando export oder typeset –x definierte Variablen.
+  Somit sind Umgebungsvariablen zunächst nichts anderes als global mit dem Kommando export oder typeset -x definierte Variablen.
 - Automatic Shell-Variables: 
  - $0 script name: für Fehlermeldungen verwendet, zum Beispiel um anzuzeigen, wie man ein Script richtig anwendet bzw. aufruft
  - $$: PID of the current shell
@@ -886,4 +886,31 @@ done
       Ln		        x	  Linksbündige Variable der Länge n
       Rn		        x	  Rechtsbündige Variable der Länge n
       Zn		        x	  Rechtsbündige Variable der Länge n. Leerer Raum wird mit Nullen gefüllt.
-
+- 10) Seaching Failures and Debugging
+ - Constants: Capital Letters (typeset -R)
+ - Variables: Small capitals.
+  - Function variables should be preceeded with function name or at least with some letters of the function e.g. func_x...
+ - comment code
+ - write only one command in a line -> this makes debugging easier, because on failure the line number is showed
+ - indent code: ane make it more readable
+ - 10.3) Searching Failures:
+  - 10.3.1) Tracing with set -x: activate tracing in current shell and sub-shells
+   - bash -x script or she-bang line=#!/usr/bin/bash -x
+   - set .x in the script itself and not in the shell before executing the script because you will not see enogh traces
+   - the number of + correspons to the nesting level, e.g. set -x; datum=`date` -> +./script1\n+++ date\n++ datum=Fr Apr  1 10:26:25 CEST 2005
+ - 10.3.2) DEBUG und ERR (Korn only)-Signal: ERR is not documented in bash, but it should work. But $ERRNO does not exist in bash
+  - DEBUG signal is sent after each expression -> trap it and debug
+  - trap 'printf "$LINENO :-> " ; read line ; eval $line' DEBUG
+  - to print the command beside $LINENO use the following beautiful technique:
+   - debugging() { printf "STOP > "; while true; do read line; [ "$line" = "" ] && break; eval $line; printf " > "; done; }
+     typeset -i index=1; while read zeile[$index]; do index=index+1; done<$0;
+     trap 'echo "${zeile[$LINENO]}" ; debugging' DEBUG
+    - Korn: error_handling() { echo "Fehler: $ERRNO Zeile: $LINENO"; printf "Beenden (j/n) : " ; read; [ "$REPLY" = "j" ] && exit 1; } 
+      trap 'error_handling' ERR
+      echo "Testen des ERR-Signals"; cat > /etc/profile; echo "Nach dem Testen des ERR-Signals"
+ - 10.3.3) Variables and Checking Syntax: -u option -> bash -u ./script or set-u in script
+  - set -u; var1=100; echo $var1 $var2 -> ./aunboundvar: line 7: var2: unbound variable
+  - set -n -> only check for syntax errors e.g. bash -n ./script
+ - 10.3.4) debugging using echos and readline and by redirecting unneeded outputs to /dev/null
+  echo "Ausgabe1"; exec 1>/dev/null; func1; exec 1>`tty`; echo "Ausgabe2"
+ - 10.3.5) Debugging-Tools e.g. : patched bash for debugging -> http://bashdb.sourceforge.net/
