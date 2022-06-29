@@ -914,3 +914,23 @@ done
  - 10.3.4) debugging using echos and readline and by redirecting unneeded outputs to /dev/null
   echo "Ausgabe1"; exec 1>/dev/null; func1; exec 1>`tty`; echo "Ausgabe2"
  - 10.3.5) Debugging-Tools e.g. : patched bash for debugging -> http://bashdb.sourceforge.net/
+- 11) grep: Global search for a Regular Expression and Print out matched lines
+ - egrep but not grep: + / ? / |. Moreover sames RegExes are written in egrep without a backslash e.g. () and not \(\)
+ - 11.1) POSIX-RE:
+  - [A-Z_a-z] , [^a-f] none of those chars.\d [0–9], \D [^0–9], \w	a char/num/_ [a–zA–Z_0–9], \W [^a–zA–Z_0–9], \s	Whitespace [ \f\n\r\t\v], \S [^\f\n\r\t\v]
+  - ? 0 or 1, + at least one, * 0 or more, {min,} min times or more, {min,max} between min and max inclusive, {n} exactly n times
+  - ^ line begin, $ line end, \b	word begin or end, \B not word begin or end, \<	word begin, \> word end
+  - groups: s/\(string1\) \(string2\) \(string3\)/\3 \2 \1/g
+  - grep word/words_including_white_space file_list -> return 0 if found, 1 if not found, 2 if file not found
+  - grep word < input; or command | grep word
+  - RegEx: ^ line begin/ $ line end/ ^$ empty line/ ./ */ .*/ []/ [^]/ \< / \> / \<\> / \(...\) / x\{m\} / x\{m\,} / x\{m,n\}
+  - grep options:
+   - -n print #line / -n if n is 1,2... print matched line +/-n lines, e.g. -1 prints matched line + prev./next line
+   - -A n print matched line + n next lines / -B n print matched line + n prev. lines / -c print #matches / -h suppress filename, i.e. don't print it
+   - -i case insensitive / -l print only file names that includes a match / -q return 0 if match is found, otherwise 1 (there r no outputs)
+   - -s suppress failure outputs, i.e. when file does not exist / -v print all lines that do not match RegEx / -w look for complete words
+ - 11.2)
+  - egrep (extended grep): understands more regular expressions than grep. same as "grep -E regex file". E.g. egrep 'Colombo|Columbu|Col' mrolymia.dat
+  - fgrep (fixed/fast grep): understands less regular expressions than grep -> faster. used only with strings, not regex
+  - rgrep (recursive grep): loops over all sub folders, e.g. grep regex */*
+
