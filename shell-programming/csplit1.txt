@@ -1,0 +1,11 @@
+function main1 {
+ echo "function main1"
+}
+
+function main2 {
+ echo "function main2"
+}
+
+function main3 {
+ echo "function main3"
+}

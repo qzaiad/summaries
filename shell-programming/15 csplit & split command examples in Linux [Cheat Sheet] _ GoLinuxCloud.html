@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<!-- saved from url=(0070)https://www.golinuxcloud.com/csplit-split-command-examples-linux-unix/ -->
+<html lang="en-US" prefix="og: https://ogp.me/ns#" style="display: block;"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	
+	<link rel="profile" href="https://gmpg.org/xfn/11">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Search Engine Optimization by Rank Math - https://s.rankmath.com/home -->
+<title>15 csplit &amp; split command examples in Linux [Cheat Sheet] | GoLinuxCloud</title><link rel="stylesheet" href="./15 csplit &amp; split command examples in Linux [Cheat Sheet] _ GoLinuxCloud_files/post.used.css" as="style"><link rel="stylesheet" id="perfmatters-used-css" href="./15 csplit &amp; split command examples in Linux [Cheat Sheet] _ GoLinuxCloud_files/post.used.css" media="all"><link rel="preload" href="./15 csplit &amp; split command examples in Linux [Cheat Sheet] _ GoLinuxCloud_files/golinuxcloud-logo.png" as="image" imagesrcset="https://www.golinuxcloud.com/wp-content/uploads/golinuxcloud-logo.png 1x, https://www.golinuxcloud.com/wp-content/uploads/golinuxcloud-logo.png 2x"><link rel="preload" href="./15 csplit &amp; split command examples in Linux [Cheat Sheet] _ GoLinuxCloud_files/coffee.png" as="image">
+<meta name="description" content="Split files into multiple files using csplit or split command. csplit based on pattern, regex match in Linux or Unix. csplit based on string Combine files">
+<meta name="robots" content="follow, index, max-snippet:-1, max-video-preview:-1, max-image-preview:large">
+<link rel="canonical" href="https://www.golinuxcloud.com/csplit-split-command-examples-linux-unix/">
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="15 csplit &amp; split command examples in Linux [Cheat Sheet] | GoLinuxCloud">
+<meta property="og:description" content="Split files into multiple files using csplit or split command. csplit based on pattern, regex match in Linux or Unix. csplit based on string Combine files">
+<meta property="og:url" content="https://www.golinuxcloud.com/csplit-split-command-examples-linux-unix/">
+<meta property="og:site_name" content="GoLinuxCloud">
+<meta property="article:publisher" content="https://www.facebook.com/golinuxcloud/">
+<meta property="article:author" content="https://www.facebook.com/deep.saahil">
+<meta property="article:tag" content="Cheat Sheet">
+<meta property="article:tag" content="commands">
+<meta property="article:tag" content="split">
+<meta property="article:tag" content="Tips and Tricks">
+<meta property="article:section" content="CheatSheet">
+<meta property="og:updated_time" content="2021-09-29T20:57:23+05:30">
+<meta property="og:image" content="https://www.golinuxcloud.com/wp-content/uploads/2020/02/split.jpg">
+<meta property="og:image:secure_url" content="https://www.golinuxcloud.com/wp-content/uploads/2020/02/split.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="628">
+<meta property="og:image:alt" content="15 useful csplit and split command examples for Linux or Unix">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="article:published_time" content="2020-02-08T00:27:09+05:30">
+<meta property="article:modified_time" content="2021-09-29T20:57:23+05:30">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="15 csplit &amp; split command examples in Linux [Cheat Sheet] | GoLinuxCloud">
+<meta name="twitter:description" content="Split files into multiple files using csplit or split command. csplit based on pattern, regex match in Linux or Unix. csplit based on string Combine files">
+<meta name="twitter:image" content="https://www.golinuxcloud.com/wp-content/uploads/2020/02/split.jpg">
+<meta name="twitter:label1" content="Written by">
+<meta name="twitter:data1" content="admin">
+<meta name="twitter:label2" content="Time to read">
+<meta name="twitter:data2" content="9 minutes">
+<script type="application/ld+json" class="rank-math-schema">{"@context":"https://schema.org","@graph":[{"@type":["Organization","Person"],"@id":"https://www.golinuxcloud.com/#person","name":"admin","url":"https://www.golinuxcloud.com","email":"admin@golinuxcloud.com","logo":{"@type":"ImageObject","@id":"https://www.golinuxcloud.com/#logo","url":"https://www.golinuxcloud.com/wp-content/uploads/2019/06/new_logo_golinuxcloud_small_progressive-3.jpg","caption":"admin","inLanguage":"en-US","width":"200","height":"77"},"image":{"@id":"https://www.golinuxcloud.com/#logo"}},{"@type":"WebSite","@id":"https://www.golinuxcloud.com/#website","url":"https://www.golinuxcloud.com","name":"admin","publisher":{"@id":"https://www.golinuxcloud.com/#person"},"inLanguage":"en-US"},{"@type":"ImageObject","@id":"https://www.golinuxcloud.com/wp-content/uploads/2020/02/split.jpg","url":"https://www.golinuxcloud.com/wp-content/uploads/2020/02/split.jpg","width":"1200","height":"628","caption":"15 useful csplit and split command examples for Linux or Unix","inLanguage":"en-US"},{"@type":"WebPage","@id":"https://www.golinuxcloud.com/csplit-split-command-examples-linux-unix/#webpage","url":"https://www.golinuxcloud.com/csplit-split-command-examples-linux-unix/","name":"15 csplit &amp; split command examples in Linux [Cheat Sheet] | GoLinuxCloud","datePublished":"2020-02-08T00:27:09+05:30","dateModified":"2021-09-29T20:57:23+05:30","isPartOf":{"@id":"https://www.golinuxcloud.com/#website"},"primaryImageOfPage":{"@id":"https://www.golinuxcloud.com/wp-content/uploads/2020/02/split.jpg"},"inLanguage":"en-US"},{"@type":"Article","headline":"15 csplit &amp; split command examples in Linux [Cheat Sheet] | GoLinuxCloud","datePublished":"2020-02-08T00:27:09+05:30","dateModified":"2021-09-29T20:57:23+05:30","author":{"@type":"Person","name":"admin"},"description":"Split files into multiple files using csplit or split command. csplit based on pattern, regex match in Linux or Unix. csplit based on string Combine files","name":"15 csplit &amp; split command examples in Linux [Cheat Sheet] | GoLinuxCloud","@id":"https://www.golinuxcloud.com/csplit-split-command-examples-linux-unix/#schema-68423","isPartOf":{"@id":"https://www.golinuxcloud.com/csplit-split-command-examples-linux-unix/#webpage"},"publisher":{"@id":"https://www.golinuxcloud.com/#person"},"image":{"@id":"https://www.golinuxcloud.com/wp-content/uploads/2020/02/split.jpg"},"inLanguage":"en-US","mainEntityOfPage":{"@id":"https://www.golinuxcloud.com/csplit-split-command-examples-linux-unix/#webpage"}}]}</script>
+<!-- /Rank Math WordPress SEO plugin -->
+
+<link rel="preconnect" href="https://www.google-analytics.com/">
+<!-- golinuxcloud.com is managing ads with Advanced Ads – https://wpadvancedads.com/ --><script id="golin-ready">
+			window.advanced_ads_ready=function(e,a){a=a||"complete";var d=function(e){return"interactive"===a?"loading"!==e:"complete"===e};d(document.readyState)?e():document.addEventListener("readystatechange",(function(a){d(a.target.readyState)&&e()}),{once:"interactive"===a})},window.advanced_ads_ready_queue=window.advanced_ads_ready_queue||[];		</script>
+		
+
+<style id="generate-style-inline-css">
+.no-featured-image-padding .featured-image {margin-left:-20px;margin-right:-20px;}.post-image-above-header .no-featured-image-padding .inside-article .featured-image {margin-top:-20px;}@media (max-width:768px){.no-featured-image-padding .featured-image {margin-left:-15px;margin-right:-15px;}.post-image-above-header .no-featured-image-padding .inside-article .featured-image {margin-top:-15px;}}
+.is-right-sidebar{width:20%;}.is-left-sidebar{width:20%;}.site-content .content-area{width:60%;}@media (max-width: 995px){.main-navigation .menu-toggle,.sidebar-nav-mobile:not(#sticky-placeholder){display:block;}.main-navigation ul,.gen-sidebar-nav,.main-navigation:not(.slideout-navigation):not(.toggled) .main-nav > ul,.has-inline-mobile-toggle #site-navigation .inside-navigation > *:not(.navigation-search):not(.main-nav){display:none;}.nav-align-right .inside-navigation,.nav-align-center .inside-navigation{justify-content:space-between;}}
+.dynamic-author-image-rounded{border-radius:100%;}.dynamic-featured-image, .dynamic-author-image{vertical-align:middle;}.one-container.blog .dynamic-content-template:not(:last-child), .one-container.archive .dynamic-content-template:not(:last-child){padding-bottom:0px;}.dynamic-entry-excerpt > p:last-child{margin-bottom:0px;}
+</style>
+
+
+<style>img#wpstats{display:none}</style>
+	<script type="text/javascript">
+    var elm=document.getElementsByTagName("html")[0];
+    elm.style.display="none";
+    document.addEventListener("DOMContentLoaded",function(event) { elm.style.display="block"; });
+</script><style> .inside-left-sidebar .menu li {margin-bottom: 0px;}.inside-left-sidebar .menu > li {border-bottom: 1px solid #efefef;}.inside-left-sidebar .menu > li > a {color: black;text-decoration: none;min-height: 44px;display: flex;align-items: center;font-size: 14px;padding-top: 5px;padding-right: 20px;padding-bottom: 5px;padding-left: 15px;}.inside-left-sidebar .menu > li.current-menu-item {background-color: rgba(207, 217, 228, 1);}.inside-left-sidebar .menu > li.menu-item-has-children {position: relative;}.inside-left-sidebar .menu > li.menu-item-has-children::before {pointer-events: none;border-style: solid;border-width: 2px 2px 0 0;border-color: #797979;content: "";display: block;top: 17px;right: 10px;transform: rotate(45deg);position: absolute;vertical-align: top;width: 7px;height: 7px;transition: transform 0.6s;}.inside-left-sidebar .menu > li.menu-item-has-children.show::before {transform: rotate(135deg);}.inside-left-sidebar {position: -webkit-sticky;position: sticky;top: 0;overflow-y: scroll;z-index: 99999;height: 100vh;background-color: #fffcfc;overflow-x: hidden;-ms-overflow-style: none;scrollbar-width: none }.inside-left-sidebar .menu .sub-menu {height: 0;overflow: hidden;transition: height 0.6s;margin: 0px;}.inside-left-sidebar .menu li a:hover {background-color: rgba(207, 217, 228, 1) !important;color: black !important;}.inside-left-sidebar .menu .sub-menu > li {padding-left: 25px;}.inside-left-sidebar .menu .sub-menu > li.current-menu-item > a {background-color: rgba(207, 217, 228, 1);}.inside-left-sidebar .menu .sub-menu > li > a {display: flex;align-items: center;background-color: rgba(240, 244, 248, 1);border-bottom: 1px solid white;border-left: 3px solid #0b6bbf;height: auto;padding-top: 5px;padding-right: 20px;padding-left: 20px;padding-bottom: 5px;text-decoration: none;color: black;font-size: 14px;line-height: 20px;min-height: 44px;}.inside-left-sidebar::-webkit-scrollbar-track, pre::-webkit-scrollbar-track {-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);border-radius: 10px;background-color: #F5F5F5;overflow-x: auto;}.inside-left-sidebar::-webkit-scrollbar, pre::-webkit-scrollbar {width: 6px;height: 6px;background-color: #F5F5F5;overflow-x: auto;}.inside-left-sidebar::-webkit-scrollbar-thumb, pre::-webkit-scrollbar-thumb {border-radius: 10px;-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);background-color: #9ea2a5;overflow-x: auto;}</style>
+
+<style>.comment-form-cookies-consent input,input#cren_subscribe_to_comment{margin-right:5px!important}.comment-form-cookies-consent{line-height:20px;font-size:14px;margin-bottom:5px}.comment-form-cookies-consent input{margin-right:.5em;margin-bottom:0}p.comment-form-comment-subscribe,p.comment-form-mailpoet{margin-bottom:5px;font-size:14px;line-height:20px;margin-top:0}.comment-form>.form-submit{margin-top:20px}.site-main .post-navigation{margin-top:35px}img.subscribe-image{margin-top:20px;padding:0!important;border-radius:10px;width:100%}.buy-me-a-coffee{background:#ffe0ca;padding:10px;text-align:center;margin-top:20px;border-radius:10px}.buy-me-a-coffee p{margin:10px 0}.post-search-box{background:#c5e4ff;padding:20px;margin-top:15px;text-align:center;border-radius:10px}.post-search-box p{font-size:17px;font-weight:600;margin-top:10px}.post-search-box input.search-field{width:50%;border-radius:5px 0 0 5px;margin-bottom:10px;border:1px solid #0b6bbf}.post-search-box button.search-submit{border-radius:0 5px 5px 0;background-color:#0b6bbf}#jp-relatedposts .jp-relatedposts-items-visual .jp-relatedposts-post{opacity:1!important}a.jp-relatedposts-post-a{display:block;overflow:hidden}a.jp-relatedposts-post-a>img.jp-relatedposts-post-img{transform:scale(1);transition:transform .35s ease-in}a.jp-relatedposts-post-a:hover>img.jp-relatedposts-post-img{transform:scale(1.2)}#jp-relatedposts .jp-relatedposts-items .jp-relatedposts-post .jp-relatedposts-post-title a{color:#000;border:1px solid #000;text-align:center;padding:5px;text-overflow:ellipsis;overflow:hidden;display:-webkit-box;height:50px;line-height:20px;-webkit-line-clamp:3;-webkit-box-orient:vertical}@media only screen and (max-width:640px){div#jp-relatedposts div.jp-relatedposts-items .jp-relatedposts-post:nth-child(3n+4),div#jp-relatedposts div.jp-relatedposts-items-visual .jp-relatedposts-post:nth-child(3n+4){clear:right}div#jp-relatedposts div.jp-relatedposts-items .jp-relatedposts-post:nth-child(3n+6){clear:right}div#jp-relatedposts div.jp-relatedposts-items .jp-relatedposts-post:nth-child(3){clear:left}}</style><style>cmd,code,pre,pre[class=comments]{font-family:Consolas,'Andale Mono',Monaco,Courier,'Courier New',Verdana,sans-serif;font-size:15px}cmd,pre,pre[class=comments]{line-height:1.5em;overflow-x:auto;padding:10px 10px!important;border-radius:5px;border:1px solid #d0cbcb;max-height:550px;margin-bottom:2em;display:block;-moz-tab-size:4;-o-tab-size:4;tab-size:4}pre{background:#385269;color:#f7f8f9}cmd,pre[class=comments]{background:#f5f2f0;color:#000}code{padding:1px 2px;border:1px solid #c3c3c3;background-color:#f1f1f1;color:#0a0a0a;display:inline-block;border-radius:2px;word-break:break-word}.hints-follow-links,.important-note,.note,.warning{margin:30px 0;border-radius:5px;padding:40px 10px 10px;line-height:25px}.warning{background:rgba(243,204,204,.2);border:1px solid #ca0909}.hints-follow-links{background:#fbfbd8;border:1px solid #6f6c0d}.important-note{background:rgba(232,207,194,.21);border:1px solid #e07a22}.note{background:rgba(99,169,241,.2);border:1px solid #1358bf}.body-title-follow-links,.body-title-important-note,.body-title-note,.body-title-warning{padding:5px 5px 5px 10px;overflow:hidden;display:block;font-weight:900;color:#fff;margin:-40px -10px -10px}.body-title-follow-links{background:#5f5c17}.body-title-warning{background:#c82231}.body-title-note{background:#0660bb}.content{margin:20px 5px 0 5px}.body-title-important-note{background:#cc4129}.wp-caption .wp-caption-text{padding:5px;color:#353434;font-size:13px;background:#e4e0e0;margin:.8075em 0}.wp-caption-text{text-align:center}.pswp__bg{opacity:.8!important}.golin-content-300-250{background:#f0f4f8;height:285px;overflow:hidden}.tablepress-scroll-wrapper{overflow-x:auto;overflow-y:hidden}.tablepress{border-collapse:collapse;border-spacing:0;width:100%;margin-bottom:1em;border:none}.tablepress td,.tablepress th{padding:8px;border:none;background:0 0;text-align:left;float:none!important}.tablepress tbody td{vertical-align:top}.tablepress tbody td,.tablepress tfoot th{border-top:1px solid #ddd}.tablepress tbody tr:first-child td{border-top:0}.tablepress thead th{border-bottom:1px solid #ddd}.tablepress tfoot th,.tablepress thead th{background-color:#d9edf7;font-weight:700;vertical-align:middle}.tablepress .odd td{background-color:#f9f9f9}.tablepress .even td{background-color:#fff}.tablepress .row-hover tr:hover td{background-color:#f3f3f3}#ez-toc-container {background: #f9f9f9;border: 1px solid #aaa;border-radius: 4px;box-shadow: 0 1px 1px rgba(0, 0, 0, .05);display: table;margin-bottom: 1em;padding: 10px;position: relative;width: auto }#ez-toc-container.ez-toc-light-blue {background: #edf6ff }#ez-toc-container ul ul, .ez-toc div.ez-toc-widget-container ul ul {margin-left: 1.5em }#ez-toc-container li, #ez-toc-container ul {margin: 0;padding: 0 }#ez-toc-container li, #ez-toc-container ul, #ez-toc-container ul li, div.ez-toc-widget-container, div.ez-toc-widget-container li {background: 0 0;list-style: none none;line-height: 1.6;overflow: hidden;z-index: 1 }#ez-toc-container p.ez-toc-title {text-align: left;line-height: 1.45;margin: 0;padding: 0 }.ez-toc-title-container {display: table;width: 100% }.ez-toc-title, .ez-toc-title-toggle {display: table-cell;text-align: left;vertical-align: middle }#ez-toc-container a {color: #444;text-decoration: none;text-shadow: none;margin: 4px 0;display: inline-block }#ez-toc-container a:visited {color: #9f9f9f }#ez-toc-container a:hover {text-decoration: underline }div#ez-toc-container p.ez-toc-title {font-weight: 700 !important;font-size: 100% !important }#ez-toc-container.counter-flat ul, #ez-toc-container.counter-hierarchy ul, .ez-toc-widget-container.counter-flat ul, .ez-toc-widget-container.counter-hierarchy ul {counter-reset: item }div#ez-toc-container ul li {font-size: 95%;}</style>
+<script type="text/javascript" defer="" async="" data-pmdelayedscript="//services.vlitag.com/adv1/?q=d977ae3ffd6a4e17c8b29f99a9fef93a" data-cfasync="false" data-no-optimize="1" data-no-defer="1" data-no-minify="1" src="./15 csplit &amp; split command examples in Linux [Cheat Sheet] _ GoLinuxCloud_files/saved_resource"></script><script> var vitag = vitag || {};</script>
+
+<style>
+
+		#right-sidebar .widget {
+				overflow: initial;
+		}
+
+</style>
+
+    <script>
+        var vi_stickyConfig = {
+            'widthActive': 1000,
+            'elementSidebar': '.inside-right-sidebar',
+            'distanceFixedTop': 15,
+            'addingFixedTop': 25,
+            'startFixed': 200,
+            'endFixed': 1000,					// starting distance taken fixed div ad 1 - <div class="vi-sticky-ad"></div>
+            'distanceChangeTop': 850,
+            'startFixed2': 2000,						// starting distance taken fixed div ad 2 - <div class="vi-sticky-ad"></div>
+            'endFixed2': 2800,
+            'distanceChangeTop2': 1600,
+            'sidebarStickyMode': 'sticky',
+            'paddingSidebar': true,
+        }
+        document.addEventListener('DOMContentLoaded', (event) => {
+            var hMain = document.querySelector("#primary").offsetHeight;
+            if (hMain < 2000) {
+                vi_stickyConfig.sidebarStickyMode = "normal"
+            }
+            var isSidebar = document.querySelector(".inside-right-sidebar");
+            var hRight = isSidebar.offsetHeight;
+            if (isSidebar.offsetWidth > 0) {
+                vi_stickyConfig.wSidebar = isSidebar.offsetWidth;
+            }
+
+            const widthScreen = window.innerWidth || document.documentElement.clientWidth ||
+                document.body.clientWidth;
+            if (widthScreen > 1023 && isSidebar) {
+                if (hRight > 3000) {
+                    var divAd = document.createElement("aside");
+                    divAd.style.cssText = "clear:both";
+                    divAd.className = "widget_text extendedwopts-hide extendedwopts-mobile extendedwopts-md-center widget inner-padding widget_custom_html";
+                    var html = `
+                            <div id="connectId" style="height: 320px;"></div>
+                            <div class="vi-sticky-ad">
+                                <div class="adsbyvli" style="width:300px; height:250px" data-ad-slot="vi_1250693233"></div>
+                                <div style="margin: 10px auto;text-align: center; font-size: 13px;word-wrap: initial;">ADVERTISEMENT</div>
+                                <div class="adsbyvli" style="width:300px; height:250px" data-ad-slot="vi_1250693234"></div>
+                            </div>`;
+                    divAd.innerHTML = html;
+                    isSidebar.appendChild(divAd);
+                    (vitag.Init = window.vitag.Init || []).push(function () {
+                        viAPItag.display("vi_1250693233");
+                        viAPItag.display("vi_1250693234");
+                    })
+                    vi_stickyConfig.startFixed3 = 3700;
+                    vi_stickyConfig.endFixed3 = 4500;
+                    vi_stickyConfig.connectElement = '#connectId';
+                    vi_stickyConfig.connectElementFixedTop = 600;
+                    vi_stickyConfig.distanceChangeTop3 = 2500;
+                }
+                if (hRight > 4600) {
+                    var divAd = document.createElement("div");
+                    divAd.style.cssText = "clear:both";
+                    divAd.className = "widget_text extendedwopts-hide extendedwopts-mobile extendedwopts-md-center widget inner-padding widget_custom_html";
+                    var html = `
+                            <div id="connectId2" style="height: 320px;"></div>
+                            <div class="vi-sticky-ad">
+                            <div class="adsbyvli" style="width:300px; height:250px" data-ad-slot="vi_1250693235"></div>
+                            <div style="margin: 10px auto;text-align: center; font-size: 13px;word-wrap: initial;">ADVERTISEMENT</div>
+                            <div class="adsbyvli" style="width:300px; height:250px" data-ad-slot="vi_1250693236"></div>
+                            </div>`;
+                    divAd.innerHTML = html;
+                    isSidebar.appendChild(divAd);
+                    (vitag.Init = window.vitag.Init || []).push(function () { viAPItag.display("vi_1250693235");viAPItag.display("vi_1250693236") })
+                    vi_stickyConfig.startFixed4 = 5400;
+                    vi_stickyConfig.endFixed4 = 9400;
+                    vi_stickyConfig.connectElement2 = '#connectId2';
+                    vi_stickyConfig.connectElementFixedTop2 = 600;
+                }
+
+                var script = document.createElement('script');
+                script.type = 'text/javascript';
+                script.async = true;
+                script.src = "//static.vliplatform.com/plugins/smartsidebar/v2/visticky.min.js?v=0.12";
+                document.head.appendChild(script);
+            }
+        });
+
+    </script>
+<script>vitag.sizeStickyVideo=300</script>
+<script>
+        vitag.outStreamConfig = {
+            bannerAttach: false,
+        }
+</script><style>ins.adsbygoogle { background-color: transparent; padding: 0; }</style><script async="" crossorigin="anonymous" data-pmdelayedscript="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5044980837071801" data-cfasync="false" data-no-optimize="1" data-no-defer="1" data-no-minify="1" src="./15 csplit &amp; split command examples in Linux [Cheat Sheet] _ GoLinuxCloud_files/f.txt"></script><link rel="icon" href="https://www.golinuxcloud.com/wp-content/uploads/favicon-e1601709006762.png" sizes="32x32">
+<link rel="icon" href="https://www.golinuxcloud.com/wp-content/uploads/favicon-e1601709006762.png" sizes="192x192">
+<link rel="apple-touch-icon" href="https://www.golinuxcloud.com/wp-content/uploads/favicon-e1601709006762.png">
+<meta name="msapplication-TileImage" content="https://www.golinuxcloud.com/wp-content/uploads/favicon-e1601709006762.png">
+<noscript><style>.perfmatters-lazy[data-src]{display:none !important;}</style></noscript><style>.perfmatters-lazy:not(picture),.perfmatters-lazy>img{opacity:0}.perfmatters-lazy.loaded,.perfmatters-lazy>img.loaded,.perfmatters-lazy[data-was-processed=true],.perfmatters-lazy.loaded>img{opacity:1;transition:opacity 500ms}</style><script type="text/javascript" async="" src="./15 csplit &amp; split command examples in Linux [Cheat Sheet] _ GoLinuxCloud_files/visticky.min.js"></script><link rel="prefetch" href="https://www.golinuxcloud.com/category/openstack/"><link rel="prefetch" href="https://www.golinuxcloud.com/subscribe-us/"></head>
+
+<body class="post-template-default single single-post postid-5813 single-format-standard wp-custom-logo wp-embed-responsive post-image-above-header post-image-aligned-center sticky-menu-fade both-sidebars nav-below-header separate-containers header-aligned-center dropdown-hover" itemtype="https://schema.org/Blog" itemscope="">
+	<a class="screen-reader-text skip-link" href="https://www.golinuxcloud.com/csplit-split-command-examples-linux-unix/#content" title="Skip to content">Skip to content</a>		<header class="site-header" id="masthead" aria-label="Site" itemtype="https://schema.org/WPHeader" itemscope="">
+			<div class="inside-header grid-container">
+				<div class="site-logo">
+					<a href="https://www.golinuxcloud.com/" title="GoLinuxCloud" rel="home">
+						<img data-perfmatters-preload="" class="header-image is-logo-image" alt="GoLinuxCloud" src="./15 csplit &amp; split command examples in Linux [Cheat Sheet] _ GoLinuxCloud_files/golinuxcloud-logo.png" title="GoLinuxCloud" srcset="https://www.golinuxcloud.com/wp-content/uploads/golinuxcloud-logo.png 1x, https://www.golinuxcloud.com/wp-content/uploads/golinuxcloud-logo.png 2x" width="200" height="77">
+					</a>
+				</div>			</div>
+		</header>
+				<nav class="main-navigation nav-align-center sub-menu-right" id="site-navigation" aria-label="Primary" itemtype="https://schema.org/SiteNavigationElement" itemscope="">
+			<div class="inside-navigation">
+								<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">
+					<span class="gp-icon icon-menu-bars"><svg viewBox="0 0 512 512" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"><path d="M0 96c0-13.255 10.745-24 24-24h464c13.255 0 24 10.745 24 24s-10.745 24-24 24H24c-13.255 0-24-10.745-24-24zm0 160c0-13.255 10.745-24 24-24h464c13.255 0 24 10.745 24 24s-10.745 24-24 24H24c-13.255 0-24-10.745-24-24zm0 160c0-13.255 10.745-24 24-24h464c13.255 0 24 10.745 24 24s-10.745 24-24 24H24c-13.255 0-24-10.745-24-24z"></path></svg><svg viewBox="0 0 512 512" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"><path d="M71.029 71.029c9.373-9.372 24.569-9.372 33.942 0L256 222.059l151.029-151.03c9.373-9.372 24.569-9.372 33.942 0 9.372 9.373 9.372 24.569 0 33.942L289.941 256l151.03 151.029c9.372 9.373 9.372 24.569 0 33.942-9.373 9.372-24.569 9.372-33.942 0L256 289.941l-151.029 151.03c-9.373 9.372-24.569 9.372-33.942 0-9.372-9.373-9.372-24.569 0-33.942L222.059 256 71.029 104.971c-9.372-9.373-9.372-24.569 0-33.942z"></path></svg></span><span class="mobile-menu">Menu</span>				</button>
+				<div id="primary-menu" class="main-nav"><ul id="menu-primary-menu" class=" menu sf-menu"><li id="menu-item-14783" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-14783"><a title="Ansible Tutorial" href="https://www.golinuxcloud.com/getting-started-with-ansible">Ansible</a></li>
+<li id="menu-item-27999" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-27999"><a title="AWS CLI Explained with Practical Examples [Tutorial]" href="https://www.golinuxcloud.com/aws-cli-tutorial/">AWS</a></li>
+<li id="menu-item-26102" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-26102"><a title="Azure Tutorial" href="https://www.golinuxcloud.com/create-vm-in-azure-step-by-step/">Azure</a></li>
+<li id="menu-item-26072" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-26072"><a href="https://www.golinuxcloud.com/blockchain-tutorial/">Blockchain</a></li>
+<li id="menu-item-26100" class="cheatsheet menu-item menu-item-type-custom menu-item-object-custom menu-item-26100"><a title="Linux Commands Cheat Sheet" href="https://www.golinuxcloud.com/linux-commands-cheat-sheet/">CheatSheet</a></li>
+<li id="menu-item-26101" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-26101"><a title="Ethical Hacking Tutorial" href="https://www.golinuxcloud.com/kali-linux-bootable-usb/">Ethical Hacking</a></li>
+<li id="menu-item-17765" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-17765"><a title="GIT Tutorial" href="https://www.golinuxcloud.com/git-basics/">GIT</a></li>
+<li id="menu-item-17764" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-17764"><a title="Java Tutorial" href="https://www.golinuxcloud.com/install-java-linux-windows-mac/">Java</a></li>
+<li id="menu-item-26103" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-26103"><a href="https://www.golinuxcloud.com/kubernetes-architecture/">Kubernetes</a></li>
+<li id="menu-item-30291" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-30291"><a title="Node.js Tutorial" href="https://www.golinuxcloud.com/getting-started-with-nodejs-tutorial/">Nodejs</a></li>
+<li id="menu-item-14661" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-14661"><a title="OpenStack Tutorial" href="https://www.golinuxcloud.com/category/openstack/">OpenStack</a></li>
+<li id="menu-item-17838" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-17838"><a title="OpenSSL Tutorial" href="https://www.golinuxcloud.com/tutorial-pki-certificates-authority-ocsp/">OpenSSL</a></li>
+<li id="menu-item-26104" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-26104"><a href="https://www.golinuxcloud.com/python-multiline-comments/">Python</a></li>
+<li id="menu-item-26105" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-26105"><a href="https://www.golinuxcloud.com/getting-started-with-sql/">SQL</a></li>
+<li id="menu-item-29193" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-29193"><a href="https://www.golinuxcloud.com/tcp-sequence-acknowledgement-numbers/">Wireshark</a></li>
+</ul></div>			</div>
+		</nav>
+		
+	<div class="site grid-container container hfeed" id="page">
+				<div class="site-content" id="content">
+			
+	<div class="content-area" id="primary">
+		<main class="site-main" id="main">
+			
+<article id="post-5813" class="post-5813 post type-post status-publish format-standard has-post-thumbnail hentry category-cheatsheet tag-cheatsheet tag-commands tag-split tag-tips_and_tricks no-featured-image-padding" itemtype="https://schema.org/CreativeWork" itemscope="">
+	<div class="inside-article">
+					<header class="entry-header" aria-label="Content">
+				<h1 class="entry-title" itemprop="headline">15 csplit &amp; split command examples in Linux [Cheat Sheet]</h1>			</header>
+			
+		<div class="entry-content" itemprop="text">
+			<div id="ez-toc-container" class="ez-toc-v2_0_26 counter-hierarchy ez-toc-light-blue">
+<div class="ez-toc-title-container">
+<p class="ez-toc-title">Table of Contents</p>
+<span class="ez-toc-title-toggle"></span></div>
+<nav><ul class="ez-toc-list ez-toc-list-level-1"><li class="ez-toc-page-1 ez-toc-heading-level-2"><a class="ez-toc-link ez-toc-heading-1" href="https://www.golinuxcloud.com/csplit-split-command-examples-linux-unix/#1_csplit_based_on_regex_match" title="1. csplit based on regex match">1. csplit based on regex match</a></li><li class="ez-toc-page-1 ez-toc-heading-level-2"><a class="ez-toc-link ez-toc-heading-2" href="https://www.golinuxcloud.com/csplit-split-command-examples-linux-unix/#2_csplit_based_on_pattern_match" title="2. csplit based on pattern match">2. csplit based on pattern match</a></li><li class="ez-toc-page-1 ez-toc-heading-level-2"><a class="ez-toc-link ez-toc-heading-3" href="https://www.golinuxcloud.com/csplit-split-command-examples-linux-unix/#3_Suppress_matched_content_with_csplit_in_Linux_or_Unix" title="3. Suppress matched content with csplit in Linux or Unix">3. Suppress matched content with csplit in Linux or Unix</a></li><li class="ez-toc-page-1 ez-toc-heading-level-2"><a class="ez-toc-link ez-toc-heading-4" href="https://www.golinuxcloud.com/csplit-split-command-examples-linux-unix/#4_Remove_empty_files_with_csplit_and_split_command" title="4. Remove empty files with csplit and split command">4. Remove empty files with csplit and split command</a></li><li class="ez-toc-page-1 ez-toc-heading-level-2"><a class="ez-toc-link ez-toc-heading-5" href="https://www.golinuxcloud.com/csplit-split-command-examples-linux-unix/#5_Add_prefix_with_csplit_command" title="5. Add prefix with csplit command">5. Add prefix with csplit command</a></li><li class="ez-toc-page-1 ez-toc-heading-level-2"><a class="ez-toc-link ez-toc-heading-6" href="https://www.golinuxcloud.com/csplit-split-command-examples-linux-unix/#6_csplit_content_between_multiple_patterns" title="6. csplit content between multiple patterns">6. csplit content between multiple patterns</a></li><li class="ez-toc-page-1 ez-toc-heading-level-2"><a class="ez-toc-link ez-toc-heading-7" href="https://www.golinuxcloud.com/csplit-split-command-examples-linux-unix/#7_csplit_add_suffix" title="7. csplit add suffix">7. csplit add suffix</a></li><li class="ez-toc-page-1 ez-toc-heading-level-2"><a class="ez-toc-link ez-toc-heading-8" href="https://www.golinuxcloud.com/csplit-split-command-examples-linux-unix/#8_csplit_files_into_specific_count_based_on_pattern_match" title="8. csplit files into specific count based on pattern match">8. csplit files into specific count based on pattern match</a></li><li class="ez-toc-page-1 ez-toc-heading-level-2"><a class="ez-toc-link ez-toc-heading-9" href="https://www.golinuxcloud.com/csplit-split-command-examples-linux-unix/#9_split_files_based_on_lines_number" title="9. split files based on lines number">9. split files based on lines number</a></li><li class="ez-toc-page-1 ez-toc-heading-level-2"><a class="ez-toc-link ez-toc-heading-10" href="https://www.golinuxcloud.com/csplit-split-command-examples-linux-unix/#10_split_file_based_on_size" title="10. split file based on size">10. split file based on size</a></li><li class="ez-toc-page-1 ez-toc-heading-level-2"><a class="ez-toc-link ez-toc-heading-11" href="https://www.golinuxcloud.com/csplit-split-command-examples-linux-unix/#11_Add_suffix_or_extension_using_split_command" title="11. Add suffix or extension using split command">11. Add suffix or extension using split command</a></li><li class="ez-toc-page-1 ez-toc-heading-level-2"><a class="ez-toc-link ez-toc-heading-12" href="https://www.golinuxcloud.com/csplit-split-command-examples-linux-unix/#12_Add_numerical_suffix_followed_by_additional_suffix" title="12. Add numerical suffix followed by additional suffix">12. Add numerical suffix followed by additional suffix</a></li><li class="ez-toc-page-1 ez-toc-heading-level-2"><a class="ez-toc-link ez-toc-heading-13" href="https://www.golinuxcloud.com/csplit-split-command-examples-linux-unix/#13_Add_prefix_using_split_command" title="13. Add prefix using split command">13. Add prefix using split command</a></li><li class="ez-toc-page-1 ez-toc-heading-level-2"><a class="ez-toc-link ez-toc-heading-14" href="https://www.golinuxcloud.com/csplit-split-command-examples-linux-unix/#14_Split_based_based_on_specific_count" title="14. Split based based on specific count">14. Split based based on specific count</a></li><li class="ez-toc-page-1 ez-toc-heading-level-2"><a class="ez-toc-link ez-toc-heading-15" href="https://www.golinuxcloud.com/csplit-split-command-examples-linux-unix/#15_Join_files_which_you_had_split_earlier" title="15. Join files which you had split earlier">15. Join files which you had split earlier</a></li></ul></nav></div>
+<p>In this article we will discuss about <strong>split command</strong> and <strong>csplit command</strong> used in Linux/Unix variants. These are two different tools available in Linux and Unix variants which can be used to split and join files based on various scenarios. We will cover these scenarios with examples to split files into multiple small sections using split command and csplit command.</p>
+<p>&nbsp;</p>
+<h2><span class="ez-toc-section" id="1_csplit_based_on_regex_match"></span>1. csplit based on regex match<span class="ez-toc-section-end"></span></h2>
+<p>You can csplit files based on regex match. Below I have a sample file:</p><div class="golin-content-1 golin-content-300-250" style="margin-left: auto; margin-right: auto; text-align: center; margin-top: 10px; margin-bottom: 30px; " id="golin-1491874502"><div class="golin-adlabel">Advertisement</div><div style="height: 250px; "><div class="adsbyvli" data-ad-slot="vi_1250693228" style="width: 300px; height: 250px"></div><script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_1250693228")})</script></div></div>
+<pre># cat my_file
+<span style="color: #00ffff;">&lt;report&gt;</span>
+    &lt;bundle&gt;
+      &lt;name&gt;Value 2018&lt;/name&gt;
+      &lt;version&gt;2018.03&lt;/version&gt;
+    &lt;/bundle&gt;
+<span style="color: #00ffff;">&lt;/report&gt;
+&lt;report&gt;</span>
+    &lt;bundle&gt;
+      &lt;name&gt;Value 2019&lt;/name&gt;
+      &lt;version&gt;2019.03&lt;/version&gt;
+    &lt;/bundle&gt;
+<span style="color: #00ffff;">&lt;/report&gt;
+&lt;report&gt;</span>
+    &lt;bundle&gt;
+      &lt;name&gt;Value 2020&lt;/name&gt;
+      &lt;version&gt;2020.03&lt;/version&gt;
+    &lt;/bundle&gt;
+<span style="color: #00ffff;">&lt;/report&gt;</span></pre>
+<p>In this csplit command example, I want to split file based on string starting with "<code>&lt;report</code>" and ending with "<code>&gt;</code>" so every block between <code>&lt;report&gt;</code> and <code>&lt;/report&gt;</code> comes in a separate file.</p>
+<pre><span style="color: #00ff00;"># csplit my_file '/^&lt;report&gt;$/' '{*}'</span>
+109
+109
+111</pre>
+<p>Here,</p>
+<pre><span style="color: #ffff00;">my_file</span>        =&gt; input file
+<span style="color: #ffff00;">/^&lt;report&gt;$/</span>   =&gt; <a class="" href="https://www.golinuxcloud.com/print-next-word-after-pattern-match-linux/" target="_blank" rel="noopener noreferrer">pattern match</a> every `&lt;report&gt;` line
+<span style="color: #ffff00;">{*}</span>            =&gt; repeat the previous pattern as many times as possible</pre>
+<p>As you see csplit command has performed csplit based on regex match into three sections:</p>
+<pre># ls -l
+total 16
+-rw-r--r--. 1 root root 329 Feb  7 12:34 my_file
+-rw-r--r--. 1 root root 109 Feb  7 12:38 <span style="color: #ffcc00;">xx00</span>
+-rw-r--r--. 1 root root 109 Feb  7 12:38 <span style="color: #ffcc00;">xx01</span>
+-rw-r--r--. 1 root root 111 Feb  7 12:38 <span style="color: #ffcc00;">xx02</span></pre>
+<p>To verify you can check the content of any one of the split files:</p>
+<pre># cat xx01
+<span style="color: #00ffff;">&lt;report&gt;</span>
+    &lt;bundle&gt;
+      &lt;name&gt;Value 2019&lt;/name&gt;
+      &lt;version&gt;2019.03&lt;/version&gt;
+    &lt;/bundle&gt;
+<span style="color: #00ffff;">&lt;/report&gt;</span></pre>
+<p>Let's take another <code>csplit</code> command example to csplit based on regex match. Below I have another sample file with some functions:</p>
+<pre># cat my_file
+function main1 {
+ echo "function main1"
+<span style="color: #00ffff;">}</span>
+
+function main2 {
+ echo "function main2"
+<span style="color: #00ffff;">}
+</span>
+function main3 {
+ echo "function main3"
+<span style="color: #00ffff;">}</span></pre>
+<p>I want to break every function into separate file. But as you see I have an empty line after every function so we need to add some offset value: I will use "<code>}</code>" as the pattern</p><div class="golin-content_5 golin-content-300-250" style="margin-left: auto; margin-right: auto; text-align: center; margin-top: 10px; margin-bottom: 30px; " id="golin-6271669"><div class="golin-adlabel">Advertisement</div><div style="height: 250px; "><div class="adsbyvli" data-ad-slot="vi_1250695078" style="width: 300px; height: 250px"></div><script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_1250695078")})</script></div></div>
+<pre><span style="color: #00ff00;"># csplit --elide-empty-files my_file '/^}/+2' "{*}"</span>
+43
+43
+43</pre>
+<p>Here,</p>
+<pre><span style="color: #ffff00;">/^}/+2</span>   =&gt; Check for regex matching and starting with "}". Then add +2 offset to also cut the empty line
+<span style="color: #ffff00;">{*}</span>      =&gt; repeat the previous pattern as many times as possible</pre>
+<p>Verify the content of these files:</p>
+<pre># cat xx00
+function main1 {
+ echo "function main1"
+}</pre>
+<p>&nbsp;</p>
+<h2><span class="ez-toc-section" id="2_csplit_based_on_pattern_match"></span>2. csplit based on pattern match<span class="ez-toc-section-end"></span></h2>
+<p>Similar to regex match, you can also csplit based on pattern match. Below I have a sample file with some content:</p>
+<pre># cat my_file
+12345
+asdfg
+vbn
+000
+4634
+fghvva
+000
+ceqdcad
+433214
+000</pre>
+<p>In this csplit command example, I want to split based on pattern match with "<code>000</code>" being the pattern. So to csplit based on pattern and to include the line matching pattern add a <code>+1</code> offset:</p>
+<pre><span style="color: #00ff00;"># csplit --elide-empty-files  my_file '/000/+1' {*}</span>
+20
+16
+19</pre>
+<p>Here we created three small files after split, check the content of one of the files:</p>
+<pre># cat xx01
+4634
+fghvva
+000</pre>
+<p>Here,</p>
+<pre><span style="color: #ffff00;">{*}</span>       =&gt; Repeat argument until input is exhausted
+<span style="color: #ffff00;">/000/+1</span>   =&gt; Match 000 pattern and add +1 offset so 000 is added to the next split file</pre>
+<p>&nbsp;</p>
+<h2><span class="ez-toc-section" id="3_Suppress_matched_content_with_csplit_in_Linux_or_Unix"></span>3. Suppress matched content with csplit in Linux or Unix<span class="ez-toc-section-end"></span></h2>
+<p>With csplit command you can also suppress matched content (pattern/string/regex). In the above csplit command example we will suppress matched pattern i.e. "<code>000</code>"</p>
+<pre><span style="color: #00ff00;"># csplit --suppress-matched --elide-empty-files  my_file '/000/' {*}</span>
+16
+12
+15</pre>
+<p>Check the content of any file:</p><div class="golin-content golin-content-300-250" style="margin-left: auto; margin-right: auto; text-align: center; margin-top: 10px; margin-bottom: 30px; " id="golin-390411711"><div class="golin-adlabel">Advertisement</div><div style="height: 250px; "><div class="adsbyvli" data-ad-slot="vi_1250695079" style="width: 300px; height: 250px"></div><script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_1250695079")})</script></div></div>
+<pre># cat xx00
+12345
+asdfg
+vbn</pre>
+<p>&nbsp;</p>
+<h2><span class="ez-toc-section" id="4_Remove_empty_files_with_csplit_and_split_command"></span>4. Remove empty files with csplit and split command<span class="ez-toc-section-end"></span></h2>
+<p>When you split files with csplit or split command, there are chances you may also get empty files after split. To avoid this you can use <code>--elide-empty-files</code> as shown in the below csplit command example:</p>
+<pre><span style="color: #00ff00;"># csplit my_file '/000/+1' {*}</span>
+20
+16
+19
+0</pre>
+<p>here as you see the fourth file is of 0 bytes (empty). So re-run the command using <code>--elide-empty-files</code></p>
+<pre><span style="color: #00ff00;"># csplit --elide-empty-files my_file '/000/+1' {*}</span>
+20
+16
+19</pre>
+<p>&nbsp;</p>
+<h2><span class="ez-toc-section" id="5_Add_prefix_with_csplit_command"></span>5. Add prefix with csplit command<span class="ez-toc-section-end"></span></h2>
+<p>In the below example we use <code>--prefix</code> to add a prefix "<code>subfile_</code>" for all the files which are created after split:</p>
+<pre><span style="color: #00ff00;"># csplit --elide-empty-files --prefix subfile_  my_file '/000/' {*}</span>
+16
+16
+19
+4</pre>
+<p>Check the filenames which are created after split has prefix "<code>subfile_</code>"</p>
+<pre># ls -l
+total 20
+-rw-r--r--. 1 root root 55 Feb  7 20:08 my_file
+-rw-r--r--. 1 root root 16 Feb  7 21:58 <span style="color: #ffcc00;">subfile_00</span>
+-rw-r--r--. 1 root root 16 Feb  7 21:58 <span style="color: #ffcc00;">subfile_01</span>
+-rw-r--r--. 1 root root 19 Feb  7 21:58 <span style="color: #ffcc00;">subfile_02</span>
+-rw-r--r--. 1 root root  4 Feb  7 21:58 <span style="color: #ffcc00;">subfile_03</span></pre>
+<p>&nbsp;</p>
+<h2><span class="ez-toc-section" id="6_csplit_content_between_multiple_patterns"></span>6. csplit content between multiple patterns<span class="ez-toc-section-end"></span></h2>
+<p>In earlier csplit command example we csplit based on pattern match but we can also csplit content between multiple patterns. For example we have a file with different titles and we wish to split the content between each title into separate part.</p>
+<p>This is my sample file</p>
+<pre># cat my_file
+title1
+content1
+title2
+content2
+title3
+content3</pre>
+<p>We provide all the patterns of the title for which we wish to grep the content:</p>
+<pre><span style="color: #00ff00;"># csplit --elide-empty-files --prefix parts my_file '/title1/' '/title2/' '/title3/'</span>
+16
+16
+16</pre>
+<p>Check the content of the files created after split:</p><div class="golin-content_4 golin-content-300-250" style="margin-left: auto; margin-right: auto; text-align: center; margin-top: 10px; margin-bottom: 30px; " id="golin-190951257"><div class="golin-adlabel">Advertisement</div><div style="height: 250px; "><div class="adsbyvli" data-ad-slot="vi_1250695080" style="width: 300px; height: 250px"></div><script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_1250695080")})</script></div></div>
+<pre># cat parts01
+title2
+content2
+
+# cat parts00
+title1
+content1</pre>
+<p>This command reads from file and creates these sub files of different lengths:</p>
+<pre><span style="color: #ffff00;">parts00</span>  =&gt; Text in my_file before “title2”
+<span style="color: #ffff00;">parts01</span>  =&gt; Text starting at “title2” and ending just before “title3”
+<span style="color: #ffff00;">parts02</span>  =&gt; Text starting at “title3” to the end of the file
+<span style="color: #ffff00;">{*}</span>      =&gt; repeat the previous pattern as many times as possible</pre>
+<p>&nbsp;</p>
+<h2><span class="ez-toc-section" id="7_csplit_add_suffix"></span>7. csplit add suffix<span class="ez-toc-section-end"></span></h2>
+<p>By default csplit creates files after split with a custom syntax . But you can add your custom prefix but then you can also add custom suffix.</p>
+<p>In the below csplit command example we add a suffix "<code>.sh</code>" for all the files created after split:</p>
+<pre><span style="color: #00ff00;"># csplit --elide-empty-files --prefix=subfile --suffix-format="%d.sh"  my_file '/000/' "{*}"</span>
+16
+16
+19
+4</pre>
+<p>Here,</p>
+<pre><span style="color: #ffff00;">--prefix</span>  =&gt; Add prefix before the start of all the files created after split
+<span style="color: #ffff00;">--suffix</span>  =&gt; Add sufix at the end of all the files created after split</pre>
+<p>Verify your files after split:</p>
+<pre># ls -l
+total 20
+-rw-r--r--. 1 root root 55 Feb  7 14:49 my_file
+-rw-r--r--. 1 root root 16 Feb  7 14:49 <span style="color: #ffcc00;">subfile0.sh</span>
+-rw-r--r--. 1 root root 16 Feb  7 14:49 <span style="color: #ffcc00;">subfile1.sh</span>
+-rw-r--r--. 1 root root 19 Feb  7 14:49 <span style="color: #ffcc00;">subfile2.sh</span>
+-rw-r--r--. 1 root root  4 Feb  7 14:49 <span style="color: #ffcc00;">subfile3.sh</span></pre>
+<p>More example to add more digits in the suffix:</p>
+<pre><span style="color: #00ff00;"># csplit --elide-empty-files --prefix=subfile --suffix-format="%02d.sh" my_file '/000/' "{*}"</span>
+16
+16
+19
+4</pre>
+<p>Now our suffix contains additional digit as you can check below:</p>
+<pre># ls -l
+total 20
+-rw-r--r--. 1 root root 55 Feb  7 14:49 my_file
+-rw-r--r--. 1 root root 16 Feb  7 14:51 <span style="color: #ffcc00;">subfile00.sh</span>
+-rw-r--r--. 1 root root 16 Feb  7 14:51 <span style="color: #ffcc00;">subfile01.sh</span>
+-rw-r--r--. 1 root root 19 Feb  7 14:51 <span style="color: #ffcc00;">subfile02.sh</span>
+-rw-r--r--. 1 root root  4 Feb  7 14:51 <span style="color: #ffcc00;">subfile03.sh</span></pre>
+<p>&nbsp;</p>
+<h2><span class="ez-toc-section" id="8_csplit_files_into_specific_count_based_on_pattern_match"></span>8. csplit files into specific count based on pattern match<span class="ez-toc-section-end"></span></h2>
+<p>With split command you can split files into specific count but we will get to that later. Here with csplit command we will split based on pattern match but we also define the number of times the pattern must be checked in the file for splitting.</p>
+<p>Below is my sample file:</p>
+<pre># cat my_file
+#1 before first pattern
+#2 before first pattern
+pattern 000
+#1 before second pattern
+#2 before second pattern
+pattern 000
+#1 before third pattern
+#2 before third pattern
+pattern 000</pre>
+<p>I want to split using the pattern "<code>000</code>" but I only wish to search this pattern once i.e. create two split files</p>
+<pre><span style="color: #00ff00;"># csplit --elide-empty-files --digits 1  my_file // '/000/+1' {0}</span>
+60
+122</pre>
+<p>We have used <code>{0}</code> which means <span style="text-decoration: underline;">don't repeat the pattern match</span> so <span style="text-decoration: underline;">we only search the pattern once</span> and create the split file. Similarly to <span style="text-decoration: underline;">search the pattern twice</span> and create three split files use below command:</p>
+<pre><span style="color: #00ff00;"># csplit --elide-empty-files --digits 1  my_file // '/000/+1' {1}</span>
+60
+62
+60</pre>
+<p>&nbsp;</p>
+<h2><span class="ez-toc-section" id="9_split_files_based_on_lines_number"></span>9. split files based on lines number<span class="ez-toc-section-end"></span></h2>
+<p>The split utility breaks its input into 1,000-line sections named xaa, xab, xac, and so on and split files based on lines number. The last section might be shorter. Options can change the sizes of the sections and lengths of the names.</p>
+<p>Below is my sample file which has 6 lines:</p>
+<pre># cat my_file
+#1 before first pattern
+#2 before first pattern
+#3 before second pattern
+#4 before second pattern
+#5 before third pattern
+#6 before third pattern</pre>
+<p>I wish to split files based on lines number and in this file after every 5th line so all our files after split will contain 5 lines</p>
+<pre><span style="color: #00ff00;"># split --lines 5 my_file</span></pre>
+<p>Verify the files after split</p>
+<pre># ls -l
+total 12
+-rw-r--r--. 1 root root 146 Feb  7 19:03 file
+-rw-r--r--. 1 root root 122 Feb  7 19:04 <span style="color: #ffcc00;">xaa</span>
+-rw-r--r--. 1 root root  24 Feb  7 19:04 <span style="color: #ffcc00;">xab</span></pre>
+<p>As expected I have 5 lines in our first file:</p>
+<pre># cat xaa
+#1 before first pattern
+#2 before first pattern
+#3 before second pattern
+#4 before second pattern
+#5 before third pattern</pre>
+<p>&nbsp;</p>
+<h2><span class="ez-toc-section" id="10_split_file_based_on_size"></span>10. split file based on size<span class="ez-toc-section-end"></span></h2>
+<p>Next we will split file based on size. You can use split command to split based on different file size</p>
+<p>Use,</p>
+<pre><span style="color: #ffff00;">K</span> =&gt; KiloBytes
+<span style="color: #ffff00;">M</span> =&gt; megaBytes
+<span style="color: #ffff00;">G</span> =&gt; GigaBytes</pre>
+<p>Here in this split command example I will split file based on size for every 1 MB size</p>
+<pre><span style="color: #00ff00;"># split --bytes 1M my_file</span></pre>
+<p>Verify the files:</p>
+<pre># ls -l
+total 6040
+-rw-r--r--. 1 root root 3092035 Feb  7 19:24 my_file
+-rw-r--r--. 1 root root <span style="color: #ffff00;">1048576</span> Feb  7 19:24 <span style="color: #ffcc00;">xaa</span>
+-rw-r--r--. 1 root root <span style="color: #ffff00;">1048576</span> Feb  7 19:24 <span style="color: #ffcc00;">xab</span>
+-rw-r--r--. 1 root root  <span style="color: #ffff00;">994883</span> Feb  7 19:24 <span style="color: #ffcc00;">xac</span></pre>
+<p>&nbsp;</p>
+<h2><span class="ez-toc-section" id="11_Add_suffix_or_extension_using_split_command"></span>11. Add suffix or extension using split command<span class="ez-toc-section-end"></span></h2>
+<p>We showed csplit command examples earlier to add suffix or extension, now the same can also be done using split command using <code>--additional-suffix</code> as shown below:</p>
+<pre><span style="color: #00ff00;"># split --additional-suffix ".ext" -b 1M file</span></pre>
+<p>Next verify the files with suffix extension</p>
+<pre># ls -l
+total 6080
+-rw-r--r--. 1 root root 3109034 Feb  7 19:48 file
+-rw-r--r--. 1 root root 1048576 Feb  7 19:55 <span style="color: #ffcc00;">xaa.ext</span>
+-rw-r--r--. 1 root root 1048576 Feb  7 19:55 <span style="color: #ffcc00;">xab.ext</span>
+-rw-r--r--. 1 root root 1011882 Feb  7 19:55 <span style="color: #ffcc00;">xac.ext</span></pre>
+<p>&nbsp;</p>
+<h2><span class="ez-toc-section" id="12_Add_numerical_suffix_followed_by_additional_suffix"></span>12. Add numerical suffix followed by additional suffix<span class="ez-toc-section-end"></span></h2>
+<p>Now along with extension with additional suffix we can also add numerical suffix using <code>--numeric-suffixes</code></p>
+<pre><span style="color: #00ff00;"># split --numeric-suffixes --additional-suffix ".ext" -b 1M file</span></pre>
+<p>Next verify the additional suffix</p>
+<pre># ls -l
+total 9120
+-rw-r--r--. 1 root root 3109034 Feb  7 19:48 my_file
+-rw-r--r--. 1 root root 1048576 Feb  7 20:00 <span style="color: #ffcc00;">x00.ext</span>
+-rw-r--r--. 1 root root 1048576 Feb  7 20:00 <span style="color: #ffcc00;">x01.ext</span>
+-rw-r--r--. 1 root root 1011882 Feb  7 20:00 <span style="color: #ffcc00;">x02.ext</span></pre>
+<p>&nbsp;</p>
+<h2><span class="ez-toc-section" id="13_Add_prefix_using_split_command"></span>13. Add prefix using split command<span class="ez-toc-section-end"></span></h2>
+<p>In earlier csplit command examples I shared syntax to add prefix with csplit and with we do the same thing with split command:</p>
+<p>In the example we add a prefix "<code>_prefix</code>" in the beginning of every file after split</p>
+<pre><span style="color: #00ff00;"># split my_file prefix_</span></pre>
+<p>Verify the file names:</p>
+<pre># ls -l
+total 6096
+-rw-r--r--. 1 root root 3109034 Feb  7 19:48 my_file
+-rw-r--r--. 1 root root  220073 Feb  7 20:05 <span style="color: #ffcc00;">prefix_aa</span>
+-rw-r--r--. 1 root root  221369 Feb  7 20:05 <span style="color: #ffcc00;">prefix_ab</span>
+-rw-r--r--. 1 root root  200474 Feb  7 20:05 <span style="color: #ffcc00;">prefix_ac</span></pre>
+<p>&nbsp;</p>
+<h2><span class="ez-toc-section" id="14_Split_based_based_on_specific_count"></span>14. Split based based on specific count<span class="ez-toc-section-end"></span></h2>
+<p>Now we used csplit to split files after pattern match into a specific count but with split we do not match a pattern but we can define the count of files to be created after split.</p>
+<p>Here we want to split the <code>my_file</code> into 3 parts</p>
+<pre><span style="color: #00ff00;"># split --number 3  my_file</span></pre>
+<p>Verify the same:</p>
+<pre># ls -l
+total 6088
+-rw-r--r--. 1 root root 3109034 Feb  7 19:48 my_file
+-rw-r--r--. 1 root root 1036344 Feb  7 20:06 <span style="color: #ffcc00;">xaa</span>
+-rw-r--r--. 1 root root 1036344 Feb  7 20:06 <span style="color: #ffcc00;">xab</span>
+-rw-r--r--. 1 root root 1036346 Feb  7 20:06 <span style="color: #ffcc00;">xac</span></pre>
+<p>&nbsp;</p>
+<h2><span class="ez-toc-section" id="15_Join_files_which_you_had_split_earlier"></span>15. Join files which you had split earlier<span class="ez-toc-section-end"></span></h2>
+<p>You can again join or combine all the files which you had split to combine into one using below syntax</p>
+<pre># cat split-files-* &gt; your_new_filename</pre>
+<p>We had split some files earlier so I will use this method to again combine all the split files to create a new one</p>
+<pre><span style="color: #00ff00;"># cat xa* &gt; my_new_file</span></pre>
+<p>Now you can verify the content of your new file:</p>
+<pre># cat my_new_file
+#1 before first pattern
+#2 before first pattern
+#3 before second pattern
+#4 before second pattern
+#5 before third pattern
+#6 before third pattern</pre>
+<p>&nbsp;</p>
+<p>Lastly I hope this article on split command and csplit command examples for different scenarios on Linux or Unix was helpful. So, let me know your suggestions and feedback using the comment section.</p>
+<p>&nbsp;</p>
+<p><strong><em>References:</em></strong><br>
+<em><a href="https://linux.die.net/man/1/csplit" target="_blank" rel="noopener noreferrer">man page of csplit</a></em><br>
+<em><a href="http://man7.org/linux/man-pages/man1/split.1.html" target="_blank" rel="noopener noreferrer">man page of split</a></em></p>
+
+<div id="jp-relatedposts" class="jp-relatedposts" style="display: block;">
+	<h2 class="jp-relatedposts-headline">Related Posts</h2>
+<div class="jp-relatedposts-items jp-relatedposts-items-visual jp-relatedposts-grid "><div class="jp-relatedposts-post jp-relatedposts-post0 jp-relatedposts-post-thumbs" data-post-id="30444" data-post-format="false"><a class="jp-relatedposts-post-a" href="https://www.golinuxcloud.com/find-command-in-linux/?relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=0&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=0&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=0&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=0&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=0&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=0&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=0&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=0&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=0&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=0&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=0&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=0&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=0&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=0&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=0&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=0&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=0&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=0" title="25+ most used find commands in Linux [Cheat Sheet]" data-origin="5813" data-position="0"><img class="jp-relatedposts-post-img" loading="lazy" src="./15 csplit &amp; split command examples in Linux [Cheat Sheet] _ GoLinuxCloud_files/find_command.jpg" width="350" height="200" alt="25+ most used find commands in Linux [Cheat Sheet]"></a><h4 class="jp-relatedposts-post-title"><a class="jp-relatedposts-post-a" href="https://www.golinuxcloud.com/find-command-in-linux/?relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=0&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=0&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=0&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=0&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=0&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=0&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=0&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=0&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=0&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=0&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=0&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=0&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=0&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=0&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=0&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=0&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=0&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=0" title="25+ most used find commands in Linux [Cheat Sheet]" data-origin="5813" data-position="0">25+ most used find commands in Linux [Cheat Sheet]</a></h4><p class="jp-relatedposts-post-excerpt">Introduction to find command find command is one of the popular and commonly used tools in Unix-based operating systems. As its name suggests, it finds the files and directories in a directory hierarchy. You can pass different parameters and search files by their name, extension, type, size, permissions, modification time,…</p></div><div class="jp-relatedposts-post jp-relatedposts-post1 jp-relatedposts-post-thumbs" data-post-id="30208" data-post-format="false"><a class="jp-relatedposts-post-a" href="https://www.golinuxcloud.com/cpio-command-in-linux/?relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=1&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=1&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=1&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=1&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=1&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=1&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=1&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=1&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=1&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=1&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=1&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=1&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=1&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=1&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=1&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=1&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=1&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=1" title="10+ cpio command examples in Linux [Cheat Sheet]" data-origin="5813" data-position="1"><img class="jp-relatedposts-post-img" loading="lazy" src="./15 csplit &amp; split command examples in Linux [Cheat Sheet] _ GoLinuxCloud_files/cpio_command.jpg" width="350" height="200" alt="10+ cpio command examples in Linux [Cheat Sheet]"></a><h4 class="jp-relatedposts-post-title"><a class="jp-relatedposts-post-a" href="https://www.golinuxcloud.com/cpio-command-in-linux/?relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=1&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=1&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=1&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=1&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=1&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=1&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=1&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=1&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=1&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=1&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=1&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=1&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=1&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=1&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=1&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=1&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=1&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=1" title="10+ cpio command examples in Linux [Cheat Sheet]" data-origin="5813" data-position="1">10+ cpio command examples in Linux [Cheat Sheet]</a></h4><p class="jp-relatedposts-post-excerpt">Introduction to cpio command cpio refers to copy in and copy out. It is a command-line utility in Linux/UNIX for creating, listing, and extracting archive files. It creates a .cpio archive file. It can copy the complete file system to an archive file. cpio reads the name of files from…</p></div><div class="jp-relatedposts-post jp-relatedposts-post2 jp-relatedposts-post-thumbs" data-post-id="30711" data-post-format="false"><a class="jp-relatedposts-post-a" href="https://www.golinuxcloud.com/node-js-with-visual-studio-code/?relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=2&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=2&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=2&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=2&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=2&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=2&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=2&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=2&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=2&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=2&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=2&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=2&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=2&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=2&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=2&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=2&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=2&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=2" title="Using Node.js with Visual Studio Code [Step-by-Step]" data-origin="5813" data-position="2"><img class="jp-relatedposts-post-img" loading="lazy" src="./15 csplit &amp; split command examples in Linux [Cheat Sheet] _ GoLinuxCloud_files/nodejs_vsc.jpg" width="350" height="200" alt=""></a><h4 class="jp-relatedposts-post-title"><a class="jp-relatedposts-post-a" href="https://www.golinuxcloud.com/node-js-with-visual-studio-code/?relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=2&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=2&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=2&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=2&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=2&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=2&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=2&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=2&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=2&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=2&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=2&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=2&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=2&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=2&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=2&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=2&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=2&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=2" title="Using Node.js with Visual Studio Code [Step-by-Step]" data-origin="5813" data-position="2">Using Node.js with Visual Studio Code [Step-by-Step]</a></h4><p class="jp-relatedposts-post-excerpt">Overview on using Visual Studio Code with Node.js Knowing how to use Node.js with Visual Studio Code is easy. All you do is install your preferred Node.js version and Visual Studio Code for your operating system or kernel. Next, create or open a .js file with Visual Studio Code. But…</p></div><div class="jp-relatedposts-post jp-relatedposts-post3 jp-relatedposts-post-thumbs" data-post-id="31027" data-post-format="false"><a class="jp-relatedposts-post-a" href="https://www.golinuxcloud.com/create-custom-go-module-in-golang/?relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=3&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=3&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=3&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=3&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=3&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=3&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=3&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=3&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=3&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=3&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=3&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=3&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=3&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=3&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=3&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=3&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=3&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=3" title="Create custom GO module with Examples [Step-by-Step]" data-origin="5813" data-position="3"><img class="jp-relatedposts-post-img" loading="lazy" src="./15 csplit &amp; split command examples in Linux [Cheat Sheet] _ GoLinuxCloud_files/golang_create_go_module-1.jpg" width="350" height="200" alt=""></a><h4 class="jp-relatedposts-post-title"><a class="jp-relatedposts-post-a" href="https://www.golinuxcloud.com/create-custom-go-module-in-golang/?relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=3&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=3&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=3&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=3&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=3&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=3&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=3&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=3&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=3&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=3&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=3&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=3&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=3&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=3&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=3&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=3&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=3&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=3" title="Create custom GO module with Examples [Step-by-Step]" data-origin="5813" data-position="3">Create custom GO module with Examples [Step-by-Step]</a></h4><p class="jp-relatedposts-post-excerpt">In this article, we are going to create a simple module in Go. &nbsp; What is a Go Module? A module is a collection of Go packages stored in a file tree. It has several Go code files implementing the functionality of a package, but it also has two specific…</p></div><div class="jp-relatedposts-post jp-relatedposts-post4 jp-relatedposts-post-thumbs" data-post-id="8932" data-post-format="false"><a class="jp-relatedposts-post-a" href="https://www.golinuxcloud.com/linux-commands-cheat-sheet/?relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=4&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=4&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=4&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=4&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=4&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=4&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=4&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=4&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=4&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=4&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=4&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=4&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=4&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=4&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=4&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=4&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=4&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=4" title="100+ Linux commands cheat sheet &amp;#038; examples" data-origin="5813" data-position="4"><img class="jp-relatedposts-post-img" loading="lazy" src="./15 csplit &amp; split command examples in Linux [Cheat Sheet] _ GoLinuxCloud_files/linux_cmnds.jpg" width="350" height="200" alt="100+ Linux commands cheat sheet &amp; examples"></a><h4 class="jp-relatedposts-post-title"><a class="jp-relatedposts-post-a" href="https://www.golinuxcloud.com/linux-commands-cheat-sheet/?relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=4&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=4&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=4&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=4&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=4&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=4&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=4&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=4&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=4&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=4&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=4&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=4&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=4&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=4&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=4&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=4&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=4&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=4" title="100+ Linux commands cheat sheet &amp;#038; examples" data-origin="5813" data-position="4">100+ Linux commands cheat sheet &amp; examples</a></h4><p class="jp-relatedposts-post-excerpt">In this cheat sheet tutorial I have consolidated a list of Linux commands with examples and man page link to give you an overview on Linux day to day usage. We know Linux is one of the preferred choice for most of the IT domains so having basic knowledge of…</p></div><div class="jp-relatedposts-post jp-relatedposts-post5 jp-relatedposts-post-thumbs" data-post-id="5250" data-post-format="false"><a class="jp-relatedposts-post-a" href="https://www.golinuxcloud.com/awk-examples-with-command-tutorial-unix-linux/?relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=5&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=5&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=5&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=5&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=5&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=5&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=5&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=5&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=5&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=5&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=5&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=5&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=5&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=5&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=5&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=5&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=5&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=5" title="30+ awk examples for beginners / awk command tutorial in Linux/Unix" data-origin="5813" data-position="5"><img class="jp-relatedposts-post-img" loading="lazy" src="./15 csplit &amp; split command examples in Linux [Cheat Sheet] _ GoLinuxCloud_files/awk-1.jpg" width="350" height="200" alt="30+ awk examples for beginners / awk command tutorial in Linux/Unix"></a><h4 class="jp-relatedposts-post-title"><a class="jp-relatedposts-post-a" href="https://www.golinuxcloud.com/awk-examples-with-command-tutorial-unix-linux/?relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=5&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=5&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=5&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=5&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=5&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=5&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=5&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=5&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=5&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=5&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=5&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=5&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=5&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=5&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=5&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=5&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=5&amp;relatedposts_hit=1&amp;relatedposts_origin=5813&amp;relatedposts_position=5" title="30+ awk examples for beginners / awk command tutorial in Linux/Unix" data-origin="5813" data-position="5">30+ awk examples for beginners / awk command tutorial in Linux/Unix</a></h4><p class="jp-relatedposts-post-excerpt">In this article we will learn about AWK command used in Linux and Unix. I will share some basic awk examples in one liner commands, awk script examples and other scenarios in Linux or Unix environment. &nbsp; What is AWK in Linux or Unix? AWK is an interpreted programming language…</p></div></div></div>		</div>
+
+		<div class="post-search-box">
+<p>Didn't find what you were looking for? Perform a quick search across GoLinuxCloud</p>
+<form method="get" class="search-form" action="https://www.golinuxcloud.com/search_gcse/">
+	<label>
+		<span class="screen-reader-text">Search for:</span>
+		<input type="search" class="search-field" placeholder="Search …" value="" name="q" title="Search for:">
+	</label>
+	<button class="search-submit" aria-label="Search"><span class="gp-icon icon-search"><svg viewBox="0 0 512 512" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"><path fill-rule="evenodd" clip-rule="evenodd" d="M208 48c-88.366 0-160 71.634-160 160s71.634 160 160 160 160-71.634 160-160S296.366 48 208 48zM0 208C0 93.125 93.125 0 208 0s208 93.125 208 208c0 48.741-16.765 93.566-44.843 129.024l133.826 134.018c9.366 9.379 9.355 24.575-.025 33.941-9.379 9.366-24.575 9.355-33.941-.025L337.238 370.987C301.747 399.167 256.839 416 208 416 93.125 416 0 322.875 0 208z"></path></svg></span></button></form>
+
+</div><div class="buy-me-a-coffee">
+<p>If my articles on <strong>GoLinuxCloud</strong> has helped you, kindly consider buying me a coffee as a token of appreciation.</p>
+<a href="https://www.buymeacoffee.com/golinuxcloud" target="_blank" rel="nofollow noopener noreferrer"><img data-perfmatters-preload="" width="250" height="56" alt="Buy GoLinuxCloud a Coffee" src="./15 csplit &amp; split command examples in Linux [Cheat Sheet] _ GoLinuxCloud_files/coffee.png"></a>
+<p>For any other feedbacks or questions you can either use the <a style="color: #9a0000;" href="https://www.golinuxcloud.com/csplit-split-command-examples-linux-unix/#respond" alt="Leave a Comment" title="Leave a Comment">comments section</a> or <a style="color: #9a0000;" href="https://www.golinuxcloud.com/contact-us/" target="_blank" alt="Contact Me" title="Contact Me">contact me</a> form.</p>
+<p><strong>Thank You for your support!!</strong></p>
+</div>
+
+<a target="_blank" href="https://www.golinuxcloud.com/subscribe-us/"><img width="780" height="175" class="subscribe-image perfmatters-lazy" src="data:image/svg+xml,%3Csvg%20xmlns=&#39;http://www.w3.org/2000/svg&#39;%20width=&#39;780&#39;%20height=&#39;175&#39;%20viewBox=&#39;0%200%20780%20175&#39;%3E%3C/svg%3E" alt="Subscribe GoLinuxCloud" data-src="https://www.golinuxcloud.com/wp-content/uploads/subs-3.jpg"><noscript><img width="780" height="175" class="subscribe-image" src="https://www.golinuxcloud.com/wp-content/uploads/subs-3.jpg" alt="Subscribe GoLinuxCloud"></noscript></a><div class="adsbyvli" data-ad-slot="outstream"></div>	</div>
+</article>
+
+			<div class="comments-area">
+				<div id="comments">
+
+		<div id="respond" class="comment-respond">
+		<h3 id="reply-title" class="comment-reply-title">Leave a Comment <small><a rel="nofollow" id="cancel-comment-reply-link" href="https://www.golinuxcloud.com/csplit-split-command-examples-linux-unix/#respond" style="display:none;">Cancel reply</a></small></h3><form action="https://www.golinuxcloud.com/wp-comments-post.php" method="post" id="commentform" class="comment-form" novalidate=""><p class="comment-form-comment"><label for="comment" class="screen-reader-text">Comment</label><textarea autocomplete="new-password" id="comment" name="gd19b63e6e" cols="45" rows="8" required=""></textarea><textarea id="a6c206a985810e000b8039092c5ff08b" aria-label="hp-comment" aria-hidden="true" name="comment" autocomplete="new-password" style="padding:0 !important;clip:rect(1px, 1px, 1px, 1px) !important;position:absolute !important;white-space:nowrap !important;height:1px !important;width:1px !important;overflow:hidden !important;" tabindex="-1"></textarea><script data-noptimize="">document.getElementById("comment").setAttribute( "id", "a6c206a985810e000b8039092c5ff08b" );document.getElementById("gd19b63e6e").setAttribute( "id", "comment" );</script></p><label for="author" class="screen-reader-text">Name</label><input placeholder="Name *" id="author" name="author" type="text" value="" size="30" required="">
+<label for="email" class="screen-reader-text">Email</label><input placeholder="Email *" id="email" name="email" type="email" value="" size="30" required="">
+<p class="comment-form-cookies-consent"><input id="wp-comment-cookies-consent" name="wp-comment-cookies-consent" type="checkbox" value="yes"><label for="wp-comment-cookies-consent">Save my name and email in this browser for the next time I comment.</label></p>
+<p class="comment-form-comment-subscribe"><label for="cren_subscribe_to_comment"><input id="cren_subscribe_to_comment" name="cren_subscribe_to_comment" type="checkbox" value="on">Notify me via e-mail if anyone answers my comment.</label></p>
+<p class="form-submit"><input name="submit" type="submit" id="submit" class="submit" value="Post Comment"> <input type="hidden" name="comment_post_ID" value="5813" id="comment_post_ID">
+<input type="hidden" name="comment_parent" id="comment_parent" value="0">
+</p></form>	</div><!-- #respond -->
+	
+</div><!-- #comments -->
+			</div>
+
+					</main>
+	</div>
+
+	<div class="widget-area sidebar is-left-sidebar" id="left-sidebar">
+	<div class="inside-left-sidebar">
+		<aside id="nav_menu-17" class="widget inner-padding widget_nav_menu"><h2 class="widget-title">Linux Command Cheat Sheet</h2><div class="menu-cheat-sheet-menu-container"><ul id="menu-cheat-sheet-menu" class="menu"><li id="menu-item-16278" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-16278"><a title="100+ Linux commands cheat sheet &amp; examples" href="https://www.golinuxcloud.com/linux-commands-cheat-sheet/">100+ Linux commands</a></li>
+<li id="menu-item-17501" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-ancestor current-menu-parent menu-item-has-children menu-item-17501 show"><a href="https://www.golinuxcloud.com/csplit-split-command-examples-linux-unix/#">Manage Files / Directories</a>
+<ul class="sub-menu show" style="height: 484px;">
+	<li id="menu-item-16274" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-16274"><a title="30+ awk examples for beginners / awk command tutorial in Linux/Unix" href="https://www.golinuxcloud.com/awk-examples-with-command-tutorial-unix-linux/">awk command</a></li>
+	<li id="menu-item-16270" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-16270"><a title="cat command examples for beginners [cheatsheet]" href="https://www.golinuxcloud.com/cat-command-examples/">cat command</a></li>
+	<li id="menu-item-20794" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-20794"><a title="10+ cmp command examples in Linux [Cheat Sheet]" href="https://www.golinuxcloud.com/cmp-command-in-linux/">cmp command</a></li>
+	<li id="menu-item-16271" class="menu-item menu-item-type-post_type menu-item-object-post current-menu-item menu-item-16271"><a title="15 useful csplit and split command examples for Linux or Unix" href="https://www.golinuxcloud.com/csplit-split-command-examples-linux-unix/" aria-current="page">csplit and split command</a></li>
+	<li id="menu-item-20955" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-20955"><a title="10+ cut command examples in Linux [Cheat Sheet]" href="https://www.golinuxcloud.com/cut-command-in-linux/">cut command</a></li>
+	<li id="menu-item-16281" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-16281"><a title="6 practical scenarios to use grep recursive with examples" href="https://www.golinuxcloud.com/grep-recursive/">grep recursive command</a></li>
+	<li id="menu-item-16823" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-16823"><a title="20 most used grep command examples in Linux" href="https://www.golinuxcloud.com/grep-command-in-linux/">grep command</a></li>
+	<li id="menu-item-16280" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-16280"><a title="10+ practical examples to create symbolic link in Linux" href="https://www.golinuxcloud.com/create-symbolic-link-linux/">ln command</a></li>
+	<li id="menu-item-16272" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-16272"><a title="10+ lsyncd examples to sync directories real time in CentOS/RHEL 7" href="https://www.golinuxcloud.com/lsyncd-centos-sync-directories-config-example/">lsyncd command</a></li>
+	<li id="menu-item-20954" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-20954"><a title="7 paste command examples in Linux [Cheat Sheet]" href="https://www.golinuxcloud.com/paste-command-in-linux/">paste command</a></li>
+	<li id="menu-item-22583" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-22583"><a title="10 tee command examples in Linux [Cheat Sheet]" href="https://www.golinuxcloud.com/tee-command-in-linux/">tee command</a></li>
+</ul>
+</li>
+<li id="menu-item-17502" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-17502"><a href="https://www.golinuxcloud.com/csplit-split-command-examples-linux-unix/#">Manage Files / Directories Permission</a>
+<ul class="sub-menu">
+	<li id="menu-item-23736" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-23736"><a title="10+ chattr command examples in Linux [Cheat Sheet]" href="https://www.golinuxcloud.com/chattr-command-in-linux/">chattr command</a></li>
+	<li id="menu-item-16282" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-16282"><a title="How to apply chmod recursively with best practices &amp; examples" href="https://www.golinuxcloud.com/chmod-recursive/">chmod command</a></li>
+	<li id="menu-item-17418" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-17418"><a title="15 most used chown command in Linux" href="https://www.golinuxcloud.com/chown-command-in-linux/">chown command</a></li>
+	<li id="menu-item-18052" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-18052"><a title="10 most used chgrp command examples in Linux" href="https://www.golinuxcloud.com/chgrp-command-in-linux/">chgrp command</a></li>
+	<li id="menu-item-30197" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-30197"><a title="8 chacl command examples in Linux [Cheat Sheet]" href="https://www.golinuxcloud.com/chacl-command-in-linux/">chacl command</a></li>
+	<li id="menu-item-23470" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-23470"><a title="15+ setfacl &amp; getfacl command examples in Linux [Cheat Sheet]" href="https://www.golinuxcloud.com/setfacl-getfacl-command-in-linux/">setfacl command</a></li>
+</ul>
+</li>
+<li id="menu-item-17585" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-17585"><a href="https://www.golinuxcloud.com/csplit-split-command-examples-linux-unix/#">Manage Users / Groups</a>
+<ul class="sub-menu">
+	<li id="menu-item-20693" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-20693"><a title="15+ adduser command examples in Linux [Cheat Sheet]" href="https://www.golinuxcloud.com/adduser-command-in-linux/">adduser command</a></li>
+	<li id="menu-item-18761" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-18761"><a title="10 most used chage command examples in Linux" href="https://www.golinuxcloud.com/chage-command-in-linux/">chage command</a></li>
+	<li id="menu-item-26344" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-26344"><a title="10 finger command examples in Linux [Cheat Sheet]" href="https://www.golinuxcloud.com/finger-command-in-linux/">finger command</a></li>
+	<li id="menu-item-17586" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-17586"><a title="15 most used useradd command examples in Linux" href="https://www.golinuxcloud.com/useradd-command-in-linux/">useradd command</a></li>
+	<li id="menu-item-17772" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-17772"><a title="15 most used usermod command examples in Linux" href="https://www.golinuxcloud.com/usermod-command-in-linux/">usermod command</a></li>
+	<li id="menu-item-30201" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-30201"><a title="10 groupadd command examples in Linux [Cheat Sheet]" href="https://www.golinuxcloud.com/groupadd-command-in-linux/">groupadd command</a></li>
+	<li id="menu-item-25110" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-25110"><a title="9 su command examples in Linux [Cheat Sheet]" href="https://www.golinuxcloud.com/su-command-in-linux/">su command</a></li>
+	<li id="menu-item-26083" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-26083"><a title="10+ sudo command examples in Linux [Cheat Sheet]" href="https://www.golinuxcloud.com/sudo-command-in-linux/">sudo command</a></li>
+</ul>
+</li>
+<li id="menu-item-17500" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-17500"><a href="https://www.golinuxcloud.com/csplit-split-command-examples-linux-unix/#">Monitor System Performance</a>
+<ul class="sub-menu">
+	<li id="menu-item-16277" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-16277"><a title="12 practical grubby command examples (cheat cheet)" href="https://www.golinuxcloud.com/grubby-command-examples/">grubby command</a></li>
+	<li id="menu-item-16534" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-16534"><a title="14 iotop command examples [Monitor Disk IO]" href="https://www.golinuxcloud.com/iotop-command-examples/">iotop command</a></li>
+	<li id="menu-item-22306" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-22306"><a title="10+ ipcs command examples in Linux [Cheat Sheet]" href="https://www.golinuxcloud.com/ipcs-command-linux/">ipcs command</a></li>
+	<li id="menu-item-21139" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-21139"><a title="15+ iostat command examples in Linux [Cheat Sheet]" href="https://www.golinuxcloud.com/iostat-command-in-linux/">iostat command</a></li>
+	<li id="menu-item-16265" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-16265"><a title="Journalctl cheat sheet with 10+ commands to filter systemd logs" href="https://www.golinuxcloud.com/view-logs-using-journalctl-filter-journald/">journalctl command</a></li>
+	<li id="menu-item-21999" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-21999"><a title="15+ lsof command examples in Linux [Cheat Sheet]" href="https://www.golinuxcloud.com/lsof-command-in-linux/">lsof command</a></li>
+	<li id="menu-item-23269" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-23269"><a title="5+ nice &amp; renice command examples in Linux [Cheat Sheet]" href="https://www.golinuxcloud.com/nice-renice-command-examples-in-linux/">nice command</a></li>
+	<li id="menu-item-20506" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-20506"><a title="20 ss command examples in Linux [Cheat Sheet]" href="https://www.golinuxcloud.com/ss-command-in-linux/">ss command</a></li>
+	<li id="menu-item-18999" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-18999"><a title="sysctl reload without reboot [100% Working]" href="https://www.golinuxcloud.com/sysctl-reload-without-reboot/">sysctl command</a></li>
+	<li id="menu-item-21354" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-21354"><a title="20 sar command examples in Linux [Cheat Sheet]" href="https://www.golinuxcloud.com/sar-command-in-linux/">sar command</a></li>
+	<li id="menu-item-20227" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-20227"><a title="20+ top command examples in Linux [Cheat Sheet]" href="https://www.golinuxcloud.com/top-command-in-linux/">top command</a></li>
+	<li id="menu-item-21478" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-21478"><a title="10+ vmstat command examples in Linux [Cheat Sheet]" href="https://www.golinuxcloud.com/vmstat-command-in-linux/">vmstat command</a></li>
+</ul>
+</li>
+<li id="menu-item-22584" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-22584"><a href="https://www.golinuxcloud.com/csplit-split-command-examples-linux-unix/#">Gather System Information</a>
+<ul class="sub-menu">
+	<li id="menu-item-19758" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-19758"><a title="20 dmidecode command practical examples in Linux" href="https://www.golinuxcloud.com/dmidecode-command-in-linux/">dmidecode command</a></li>
+	<li id="menu-item-22582" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-22582"><a title="20+ lshw command examples in Linux [Cheat Sheet]" href="https://www.golinuxcloud.com/lshw-command-in-linux/">lshw command</a></li>
+	<li id="menu-item-22876" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-22876"><a title="lscpu command examples in Linux [Cheat Sheet]" href="https://www.golinuxcloud.com/lscpu-command-in-linux/">lscpu command</a></li>
+</ul>
+</li>
+<li id="menu-item-17499" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-17499"><a href="https://www.golinuxcloud.com/csplit-split-command-examples-linux-unix/#">Manage Network</a>
+<ul class="sub-menu">
+	<li id="menu-item-16275" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-16275"><a title="16 Linux ip command examples to configure network interfaces (cheatsheet)" href="https://www.golinuxcloud.com/linux-ip-command/">ip command</a></li>
+	<li id="menu-item-23880" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-23880"><a title="10+ ip route command examples in Linux [Cheat Sheet]" href="https://www.golinuxcloud.com/ip-route-command-in-linux/">ip route command</a></li>
+	<li id="menu-item-16264" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-16264"><a title="27 nmcli command examples (cheatsheet), compare nm-settings with if-cfg file" href="https://www.golinuxcloud.com/nmcli-command-examples-cheatsheet-centos-rhel/">nmcli command</a></li>
+	<li id="menu-item-18179" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-18179"><a title="30 most used nmap command examples in Linux" href="https://www.golinuxcloud.com/nmap-command-in-linux/">nmap command</a></li>
+	<li id="menu-item-20441" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-20441"><a title="20 netstat command examples in Linux [Cheat Sheet]" href="https://www.golinuxcloud.com/netstat-command-in-linux/">netstat command</a></li>
+	<li id="menu-item-23881" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-23881"><a title="15+ ping command examples in Linux [Cheat Sheet]" href="https://www.golinuxcloud.com/ping-command-linux/">ping command</a></li>
+</ul>
+</li>
+<li id="menu-item-17505" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-17505"><a href="https://www.golinuxcloud.com/csplit-split-command-examples-linux-unix/#">Manage File System</a>
+<ul class="sub-menu">
+	<li id="menu-item-16303" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-16303"><a title="Linux mount command to access filesystems, iso image, usb, network drives" href="https://www.golinuxcloud.com/linux-mount-command-iso-usb-network-drive/">mount command</a></li>
+	<li id="menu-item-24516" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-24516"><a title="10+ parted command examples in Linux [Cheat Sheet]" href="https://www.golinuxcloud.com/parted-command-in-linux/">parted command</a></li>
+	<li id="menu-item-29796" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-29796"><a title="10+ mdadm command examples in Linux [Cheat Sheet]" href="https://www.golinuxcloud.com/mdadm-command-in-linux/">mdadm command</a></li>
+</ul>
+</li>
+<li id="menu-item-26718" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-26718"><a href="https://www.golinuxcloud.com/csplit-split-command-examples-linux-unix/#">Manage LVM</a>
+<ul class="sub-menu">
+	<li id="menu-item-29574" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-29574"><a title="5 pvcreate command examples in Linux [Cheat Sheet]" href="https://www.golinuxcloud.com/pvcreate-command-in-linux/">pvcreate command</a></li>
+	<li id="menu-item-26719" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-26719"><a title="10+ lvcreate command examples in Linux [Cheat Sheet]" href="https://www.golinuxcloud.com/lvcreate-command-in-linux/">lvcreate command</a></li>
+	<li id="menu-item-27978" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-27978"><a title="10+ lvchange command examples in Linux [Cheat Sheet]" href="https://www.golinuxcloud.com/lvchange-command-in-linux/">lvchange command</a></li>
+	<li id="menu-item-28099" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-28099"><a title="lvremove command examples in Linux [Cheat Sheet]" href="https://www.golinuxcloud.com/lvremove-command-in-linux/">lvremove command</a></li>
+	<li id="menu-item-28394" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-28394"><a title="How to PROPERLY rename Logical Volume [Step-by-Step]" href="https://www.golinuxcloud.com/rename-logical-volume-example/">lvrename command</a></li>
+	<li id="menu-item-29047" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-29047"><a title="Using lvreduce to PROPERLY shrink Logical Volume [Cheat Sheet]" href="https://www.golinuxcloud.com/lvm-shrink-logical-volume/">lvreduce command</a></li>
+	<li id="menu-item-29048" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-29048"><a title="How to PROPERLY use lvextend to increase LV size" href="https://www.golinuxcloud.com/how-to-extend-lvm-partition/">lvextend command</a></li>
+	<li id="menu-item-29046" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-29046"><a title="5+ lvdisplay command examples in Linux [Cheat Sheet]" href="https://www.golinuxcloud.com/lvdisplay-command-in-linux/">lvdisplay command</a></li>
+	<li id="menu-item-29279" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-29279"><a title="5+ lvscan command examples in Linux [Cheat Sheet]" href="https://www.golinuxcloud.com/lvscan-command-in-linux/">lvscan command</a></li>
+	<li id="menu-item-27445" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-27445"><a title="vgcreate command examples in Linux [Cheat Sheet]" href="https://www.golinuxcloud.com/vgcreate-command-in-linux/">vgcreate command</a></li>
+	<li id="menu-item-29451" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-29451"><a title="vgcfgrestore: Recover LVM without Backup [100% Working]" href="https://www.golinuxcloud.com/vgcfgrestore-recover-lvm-without-backup/">vgcfgrestore command</a></li>
+</ul>
+</li>
+<li id="menu-item-17503" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-17503"><a href="https://www.golinuxcloud.com/csplit-split-command-examples-linux-unix/#">Manage Packages / Repositories</a>
+<ul class="sub-menu">
+	<li id="menu-item-19715" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-19715"><a title="15 apt command practical examples in Linux" href="https://www.golinuxcloud.com/apt-command-in-linux/">apt command</a></li>
+	<li id="menu-item-25023" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-25023"><a title="15+ apt-cache command examples in Linux [Cheat Sheet]" href="https://www.golinuxcloud.com/apt-cache-command-in-linux/">apt-cache command</a></li>
+	<li id="menu-item-19410" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-19410"><a title="15+ rpm command practical examples in Linux" href="https://www.golinuxcloud.com/rpm-command-in-linux/">rpm command</a></li>
+	<li id="menu-item-30187" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-30187"><a title="10+ rpmbuild command examples in Linux [Cheat Sheet]" href="https://www.golinuxcloud.com/rpmbuild-command-in-linux/">rpmbuild command</a></li>
+	<li id="menu-item-18950" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-18950"><a title="25+ yum command practical examples in Linux" href="https://www.golinuxcloud.com/yum-command-in-linux/">yum command</a></li>
+	<li id="menu-item-16289" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-16289"><a title="6 practical examples of yum history to rollback updates and patches" href="https://www.golinuxcloud.com/yum-history-rollback-updates/">yum history command</a></li>
+	<li id="menu-item-19158" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-19158"><a title="25+ DNF command practical examples in Linux" href="https://www.golinuxcloud.com/dnf-command-in-linux/">dnf command</a></li>
+	<li id="menu-item-19594" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-19594"><a title="15+ dpkg command practical examples in Linux" href="https://www.golinuxcloud.com/dpkg-command-in-linux/">dpkg command</a></li>
+</ul>
+</li>
+<li id="menu-item-19998" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-19998"><a href="https://www.golinuxcloud.com/csplit-split-command-examples-linux-unix/#">Connect Remote Hosts</a>
+<ul class="sub-menu">
+	<li id="menu-item-16276" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-16276"><a title="PSSH – 10 practical examples to use parallel SSH in Linux" href="https://www.golinuxcloud.com/pssh-commands-parallel-ssh-linux-examples/">pssh command</a></li>
+	<li id="menu-item-16268" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-16268"><a title="10 examples to generate SSH key in Linux (ssh-keygen)" href="https://www.golinuxcloud.com/generate-ssh-key-linux/">ssh-keygen command</a></li>
+	<li id="menu-item-18488" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-18488"><a title="15+ SSH command examples in Linux [access remote nodes]" href="https://www.golinuxcloud.com/ssh-command-in-linux/">ssh command</a></li>
+</ul>
+</li>
+<li id="menu-item-17506" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-17506"><a href="https://www.golinuxcloud.com/csplit-split-command-examples-linux-unix/#">Copy Files and Directories</a>
+<ul class="sub-menu">
+	<li id="menu-item-16269" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-16269"><a title="10 single line SFTP commands to transfer files in Unix/Linux" href="https://www.golinuxcloud.com/single-line-unix-linux-sftp-commands-example/">sftp command</a></li>
+	<li id="menu-item-19997" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-19997"><a title="15+ scp command examples in Linux [Cheat Sheet]" href="https://www.golinuxcloud.com/scp-command-in-linux/">scp command</a></li>
+	<li id="menu-item-20126" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-20126"><a title="20+ rsync command examples in Linux [Cheat Sheet]" href="https://www.golinuxcloud.com/rsync-command-in-linux/">rsync command</a></li>
+</ul>
+</li>
+<li id="menu-item-17507" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-17507"><a href="https://www.golinuxcloud.com/csplit-split-command-examples-linux-unix/#">Manage Archives</a>
+<ul class="sub-menu">
+	<li id="menu-item-30758" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-30758"><a title="10+ cpio command examples in Linux [Cheat Sheet]" href="https://www.golinuxcloud.com/cpio-command-in-linux/">cpio command</a></li>
+	<li id="menu-item-16273" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-16273"><a title="Linux zip folder | 16 practical Linux zip command examples" href="https://www.golinuxcloud.com/how-to-zip-a-folder-in-linux-with-examples/">zip and unzip command</a></li>
+	<li id="menu-item-18733" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-18733"><a title="15+ most used tar command examples in Linux" href="https://www.golinuxcloud.com/tar-command-in-linux/">tar command</a></li>
+	<li id="menu-item-29573" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-29573"><a title="10+ bzip2 command examples in Linux [Cheat Sheet]" href="https://www.golinuxcloud.com/bzip2-command-in-linux/">bzip2 command</a></li>
+	<li id="menu-item-29917" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-29917"><a title="10+ lzop command examples in Linux [Cheat Sheet]" href="https://www.golinuxcloud.com/lzop-command-examples-in-linux/">lzop command</a></li>
+	<li id="menu-item-30192" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-30192"><a title="10 lbzip2 command examples in Linux [Cheat Sheet]" href="https://www.golinuxcloud.com/lbzip2-command-in-linux/">lbzip2 command</a></li>
+	<li id="menu-item-29802" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-29802"><a title="10+ xz command examples in Linux [Cheat Sheet]" href="https://www.golinuxcloud.com/xz-commandin-linux/">xz command</a></li>
+</ul>
+</li>
+<li id="menu-item-18044" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-18044"><a href="https://www.golinuxcloud.com/csplit-split-command-examples-linux-unix/#">Manage Terminal</a>
+<ul class="sub-menu">
+	<li id="menu-item-16267" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-16267"><a title="List of 50+ tmux cheatsheet and shortcuts commands" href="https://www.golinuxcloud.com/tmux-cheatsheet/">tmux command</a></li>
+</ul>
+</li>
+<li id="menu-item-18045" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-18045"><a href="https://www.golinuxcloud.com/csplit-split-command-examples-linux-unix/#">Manage KVM</a>
+<ul class="sub-menu">
+	<li id="menu-item-16279" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-16279"><a title="15 virt-install examples | KVM virtualization commands cheatsheet" href="https://www.golinuxcloud.com/virt-install-examples-kvm-virt-commands-linux/">virt-install command</a></li>
+</ul>
+</li>
+<li id="menu-item-30939" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-30939"><a href="https://www.golinuxcloud.com/csplit-split-command-examples-linux-unix/#">Finding Files and Dir</a>
+<ul class="sub-menu">
+	<li id="menu-item-30935" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-30935"><a title="25+ most used find commands in Linux [Cheat Sheet]" href="https://www.golinuxcloud.com/find-command-in-linux/">find command</a></li>
+	<li id="menu-item-30941" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-30941"><a title="Locate files using which command in Linux [Cheat Sheet]" href="https://www.golinuxcloud.com/which-command-in-linux/">which command</a></li>
+</ul>
+</li>
+<li id="menu-item-26084" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-26084"><a href="https://www.golinuxcloud.com/csplit-split-command-examples-linux-unix/#">Some More Commands</a>
+<ul class="sub-menu">
+	<li id="menu-item-26082" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-26082"><a title="10+ crontab command examples in Linux [Cheat Sheet]" href="https://www.golinuxcloud.com/crontab-command-in-linux/">crontab command</a></li>
+</ul>
+</li>
+</ul></div></aside>	</div>
+</div>
+<div class="widget-area sidebar is-right-sidebar" id="right-sidebar">
+	<div class="inside-right-sidebar"><div id="vi-sticky" style="width: 381px; position: relative; top: 2500px;">
+		<aside id="custom_html-47" class="widget_text extendedwopts-md-center adtag_565 widget inner-padding widget_custom_html"><div class="textwidget custom-html-widget">	<div class="vi-sticky-ad" style="opacity: 1; visibility: visible;">
+			<div class="adsbyvli" style="width:300px; height:250px" data-ad-slot="vi_1250693229">
+			</div>
+			<script>
+         (vitag.Init = window.vitag.Init || []).push(function () {
+             viAPItag.display("vi_1250693229")
+         })
+			</script>
+			<div style="margin: 10px auto;text-align: center; font-size: 13px;word-wrap: initial;">
+					ADVERTISEMENT</div>
+		<div class="adsbyvli" style="width:300px; height:250px" data-ad-slot="vi_1250693230">
+		</div>
+			<script>
+         (vitag.Init = window.vitag.Init || []).push(function () {
+             viAPItag.display("vi_1250693230")
+         })
+		</script>
+	</div></div></aside><aside id="media_image-5" class="extendedwopts-md-center widget inner-padding widget_media_image"><a href="https://www.golinuxcloud.com/subscribe-us/"><img width="377" height="380" src="./15 csplit &amp; split command examples in Linux [Cheat Sheet] _ GoLinuxCloud_files/golinuxcloud_subscribe-2.jpg" class="image wp-image-17537 attachment-full size-full perfmatters-lazy loaded" alt="Subscribe GoLinuxCloud" style="max-width: 100%; height: auto;" title="Subscribe GoLinuxCloud" data-src="https://www.golinuxcloud.com/wp-content/uploads/golinuxcloud_subscribe-2.jpg" data-srcset="https://www.golinuxcloud.com/wp-content/uploads/golinuxcloud_subscribe-2.jpg 377w, https://www.golinuxcloud.com/wp-content/uploads/golinuxcloud_subscribe-2-298x300.jpg 298w, https://www.golinuxcloud.com/wp-content/uploads/golinuxcloud_subscribe-2-150x150.jpg 150w" data-sizes="(max-width: 377px) 100vw, 377px" sizes="(max-width: 377px) 100vw, 377px" srcset="https://www.golinuxcloud.com/wp-content/uploads/golinuxcloud_subscribe-2.jpg 377w, https://www.golinuxcloud.com/wp-content/uploads/golinuxcloud_subscribe-2-298x300.jpg 298w, https://www.golinuxcloud.com/wp-content/uploads/golinuxcloud_subscribe-2-150x150.jpg 150w" data-was-processed="true"><noscript><img width="377" height="380" src="https://www.golinuxcloud.com/wp-content/uploads/golinuxcloud_subscribe-2.jpg" class="image wp-image-17537  attachment-full size-full" alt="Subscribe GoLinuxCloud" style="max-width: 100%; height: auto;" title="Subscribe GoLinuxCloud" srcset="https://www.golinuxcloud.com/wp-content/uploads/golinuxcloud_subscribe-2.jpg 377w, https://www.golinuxcloud.com/wp-content/uploads/golinuxcloud_subscribe-2-298x300.jpg 298w, https://www.golinuxcloud.com/wp-content/uploads/golinuxcloud_subscribe-2-150x150.jpg 150w" sizes="(max-width: 377px) 100vw, 377px" /></noscript></a></aside><aside id="custom_html-41" class="widget_text extendedwopts-hide extendedwopts-mobile extendedwopts-md-center widget inner-padding widget_custom_html"><div class="textwidget custom-html-widget"><div class="vi-sticky-ad" style="opacity: 1; visibility: visible; width: 381px;">
+	<div class="adsbyvli" style="width:300px; height:250px" data-ad-slot="vi_1250693231">
+	</div>
+	<script>
+        (vitag.Init = window.vitag.Init || []).push(function () {
+            viAPItag.display("vi_1250693231")
+        })
+	</script>
+	<div style="margin: 10px auto;text-align: center; font-size: 13px;word-wrap: initial;"> ADVERTISEMENT</div>
+	<div class="adsbyvli" style="width:300px; height:250px" data-ad-slot="vi_1250693232">
+	</div>
+	<script>
+        (vitag.Init = window.vitag.Init || []).push(function () {
+            viAPItag.display("vi_1250693232")
+        })
+    </script>
+</div></div></aside>	<aside class="widget_text extendedwopts-hide extendedwopts-mobile extendedwopts-md-center widget inner-padding widget_custom_html" style="clear: both;">
+                            <div id="connectId" style="height: 320px; width: 381px; left: unset; right: unset;"></div>
+                            <div class="vi-sticky-ad" style="opacity: 1; visibility: visible; width: 381px;">
+                                <div class="adsbyvli" style="width:300px; height:250px" data-ad-slot="vi_1250693233"></div>
+                                <div style="margin: 10px auto;text-align: center; font-size: 13px;word-wrap: initial;">ADVERTISEMENT</div>
+                                <div class="adsbyvli" style="width:300px; height:250px" data-ad-slot="vi_1250693234"></div>
+                            </div></aside><div class="widget_text extendedwopts-hide extendedwopts-mobile extendedwopts-md-center widget inner-padding widget_custom_html" style="clear: both;">
+                            <div id="connectId2" style="height: 320px; width: 381px; left: unset; right: unset;"></div>
+                            <div class="vi-sticky-ad" style="opacity: 1; visibility: visible; width: 381px; position: fixed; top: 15px;">
+                            <div class="adsbyvli" style="width:300px; height:250px" data-ad-slot="vi_1250693235"></div>
+                            <div style="margin: 10px auto;text-align: center; font-size: 13px;word-wrap: initial;">ADVERTISEMENT</div>
+                            <div class="adsbyvli" style="width:300px; height:250px" data-ad-slot="vi_1250693236"></div>
+                            </div></div></div></div>
+</div>
+
+	</div>
+</div>
+
+
+<div class="site-footer footer-bar-active footer-bar-align-right">
+			<footer class="site-info" aria-label="Site" itemtype="https://schema.org/WPFooter" itemscope="">
+			<div class="inside-site-info">
+						<div class="footer-bar">
+			<aside id="nav_menu-5" class="widget inner-padding widget_nav_menu"><div class="menu-footer-menu-container"><ul id="menu-footer-menu" class="menu"><li id="menu-item-12222" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-12222"><a href="https://www.golinuxcloud.com/sitemap_index.xml">Sitemap</a></li>
+<li id="menu-item-8534" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-privacy-policy menu-item-8534"><a href="https://www.golinuxcloud.com/privacy-policy/">Privacy Policy</a></li>
+<li id="menu-item-8535" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-8535"><a href="https://www.golinuxcloud.com/disclaimer/">Disclaimer</a></li>
+<li id="menu-item-12220" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-12220"><a href="https://www.golinuxcloud.com/advertise-with-us/">Guest Posts</a></li>
+<li id="menu-item-12221" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-12221"><a href="https://www.golinuxcloud.com/contact-us/">Contact Me</a></li>
+</ul></div></aside>		</div>
+						<div class="copyright-bar">
+					Copyright © 2022 | Hosted On <a rel="noopener" href="https://www.golinuxcloud.com/rocket-net-review/" target="_blank">Rocket.net</a>				</div>
+			</div>
+		</footer>
+		</div>
+
+		<!-- Freesoul Deactivate Plugins has disabled 33 plugins on this page. -->
+		<script id="generate-a11y">!function(){"use strict";if("querySelector"in document&&"addEventListener"in window){var e=document.body;e.addEventListener("mousedown",function(){e.classList.add("using-mouse")}),e.addEventListener("keydown",function(){e.classList.remove("using-mouse")})}}();</script>
+<!-- This site is using Minimal Analytics brought to you by CAOS. -->
+<script>
+    (function(a, b, c) {
+        var d = a.history,
+            e = document,
+            f = navigator || {},
+            g = localStorage,
+            h = encodeURIComponent,
+            i = d.pushState,
+            k = function() {
+                return Math.random().toString(36)
+            },
+            l = function() {
+                return g.cid || (g.cid = k()), g.cid
+            },
+            m = function(r) {
+                var s = [];
+                for (var t in r)
+                    r.hasOwnProperty(t) && void 0 !== r[t] && s.push(h(t) + "=" + h(r[t]));
+                return s.join("&")
+            },
+            n = function(r, s, t, u, v, w, x) {
+                var z = "https://www.golinuxcloud.com/wp-content/stealth/caos/stealth.php",
+                    A = m({
+                        v: "1",
+                        ds: "web",
+                        aip: c.anonymizeIp ? 1 : void 0,
+                        tid: b,
+                        cid: l(),
+                        t: r || "pageview",
+                        sd: c.colorDepth && screen.colorDepth ? screen.colorDepth + "-bits" : void 0,
+                        dr: e.referrer ||
+                            void 0,
+                        dt: e.title,
+                        dl: e.location.origin + e.location.pathname + e.location.search,
+                        ul: c.language ?
+                            (f.language || "").toLowerCase() : void 0,
+                        de: c.characterSet ? e.characterSet : void 0,
+                        sr: c.screenSize ? (a.screen || {}).width + "x" + (a.screen || {}).height : void 0,
+                        vp: c.screenSize &&
+                            a.visualViewport ? (a.visualViewport || {}).width + "x" + (a.visualViewport || {}).height : void 0,
+                        ec: s || void 0,
+                        ea: t || void 0,
+                        el: u || void 0,
+                        ev: v || void 0,
+                        exd: w || void 0,
+                        exf: "undefined" != typeof x &&
+                            !1 == !!x ? 0 : void 0
+                    });
+                if (f.sendBeacon) f.sendBeacon(z, A);
+                else {
+                    var y = new XMLHttpRequest;
+                    y.open("POST", z, !0), y.send(A)
+                }
+            };
+        d.pushState = function(r) {
+                return "function" == typeof d.onpushstate &&
+                    d.onpushstate({
+                        state: r
+                    }), setTimeout(n, c.delay || 10), i.apply(d, arguments)
+            }, n(),
+            a.ma = {
+                trackEvent: function o(r, s, t, u) {
+                    return n("event", r, s, t, u)
+                },
+                trackException: function q(r, s) {
+                    return n("exception", null, null, null, null, r, s)
+                }
+            }
+    })
+    (window, "UA-125250287-2", {
+        anonymizeIp: false,
+        siteSpeedSampleRate: 1,
+        colorDepth: true,
+        characterSet: true,
+        screenSize: true,
+        language: true
+    })
+        </script>
+  <script>
+    (function () {
+      var btnClose = document.getElementById('vi-close-banner');
+      if (btnClose) {
+        btnClose.addEventListener("click", function () {
+          var fixBanner = document.getElementById("fixBanner");
+          fixBanner.remove();
+        });
+      }
+      var adPos = document.getElementById('adPosition');
+      var mobile_ad_id = "vi_1250648334";
+      var desktop_ad_id = "vi_1250648328";
+      adPos.style.cssText = "width:728px; height: 95px;margin: 0 auto;padding: 5px 0px 0px;";
+      var ad_id = window.innerWidth <= 480 ? mobile_ad_id : desktop_ad_id;
+      if (window.innerWidth <= 480) {
+        adPos.style.cssText = "width:320px; height: 55px;margin: 0 auto;padding: 5px 0px 0px;";
+        document.getElementById("fixBanner").style.width = "100%";
+      }
+      adPos.innerHTML = '<div class="adsbyvli" data-ad-slot="' + ad_id + '"></div>';
+      (vitag.displayInit = window.vitag.displayInit || []).push(function () { viAPItag.display(ad_id) })
+      var sWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+      if (sWidth < 480) {
+        var fixBanner = document.getElementById('fixBanner');
+        fixBanner.style.display = "none !important";
+      }
+    }());
+  </script>
+<link rel="stylesheet" id="golinuxcloud-code-css" href="./15 csplit &amp; split command examples in Linux [Cheat Sheet] _ GoLinuxCloud_files/shades-of-purple.min.css" media="all">
+<script id="jetpack_related-posts-js-extra" data-pmdelayedscript="data:text/javascript;base64,CnZhciByZWxhdGVkX3Bvc3RzX2pzX29wdGlvbnMgPSB7InBvc3RfaGVhZGluZyI6Img0In07Cg==" data-cfasync="false" data-no-optimize="1" data-no-defer="1" data-no-minify="1" src="data:text/javascript;base64,CnZhciByZWxhdGVkX3Bvc3RzX2pzX29wdGlvbnMgPSB7InBvc3RfaGVhZGluZyI6Img0In07Cg=="></script>
+<script id="jetpack_related-posts-js" data-pmdelayedscript="https://www.golinuxcloud.com/wp-content/plugins/jetpack/_inc/build/related-posts/related-posts.min.js" data-cfasync="false" data-no-optimize="1" data-no-defer="1" data-no-minify="1" src="./15 csplit &amp; split command examples in Linux [Cheat Sheet] _ GoLinuxCloud_files/related-posts.min.js"></script>
+<!--[if lte IE 11]>
+<script src='https://www.golinuxcloud.com/wp-content/themes/generatepress/assets/js/classList.min.js' id='generate-classlist-js'></script>
+<![endif]-->
+<script id="generate-menu-js-extra">
+var generatepressMenu = {"toggleOpenedSubMenus":"1","openSubMenuLabel":"Open Sub-Menu","closeSubMenuLabel":"Close Sub-Menu"};
+</script>
+<script id="generate-menu-js" data-pmdelayedscript="https://www.golinuxcloud.com/wp-content/themes/generatepress/assets/js/menu.min.js" data-cfasync="false" data-no-optimize="1" data-no-defer="1" data-no-minify="1" src="./15 csplit &amp; split command examples in Linux [Cheat Sheet] _ GoLinuxCloud_files/menu.min.js"></script>
+<script id="comment-reply-js" data-pmdelayedscript="https://www.golinuxcloud.com/wp-includes/js/comment-reply.min.js" data-cfasync="false" data-no-optimize="1" data-no-defer="1" data-no-minify="1" src="./15 csplit &amp; split command examples in Linux [Cheat Sheet] _ GoLinuxCloud_files/comment-reply.min.js"></script>
+<script src="./15 csplit &amp; split command examples in Linux [Cheat Sheet] _ GoLinuxCloud_files/lazyload.min.js" id="perfmatters-lazy-load-js-js" defer=""></script>
+<script data-cfasync="false" data-no-optimize="1" src="./15 csplit &amp; split command examples in Linux [Cheat Sheet] _ GoLinuxCloud_files/instantpage.js" id="perfmatters-instant-page-js"></script>
+<script src="./15 csplit &amp; split command examples in Linux [Cheat Sheet] _ GoLinuxCloud_files/app.js" id="siebar-accordion-js-js" defer=""></script>
+<script>!function(){window.advanced_ads_ready_queue=window.advanced_ads_ready_queue||[],advanced_ads_ready_queue.push=window.advanced_ads_ready;for(var d=0,a=advanced_ads_ready_queue.length;d<a;d++)advanced_ads_ready(advanced_ads_ready_queue[d])}();</script><script defer="" data-pmdelayedscript="https://stats.wp.com/e-202227.js" data-cfasync="false" data-no-optimize="1" data-no-defer="1" data-no-minify="1" src="./15 csplit &amp; split command examples in Linux [Cheat Sheet] _ GoLinuxCloud_files/e-202227.js"></script>
+<script>
+	_stq = window._stq || [];
+	_stq.push([ 'view', {v:'ext',j:'1:11.1',blog:'152084371',post:'5813',tz:'5.5',srv:'www.golinuxcloud.com'} ]);
+	_stq.push([ 'clickTrackerInit', '152084371', '5813' ]);
+</script>
+<script>document.addEventListener("DOMContentLoaded",function(){var lazyLoadInstance=new LazyLoad({elements_selector:"img[data-src],.perfmatters-lazy,.perfmatters-lazy-css-bg",thresholds:"0px 0px",callback_loaded:function(element){if(element.tagName==="IFRAME"){if(element.classList.contains("loaded")){if(typeof window.jQuery!="undefined"){if(jQuery.fn.fitVids){jQuery(element).parent().fitVids()}}}}}});var target=document.querySelector("body");var observer=new MutationObserver(function(mutations){lazyLoadInstance.update()});var config={childList:!0,subtree:!0};observer.observe(target,config);});</script>
+<script type="text/javascript" id="perfmatters-delayed-scripts-js">const perfmattersDelayTimer = setTimeout(pmLoadDelayedScripts,10*1000);const perfmattersUserInteractions=["keydown","mousemove","wheel","touchmove","touchstart","touchend"];perfmattersUserInteractions.forEach(function(event){window.addEventListener(event,pmTriggerDelayedScripts,{passive:!0})});function pmTriggerDelayedScripts(){pmLoadDelayedScripts();clearTimeout(perfmattersDelayTimer);perfmattersUserInteractions.forEach(function(event){window.removeEventListener(event, pmTriggerDelayedScripts,{passive:!0});});}function pmLoadDelayedScripts(){document.querySelectorAll("script[data-pmdelayedscript]").forEach(function(elem){elem.setAttribute("src",elem.getAttribute("data-pmdelayedscript"));});}</script>
+
+<img src="./15 csplit &amp; split command examples in Linux [Cheat Sheet] _ GoLinuxCloud_files/g.gif" alt="" width="6" height="5" id="wpstats"></body></html>

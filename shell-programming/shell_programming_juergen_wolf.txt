@@ -578,7 +578,8 @@ done
      dialog --clear       --begin 2 2 --yesno "" 0 0 --and-widget --clear       --begin 4 4 --yesno "" 0 0 --and-widget --begin 6 6 --yesno "" 0 0
  - dialog --textbox "$0 (filename)" 0 0 -> shows $0 in a text box. we an scroll to all directions
  - [X]dialog --menu [Text] [Höhe] [Breite] [Menühöhe] [Tag1] [Eintrag1] ...
-   os=`dialog --menu "Betriebssystem wählen" 0 0 0 "Linux" "" "BSD" "" "Solaris" "" 3>&1 1>&2 2>&3`; echo $os -> select from a menu
+   os=`dialog --menu "Betriebssystem wählen" 0 0 0 "Linux" "" "BSD" "" "Solaris" "" 3>&1 1>&2 2>&3`; echo $os
+    -> select from a menu
  - [X]dialog --checklist [Text] [Höhe] [Breite] [Listenhöhe] [Tag1] [Eintrag1] [Status1] ...: select multiple tags
    pizza=`dialog --checklist "Pizza mit ..." 0 0 4 Käse "" on Salami "" off Schinken "" off Thunfisch "" off 3>&1 1>&2 2>&3`; echo $pizza
    -> e.g pizza = "Käse Thunfisch"
@@ -934,3 +935,114 @@ done
   - fgrep (fixed/fast grep): understands less regular expressions than grep -> faster. used only with strings, not regex
   - rgrep (recursive grep): loops over all sub folders, e.g. grep regex */*
 
+
+
+- 14.2) File-Oriented Commands
+ - bzcat/zcat: cat bzip2/gzip compressed files without uncompressing them -> uncompress files and send output to stdout while the compressed files are left intact
+  - zless/zmore
+ - cat file; cat file | command; cat file_part1 file_part2 > entire_file; cat > file: write from stdin (keyboard) in file
+ - chgrp [-R] group file/directory: change file.group. only owner/root can change the group. Moreover owner must belong to the new group
+ - chmod [-r]: chmod 755 file; chmode [uga][+-][rwx] file. Special Bits: SUID=4000; SGUID=2000 oder Sticky=1000 -> e.g. chmod 4744 file
+ - chown user[:group] file1 file2
+ - sum (CRC, old not recommended command)/cksum (CRC, POSIX.2-Standard)/md5sum files: cd /bin; md5 `ls -R /bin` | md5
+ - cmp out.txt textfile.txt -> out.txt textfile.txt differieren: Byte 52, Zeile 3 -> print line and first different byte in both files
+ - comm [-123] file1 file2: compare 2 sorted files. print lines only in file1 on left, lines only in file2 prepended with 1 tab, common lines prepended with 2 tabs
+                            The options -1/-12/-13/-123... will not print the 1st/2nd/3rd column
+ - cp file newfile; cp -r dir newdir; cp file1 file2 file3 dir	; cp –p file newfile -> newfile gets same owner/access rights and timestamp
+ - csplit [OPTION]... FILE PATTERN...: splitting based on context into files xx00 xx01... and output byte count of each file
+  - https://www.golinuxcloud.com/csplit-split-command-examples-linux-unix/
+  - csplit -k --elide-empty-files csplit1.txt '/^}/+2' "{*}": split by pattern ^} -> split each bash function into a file
+   - --elide-empty-files: ignore empty files
+   - +2: add line with found pattern and the next line
+   - {*}: repeat the previous pattern as many times as possible
+   - -k: without -k no xx* files are created because there is no line after the last '}' and an error is printed out. with -k the files are created even if there is a failure
+  - csplit Kapitel20.txt /Section 1/ /Section 2/ /Section 3/: split into 4 files, from begin until section1, section1-section2, section2-section3, section3-end
+  - csplit -f section Kapitel20.txt 20 40: split into 3 files section00 (lines 1 until 20), section01 (lines 21 until 40), sendtion02 (lines 40 until end)
+  - csplit -k /var/spool/mail/$LOGNAME /^From / {100}: each email starts with 'From ' -> split into files xx00...xx99
+ - cut -c5/c5-10/c-10/c5/c1,3,5 file: cut characters
+ - cut -d\; -f1,3 file: -d for delimiter   -f for field -> cut the first and the third columns
+ - diff file1.txt file2.txt:   2a3 (append): new line added between line2 and line 3.    2c2 (changed)    2d1 (deleted)
+ - diff3 file1 file2 file3: compares 3 files -> ==== all files are different.   ====[123] file[123] is defferent
+ - expand -3 file: replace tabs with 3 spaces. removing tabs not possible, i.e. expand -0 returns an error -> use tr instead
+ - file filename: analyzes the file content
+ - find [Verzeichnis] [-Option ...] [-Test ...] [-Action... (default -print).]
+  - find $HOME -print: find /dokus -name kapitel -print
+  - find /dokus /usr -name 'kap*' -user qahmad -print
+  - find / -type d -name 'dok*' -print
+  - find / -size 0 -ok rm {} \; : look for empty files and delete them (-ok delete without prompting/asking user)
+  - find / -mtime -7 -print: all files modified in the last 7 days  
+ - fold [OPTION]... [FILE]...: wrap each input line to fit in specified width (default width 80)
+  - fold -50 Kap003.txt : width=50, this will split words at line end and continue them in the next line -> use -s to suppress this behaviour
+  - fold -s -50 Kap003.txt
+  - use case: fold -s –72 text.txt | mail -s "Betreff" name@host.de
+ - head -5 file
+ - less: reads from stdin and shows input linewise. (H) for help
+ - ln: when creating a file, an entry in the directory refers to an inode, access rights, filetype and #used-blocks.
+       ln filea file_new: creates an entry in the directoy and refers to an existing inode -> hard link
+       ln -s file file_new create a symbolic kink
+  - ls
+  - more: same as less, but less has more features
+  - mv file filenew: rename
+  - mv file dir: move file in directory
+  - mv dir dirnew: move dir in dirnew
+ - nl: print files with line numbers -> ls | nl -w3 -s') ' -> '  1) abc'
+ - od [-h (hex) -c (ASCII)] file: print file in octal (default)/hexadecimal/ascii -> 0000000 064546 062554...
+ - paste: opposite of cut - paste -d\; namen.txt nummer.txt > zusammen.txt ---> Qassem;+97246...
+ - pcat: cat compressed files without uncompressing them
+ - rm file; rm dir (empty); rm -r dir (recursive); rm -rf dir (don't show warnings)
+ - sort -n (nummerical) -f (case insensitive) -r (reverse) -nr(num. reverse) -c (tests if a file is sorted) -u (uniq)
+ - split - split a file into pieces -> file names starts with xx ( similar to csplit)
+  - split -50 kommandos.txt [prefix, default is xx]; split 50 linewise, default is 1000 line
+  - recovering original file by: for file in `ls x* | sort`; do cat $file >> new.txt; done
+ - tac: reverse cat
+ - tail -5 file; tail +100 file: prints file from line 100 till end. 
+ - tail -r file == tac file
+ - tail -f (follow) file
+ - tee: duplicate output -> ls | tee file
+ - touch file: set access time and modification time to current time. create file if does not exist
+  - touch -a: update only access time
+  - touch -c: do not create file if does not exist
+  - touch -m: update only modification time
+ - tr str1 str2 file: replace str1 by str2 -> tr \t "  " file
+ - type name: classifies how theshell interprets the name (alias, builtin(shell function), file or script)
+  - type ls echo ./hallo -> ls is aliased to `/bin/ls $LS_OPTIONS'\necho is a shell builtin\n./hallo is ./hallo 
+ - umask – changing/showing file creation mask
+ - uniq: print duplicate lines of sorted files only once
+ - unix2dos fileunix filedos (text files)
+ - dos2unix filedos fileunix (text files)
+ - wc: show #lines #words #chars
+ - whereis [-b only binary files] [-m only manual files] file: search file in important dirs such as PASH and manual directores /usr/share/man...
+  - faster than find but not adequate
+- 14.3) Directorey-Oriented Commands
+ - dirname $HOME/Kap005graf.zip -> /home/qahmad
+ - basename $HOME/Kap005graf.zip -> Kap005graf.zip
+ - basename $HOME/Kap005graf.zip .zip
+ - cd
+ - mkdir -m 600 mydir; -m access rights
+ - mkdir -p dir1/dir2/dir3; creates dir1/dir2/dir3 event if dir1/dir2 are not found
+ - pwd
+ - rmdir dir; same as rm -r dir. Difference: rm -r cannot delete dirs without execute access right, but rmdir can do it
+- 14.4) User and Group Management
+ - exit/logout/CTRL+D
+ - groupadd [-g GID] group-name: add a new group, if GID is not given, the system generates it automatically (monoton increasing). GID can be changed by groupmod
+ - groupmod [-g newGID] group-name
+ - groupdel gruppenname
+ - groups [OPTION]... [USERNAME (default=current user)]: print the groups a user is in. if USERNAME is not given, the current user is assumed
+ - id [OPTION]... [USER (default=current user)] - print real and effective user and group IDs
+ - last [options] [username...] [tty...] - show a listing of last logged in users (from /var/log/wtmp)
+ - lastb [options] [username...] [tty...] - same as last, except that by default it shows a log of the /var/log/btmp file, which contains all the bad login attempts.
+ - logname [OPTION] - print user´s login name, which is stored in /var/run/utmp by getty (you should be logged in with in a real terminal, in xterm you will get nothing)
+ - newgrp [group default=standard droup in /etc/passwd] - log in to a new group (in a new shell session). e.g. touch temp; ls -l temp -> the new group is see in the group column.
+ - passwd: change password in /etc/passwd of current user (-rwsr-xr-x 1 root root 68208 Jul 15  2021 /usr/bin/passwd). The SUID bit is set, this allows current user to change his password, although /usr/bin/passwd's owner is root. Damit hat der Anwender für kurze Zeit root-Rechte und kann somit sein Passwort ändern und darf in die Datei schreiben. Alle Passwörter darf nur root verändern.
+ - passwd user: change password in /etc/passwd of user. MUST be executed by root
+   options only for root: -l user: lock user;  -f user: force user to change his password; -d user: delete user's password -> login without password
+ - useradd -u 1235 -c "Test User" -s /bin/bash -d /home/qzaiad qzaiad; -u==UID  -c==comment  -s==shell  -d==home directory (adduser does not create home directory)
+ - useradd-s /bin/bash -d /home/qzaiad -m -k SKELETON_DIR qzaiad; -m creates home dir if doesnnot exist. -k copy files and dirs from SKELETON_DIR to home dir
+  -after creating a user using useradd -> call passwd USER to set a password
+ - usermod usermod -u 1235 -c "Test User" -s /bin/bash -d /home/testdir testuser: modify user propoerties
+ - userdel user -> deletes user. It also removes all user's cron jobs
+ - userdel -r user -> Files in the user's home directory will be removed along with the home directory itself and the user's mail spool.
+ - who - show who is logged on
+  - qahmad   :0 (terminal)           2022-07-06 16:13 (:0)
+ - whoami - print effective userid, who is currently logged it -> qahmad
+ - 
