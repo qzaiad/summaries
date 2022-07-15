@@ -1045,4 +1045,32 @@ done
  - who - show who is logged on
   - qahmad   :0 (terminal)           2022-07-06 16:13 (:0)
  - whoami - print effective userid, who is currently logged it -> qahmad
- - 
+- 14.5) Program and Process Management
+ - at: execute a command at a specific time, even if user is not logged in
+  - at 2130 -f myscript (21:30); at 2200 apr 2 -f myscript (2. April at 22:00); Each task is queued in at-Queue (atq);
+  - at -l -> lists all queued tasks;    at -l 33 list order no. 33;     at -d 33 -> delete order 33
+ - batch (needs at daempn): executes a command sometime later (when cpu is not busy,  user is not logged in)
+  - batch \n warning: commands will be executed using /bin/sh \n at> ls -l \n at> ./myscript \n at> sleep 1 \n at> (Strg)+(D) \n job 1 at 2005–04–21 23:30
+ - bg/fg/jobs/cron/crontab/kill/nohup: see above
+ - killall: same sa kill but takes a job name as a parameter (not PID)
+  - sleep 60&; killall sleep -> ends all jobs called sleep
+  - killall -l: lists all supported signals (the signal name is given without SIG prepended)
+ - nice [-n, -20<=n<=20, default=10] command [arguments]: executes a command with a lower priority (usually cmds executed in background)
+  - only root is allowed to start jobs with a prio higher than 0, i.e. -20<n<=0
+  - nice find / -name document -print > /home/tmp/find.txt & (ps -l shows the prio 10 under colun NI)
+ - renice: modify prio of already startet processes
+  - comfortabler use top + R + value
+ - ps: shows process information
+  - ps: shows all processes started in this terminal
+  - ps -e: shows all processes.     ps -f: shows all informations (all columns)    ----> ps -ef
+  - ps -ef | grep kamix | awk '{ print $2; exit }'
+ - pgrep process_name: shows all PIDs of all processes called process_name
+ - pstree: show procsess hirarchy as a tree
+  - pstree PID/user: shows all PID's user's processes as a tree
+ - sleep time in seconds
+ - su (Switch User): changes current user without relogin
+ - sudo
+ - time cmd: meassures exection time. see above
+ - top: shows processes sored according to cpu usage. K: kill , R: Renice
+-14.6)Storage Information:
+   
