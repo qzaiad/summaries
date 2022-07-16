@@ -1073,4 +1073,14 @@ done
  - time cmd: meassures exection time. see above
  - top: shows processes sored according to cpu usage. K: kill , R: Renice
 -14.6)Storage Information:
-   
+ - df [OPTION]... [FILE]...: report file system disk space usage
+  - df: shows info about all mounted filesystems -> Filesystem                   Size  Used Avail Use% Mounted on
+  - df path: shows info about filesystem containing path
+      Filesystem                   Size  Used Avail Use% Mounted on
+      /dev/mapper/ubuntu--vg-root  249G  214G   23G  91% /
+  - df -H: shows human readyble info
+ - du [OPTION]... [FILE]...: estimate file space usage -> shows used space in kilobytes-blocks of each file/directory recursively
+  - du -b/k/m/g/h (bytes/kilobytes..../human-readable)
+  - du -sh /home: summerized and human readable
+  - du --max-depth=1 -m /home
+ - free - Display amount of free and used memory/swap in the system
