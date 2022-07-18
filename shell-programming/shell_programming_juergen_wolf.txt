@@ -1072,7 +1072,7 @@ done
  - sudo
  - time cmd: meassures exection time. see above
  - top: shows processes sored according to cpu usage. K: kill , R: Renice
--14.6)Storage Information:
+- 14.6) Storage Information:
  - df [OPTION]... [FILE]...: report file system disk space usage
   - df: shows info about all mounted filesystems -> Filesystem                   Size  Used Avail Use% Mounted on
   - df path: shows info about filesystem containing path
@@ -1084,3 +1084,37 @@ done
   - du -sh /home: summerized and human readable
   - du --max-depth=1 -m /home
  - free - Display amount of free and used memory/swap in the system
+- 14.7) Filesystem Commands
+ - badblocks - search a device for bad blocks
+  - badblocks [-options] device-file [startblock]
+   device-file: e.g. /dev/hda1 first hard desk,  /dev/fd0 floppy disk (1,44MB)
+  - badblocks -s -o block.log /dev/fd0 1440: -s shows progress,  -o file: writes defect blocks in file (for later use by other programs)
+ - cfdisk: paartioning of hard disks. /dev/hda /dev/hdb==first/second IDE-hard-disk, /dev/sda /dev/sdb==first/second SCSI-hard-disk...
+ - dd (data duplication):
+  - ibs=BYTES: read up to BYTES bytes at a time (default: 512) -> size of input buffer
+  - obs=BYTES: write BYTES bytes at a time (default: 512) -> size of output buffer
+  - bs=BYTES: read and write up to BYTES bytes at a time (default: 512); overrides ibs and obs
+  - count=N: copy only N input blocks
+  - cbs=BYTES: convert BYTES bytes at a time
+  - skip=N: skip N ibs-sized blocks at start of input
+  - seek=N: skip N obs-sized blocks at start of output
+  - conv={ascii,ebcdic,ibm,block,unblock,lcase,ucase,swab,noerror,sync}: convert the file as per the comma separated symbol list
+   - block: pad newline-terminated records with spaces to cbs-size
+   - unblock: replace trailing spaces in cbs-size records with newline
+   - swab: swap every pair of input bytes
+   - noerror: continue after read errors (ignore errors)
+   - sync: pad every input block with NULs to ibs-size; when used with block or unblock, pad with spaces rather than NULs
+  - if: input file. Default==stdin
+  - of: output file. Default==stdout
+   - dd if=/dev/urandom bs=4k count=1 -> 4096 bytes (4,1 kB, 4,0 KiB) copied, 0,000383205 s, 10,7 MB/s
+   - dd if=/dev/urandom bs=4k count=2-> 8192 bytes (8,2 kB, 8,0 KiB) copied, 0,00127206 s, 6,4 MB/s
+   - dd if=/dev/hda bs=512 count=1: print bootsector of first ide hard disk
+   - dd if=/vmlinuz of=/dev/fd0: copy kernel in the first sector of the disket -> should be used as bootable disk
+   - dd if=/dev/hda of=/dev/hdc: clone first HD of master IDE controller into hdc
+ - ddrescue/dd_rescue: Data recovery tool that reads data from damaged block devices.
+  - using a damaged device (e.g. by dd) might cause more damages to the device, so we should be careful using the device
+  - ddrescue {{/dev/sdb}} {{path/to/image.dd}} {{path/to/log.txt}}: Take an image of a device, creating a log file
+  - ddrescue --force --no-scrape {{/dev/sdX}} {{/dev/sdY}} {{path/to/log.txt}}: Clone Disk A to Disk B, creating a log file
+ - dumpe2fs - dump ext2/ext3/ext4 filesystem information
+  - dumpe2fs -b /dev/hda6: dump blocks marked as bad
+ - e2fsck - check/repair a Linux ext2/ext3/ext4 file system
