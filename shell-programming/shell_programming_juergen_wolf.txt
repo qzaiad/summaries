@@ -1089,7 +1089,7 @@ done
   - badblocks [-options] device-file [startblock]
    device-file: e.g. /dev/hda1 first hard desk,  /dev/fd0 floppy disk (1,44MB)
   - badblocks -s -o block.log /dev/fd0 1440: -s shows progress,  -o file: writes defect blocks in file (for later use by other programs)
- - cfdisk: paartioning of hard disks. /dev/hda /dev/hdb==first/second IDE-hard-disk, /dev/sda /dev/sdb==first/second SCSI-hard-disk...
+ - cfdisk: partioning of hard disks. /dev/hda /dev/hdb==first/second IDE-hard-disk, /dev/sda /dev/sdb==first/second SCSI-hard-disk...
  - dd (data duplication):
   - ibs=BYTES: read up to BYTES bytes at a time (default: 512) -> size of input buffer
   - obs=BYTES: write BYTES bytes at a time (default: 512) -> size of output buffer
@@ -1117,4 +1117,11 @@ done
   - ddrescue --force --no-scrape {{/dev/sdX}} {{/dev/sdY}} {{path/to/log.txt}}: Clone Disk A to Disk B, creating a log file
  - dumpe2fs - dump ext2/ext3/ext4 filesystem information
   - dumpe2fs -b /dev/hda6: dump blocks marked as bad
- - e2fsck - check/repair a Linux ext2/ext3/ext4 file system
+ - e2fsck device/partiotion - check/repair a Linux ext2/ext3/ext4 file system
+  - Files with Inodes that do not belong to any directoy (not marked in any dir.) are restored in lost+found dir. and can be repaired.
+  - Exit Codes: - 0: success; - 1: failure dounf and repaired; - 2: severe failure dounf and repaired -> system should be restarted; - 4: failure found but could not be repaired
+   - 8: failure in the command execution; - 16: wrong use of e2fsck; - 128: failure in the shared libs
+  - Options: -p fix failuires without asking user.  -c search filesystem for bad blocks.  -f force filesystem check, even if kernel marked it as OK (valid flag is set)
+ - fdformat - low-level format a floppy disk -> write disk with empty blocks
+  - mkfs/mk2fs/mkreiserfs -> make file system
+ - fdisk - manipulate disk partition table
