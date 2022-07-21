@@ -1119,9 +1119,40 @@ done
   - dumpe2fs -b /dev/hda6: dump blocks marked as bad
  - e2fsck device/partiotion - check/repair a Linux ext2/ext3/ext4 file system
   - Files with Inodes that do not belong to any directoy (not marked in any dir.) are restored in lost+found dir. and can be repaired.
-  - Exit Codes: - 0: success; - 1: failure dounf and repaired; - 2: severe failure dounf and repaired -> system should be restarted; - 4: failure found but could not be repaired
+  - Exit Codes: - 0: success; - 1: failure found and repaired; - 2: severe failure dounf and repaired -> system should be restarted; - 4: failure found but could not be repaired
    - 8: failure in the command execution; - 16: wrong use of e2fsck; - 128: failure in the shared libs
   - Options: -p fix failuires without asking user.  -c search filesystem for bad blocks.  -f force filesystem check, even if kernel marked it as OK (valid flag is set)
  - fdformat - low-level format a floppy disk -> write disk with empty blocks
   - mkfs/mk2fs/mkreiserfs -> make file system
  - fdisk - manipulate disk partition table
+  - not comfortable as cfdisk -> splits/adds/deletes/changes partition -> controlled by pressing letters for executing options
+  - can also be used as a CLI command: useful when installing same OS on multiple HDs. Install linux on one HD, make image by dd, boot on other HDs e.g. by using damnsmall-Linux, execute script that make partiotions and fomats them by fdisk, copy image to HS by dd, configure Network
+  - fdisk -l: shows all partiotions
+  - fdisk /dev/hda: called when we want to partiotion HD /dev/hda
+  - keyboard shortcuts:
+   - b modify bsd disklabel/d delete part./l shows known filesystem types/m show menu with all commands/n new partition/p print partition table/q quit without save/t change fs type/u change unit/v verify fs table/W save and exit/X more options for experts
+ - fsck - check and repair a Linux filesystem -> calls the right executable for the fs, e.g. fsck.ext2, fsck.minix, reiserfsck...
+  - fsck detects fs type by options or by partition table
+  - Options: -a automatic repair/ -A check all fs in /etc/fstab
+  - Exit-Code: 0 no error/ 1 error in fs found and repaired/ 2 fatal error in fs found and fixed -> restart/ 4 found failuire but couold not fix/ 8 failure in executing fsch/ 16 fsch used wrongly/ 128 failure in shared libs
+  - DO NOT execute fsck on reaonly-mode fs, because fsch can fix fs and change it -> fsch will crash in this case
+  - fsck usually started on after each x-th boot or after a failure or crash
+ - mkfs - build a Linux filesystem -> calls the right executable for the mkfs
+  - Exit-Code: 0 no error/ 8 failure in executing mkfs/ 16 fsch used wrongly
+  - Options: -t specify fs type....
+ - mkswap [options] device [size]: set up a Linux swap area. swap partition/file activated by swapon
+  - make a swap partition/file. Usually it is done on setting up the system, so no need to use it.
+  - dd bs=1024 if=/dev/zero of=/tmp/myswap count=4096 (initialize 4MByte swap file with zeros); mkswap -c /tmp/myswap 4096; sync; swapon /tmp/myswap
+  - note: swap file is much slower than swap partition. so create swap file only if there no place on HD for a new partition
+  - note: he new swap file/partition is managed by the OS, not by you
+ - mount/umount : mount/unmount
+  - mount: show all mounted fs listed in /etc/mtab
+  - mount /dev/fd0: mount disk fd0 (an entry must exist in /etc/fstab, otherwise write it as next line)
+  - mount /dev/hda9 /home/you (mount point)
+  - mount goliath:/progs /home/progs: mount nfs, pc name is goliath
+  - umount /dev/fd0: umount it
+ - parted - a partition manipulation program: create/move/increase/decrease partitions
+  - usualy user to make place in HD for an OS or to copy HD-Data to a new HD
+ - swapon, swapoff: see mkswap
+ - sync [OPTION] [FILE]... - Synchronize cached writes to persistent storage
+  
