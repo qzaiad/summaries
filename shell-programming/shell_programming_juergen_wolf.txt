@@ -1109,7 +1109,7 @@ done
    - dd if=/dev/urandom bs=4k count=1 -> 4096 bytes (4,1 kB, 4,0 KiB) copied, 0,000383205 s, 10,7 MB/s
    - dd if=/dev/urandom bs=4k count=2-> 8192 bytes (8,2 kB, 8,0 KiB) copied, 0,00127206 s, 6,4 MB/s
    - dd if=/dev/hda bs=512 count=1: print bootsector of first ide hard disk
-   - dd if=/vmlinuz of=/dev/fd0: copy kernel in the first sector of the disket -> should be used as bootable disk
+   - dd if=/vmlinuz of=/dev/kernel: fd0 copy in the first sector of the disket -> should be used as bootable disk
    - dd if=/dev/hda of=/dev/hdc: clone first HD of master IDE controller into hdc
  - ddrescue/dd_rescue: Data recovery tool that reads data from damaged block devices.
   - using a damaged device (e.g. by dd) might cause more damages to the device, so we should be careful using the device
@@ -1155,4 +1155,80 @@ done
   - usualy user to make place in HD for an OS or to copy HD-Data to a new HD
  - swapon, swapoff: see mkswap
  - sync [OPTION] [FILE]... - Synchronize cached writes to persistent storage
-  
+- 14.8) Archiving and Backup
+ - bzip2/bunzip2: Compression/Decompression (.bz2/.tbz (tar files). Command bzip did not succeed for patent reasons
+  - bzip2: better but slower than than gzip
+  - bzip2 file; bzip2 -d file.bz2 (or bunzip2 file.bz2). bunzip2==bzip2 -d
+  - bzcat: cat files compressed with bzip2
+ - compress/uncompress: deprecated compression program -> file end .Z
+ - cpio, afio: Archiving Files and Directories
+  - cpio (copy in and out): gets file names from stdin -> usually used in association with ls/find/pipe -> creating special archive considering e.g. owner, access rights, creation time, file size...
+   - copy out: option -o/--create: read file names from stdin and copy them into stdout
+    - ls *.txt | cpio -o > Shellbuch.cpio
+    - find $HOME/Shellbuch -print | cpio -o > Shellbuch.cpio (archive entire direcotry tree)
+    - ls -a | cpio -o > /dev/fd0
+  - copy in: unpacking coip archive created with -o option -> options -i/--extract. extracted files are mirrored into current direcory
+   - cpio -i < Shellbuch.cpio
+   - cpio -i "*.txt" < Shellbuch.cpio: unpack only txt files from archive
+   - cpio -i "*.txt" < /dev/fd0
+   - cpio -t < Shellbuch.cpio: shows archive's contect
+  - copy pass:
+   - copy files into a given directory without archiving them (-p, dir must exist, if not create it with -d option)
+   - ls *.txt | cpio -pd /archive/testdir2 == cp *.txt /archive/testdir2
+   - find . -print | cpio -pd /archiv/testdir3: copies whole directory tree
+  - afio: compress each file and archive:
+   - ls *.txt | afio -o -Z Shellbook.afio -> compress and archive
+   - afio -i -Z Shellbook.afio -> backup and decompress
+ - crypt: encrypt/decrypt text file read from stdin and print it in stdout (not really strong cipher alg)
+  - crypt 32asdf32 < file.txt > file.txt.crypt (32asdf32==cipher key). WARNING: after encryption original file should be written with random data and then deleted
+    dd if=/dev/urandom of=file.txt bs=1 count=`wc -c file.txt | awk '{ print $1 }'`; rm file.txt
+  - crypt 32asdf32 < file.txt.crypt > file.txt (decrypt file)
+  - FYI: PGP is not allowed in france
+ - dump/restore (in Solaris ufsdump/ufsrestore) - Blockwise Archiving/Backup of a file system -> faster than archiving/backup of each file. A Table of Contents is created which can be used by restore in order to restore specific files
+ - note: be sure that the fs is in a stable state before dumping it -> it is recommended to use single user mode for using dump
+ - dump levels 0-9: level 0 = full backup, rest for incremental backups.
+ - dump level i>0: backup files which has been changed since the last backup level 0, 1...i
+ - dump -[0–9][u]f Archiv Verzeichnis
+  - dump –0uf /dev/rmt/1 (or filename) /: full backup of / into band /dev/rmt/1
+  - dump –1uf /dev/rmt/1 /: backup files changed since last full backup
+  - dump strategies: on sunday full backup, in each successiv day increment the dump level
+  - /etc/dumpdates contains date of latest backup -> needed before using incrementall backup -> create it using touch or use the -u option
+  - option -u: writes current date in /etc/dumpdates
+  - option -f filename. If missing then environment cariable $TAPE is used.
+  - restore: i interactive  r rebuild (entire fs)  t list archive contant  x extract file/folder(recursively)
+   - cd /usr; restore rf /pfadzumArchiv/archiv_usr.121105
+  - NOTE/WARNING: dump is filesystem specific -> An Archive is NOT portable. Lot of RAM is needed for creating complete fs index
+ - gzip/gunzip: compress/uncompress files (.gz) and delete original file, while keeping timestamp/access rights of files
+  - gzip file1.txt: delete file1.txt on end
+  - gzip -c file1.txt > file1.txt.gz: do not delete file1.txt
+  - gzip -d file1.txt.gz or gunzip file1.txt.gz (replace original file). gunzip -c file1.txt.gz > file1_neu.txt keep .gz file
+  - gunzip can decompress .gz, and files compressed with ziü/compress/pack
+  - zcat
+ - mt -f tape command [number] - control magnetic tape drive operation
+  - execute command number times on magnetic tape
+ - pack/unpack: compress/decompress (.z) -> deprecated
+ - tar (tape archiver) - an archiving utility
+  - tar function [options] [files]
+   - functions: The leading '-' can be omitted if only one function is used
+    -A append an archive to a second existed archive  -c create a new archive  -d compare archive files for fiven files
+    --delete file(s) delete given files from archive  -r append given files to the archive-end  -t show archive content
+    -u give files are inserted into archive iff they are newer than same files in archive or do not exist  -x read (extract)givven files. if no files given -> extract whole files
+   - options:
+    -f file  -l do not exceed filesystem end  -v verbose  -w activate interactive mode  -y/z/Z de/compress using bzip2/g(un)zip/(un)compress
+   - examples:
+    - archiving by absolue path: tar cf temp shell-programming/ -> shell-programming/\nshell-programming/file1...
+    - archiving by relative path: cd shell-programming; tar cf temp . OR tar cf temp -C shell-programming/ . -> ./\n./file...
+    - extracting entire archive: tar xf temp
+    - extracting specifig files: tar xf temp ./file1 ./file2... (or shell-programming/file1 shell-programming/file2 if archived using absolute path)
+    - tar [cx]vf archive dir -> verbose -> show process info
+    - tar tf Archivename: show archive content
+    - tar czvf archive.tgz dir: compress and archive
+    - show compressed archive: tar tzf archive.tgz
+    - decompress and unpack: tar czvf archive.tgz dir
+    - decompress and unpack specific files: tar czvf archive.tgz dir '*.txt'
+  - zip/unzip: compress and archive good because it is compatible with windows
+   - zip files.zip file1.txt file2.txt file3.txt
+   - add a new file to existing archive: zip files.zip hallo.c
+   - arching a directory recursively: zip -r Shellbuch.zip $HOME/Shellbuch
+   - unzip files.zip
+- 14.9) System Informationen
