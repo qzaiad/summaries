@@ -1240,4 +1240,12 @@ done
   - uname -a Linux dev12 5.4.0-84-generic #94-Ubuntu SMP Thu Aug 26 20:27:37 UTC 2021 x86_64 x86_64 x86_64 GNU/Linux:
  - uptime - Tell how long the system has been running: 10:17:35 up 28 days, 21:06,  2 users,  load average: 0,11, 0,07, 0,06
 - 14.10) System-Commands
- -
+ - dmesg: shows recent boot messages of the kernel such as which hardware found, recognized and and defined. it is also used to see if the pc recognize
+ - halt: end all processes and shutdown
+ - reboot:
+ - shutdown [options] timepoint [message for users]: send SIGTERM to all processes. After -t.default=2s seconds SIGKILL is send, filesystems unmounted, sync und change to another system run level. when shutdown is executed, no log ins will be allowed
+  - -r reboot   -h halt  -t seconds   -k (only show msg to used and do not shutdown)   -f no filesysem check after reboot   -F do filesystem check after reboot
+    -c cancel current shutdown
+  - timepoint: now / in hh:mm
+- 14.11) Printer Administration
+- 14.12) Network Commands 
