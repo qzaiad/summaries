@@ -1248,4 +1248,97 @@ done
     -c cancel current shutdown
   - timepoint: now / in hh:mm
 - 14.11) Printer Administration
-- 14.12) Network Commands 
+- 14.12) Network Commands
+ - arp - manipulate the system ARP cache
+  - arp -a: lists arp cache (BSD format): labdalra.insecure.lcs.intern (172.21.192.16) at 24:be:05:20:e3:51 [ether] on eno1
+  - arp -e: lists arp cache (Linux format): Address/HWtype/HWaddress/Flags Mask/Iface
+  - ifconfig -a: shows among others MAC of Intrfaces
+ - FTP: ftp server-name -> prompts username/password (insecure because password is sent unprotected)
+  - cd/dir/lcd (local cd)/pwd
+  - !command: executes command locally
+  - get file (only one file);    mget files/dir gets set of files or entire directories
+  - put/mput
+  - bye/exit
+  - type binary, hash, prompt
+  - Executing ftp script: .netrc contains FTP script in ftp server directory or in user's home directory -> be careful that no one should read this file because it might contain password (i.e. chmod 0600)
+    machine myhoster.de
+    login us10129
+    password asdf1234
+    macdef init
+    cd $HOME/backups/Shellbuch
+    get whoami.txt
+    bye
+  - ftp myhoster.de -> gets whoami.txt without asking for password
+ - hostname - show or set the system's host name
+  - hostname -> goliath.myhoster.de;          hostname -s -> goliath (pc name);         hostname -d -> myhoster.de (dns name)
+ - ifconfig - configure a network interface....ifconfig interface [address [parameter]]
+  - -a display all interfaces which are currently available, even if down
+  - -s display a short list (like netstat -i)
+  - -v be more verbose for some error conditions
+  - RX/TX: number of received/sent packets   MTU   MAC   
+  - ifconfig eth0 192.168.0.1  (or dns name in /etc/host): assign 192.168.0.1 to interface eth0
+  - ifconfig eth0 down/up: make interface eth0
+  - ifconfig eth0 10.25.38.41 netmask 255.255.255.0 broadcast 10.25.38.255
+ - mail/mailx – E-Mails schreiben und empfangen (und auswerten) / deprecated
+ - uuencode - encode a file into email friendly text / uudecode - decode an encoded file
+ - netstat - Print network connections, routing tables, interface statistics, masquerade connections, and multicast memberships
+ - netstat -nr: show kernel routing table (-r) (-n nummeric)
+ - netstat -i: show iterface statistic
+ - netstat -ta: show all connections. -t TCP-Socket  -u UDP-Socket, w RAW-Socket -x UNIX-Socket  -a show also listening sockets
+ - nslookup - query Internet name servers interactively -> REPLACED BY host and dig
+  - nslookup www.aljazeera.net
+ - host - DNS lookup utility.
+  - host www.aljazeera.net
+    www.aljazeera.net is an alias for 2-01-3b91-0005.cdx.cedexis.net.
+    2-01-3b91-0005.cdx.cedexis.net is an alias for www.aljazeera.net.edgekey.net.
+    www.aljazeera.net.edgekey.net is an alias for e9106.dscb.akamaiedge.net.
+    e9106.dscb.akamaiedge.net has address 104.96.9.65
+    e9106.dscb.akamaiedge.net has IPv6 address 2a02:26f0:c6:29c::2392
+    e9106.dscb.akamaiedge.net has IPv6 address 2a02:26f0:c6:2a0::2392
+  - dig - DNS lookup utility
+   - dig is a flexible tool for interrogating DNS name servers. It performs DNS lookups and displays the answers that are returned from the name
+     server(s) that were queried. Most DNS administrators use dig to troubleshoot DNS problems because of its flexibility, ease of use and clarity of
+     output. Other lookup tools tend to have less functionality than dig.
+ - ; <<>> DiG 9.16.1-Ubuntu <<>> www.aljazeera.net
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 8444
+;; flags: qr rd ra; QUERY: 1, ANSWER: 4, AUTHORITY: 0, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 65494
+;; QUESTION SECTION:
+;www.aljazeera.net.		IN	A
+
+;; ANSWER SECTION:
+www.aljazeera.net.	208	IN	CNAME	2-01-3b91-0005.cdx.cedexis.net.
+2-01-3b91-0005.cdx.cedexis.net.	20 IN	CNAME	www.aljazeera.net.edgekey.net.
+www.aljazeera.net.edgekey.net. 7199 IN	CNAME	e9106.dscb.akamaiedge.net.
+e9106.dscb.akamaiedge.net. 19	IN	A	104.96.9.65
+
+;; Query time: 36 msec
+;; SERVER: 127.0.0.53#53(127.0.0.53)
+;; WHEN: Fr Sep 02 10:38:07 CEST 2022
+;; MSG SIZE  rcvd: 179
+ - ping
+ - The r-commands (rcp, rlogin, rsh, rwho): not secure -> not recommended. (Password transported in cleartext)
+ - ssh: secure shell
+  - connecting to a pc for the first time->ssh warns you if you know this PC->show a fingerprint (id for remote pc) -> if yes store fingerprint in ~/.ssh/know_hosts
+  - next step in authentication (if psk, ssh will ask for a password)
+  - ssh -l loginname pcname
+ - scp - secure cp. same as cp but syntax for remote pc: user@pcname:path
+  - to avoid asking for a password -> use asymmetric authentication
+   - ssh-keygen -t rsa: Generating public/private rsa key pair -> id_rsa/id_rsa.pub
+   - scp .ssh/id_rsa.pub user@remotepc:~/.ssh/
+   - log in user@remotepc:~/.ssh -> cat id_rsa.pub >> authorized_keys
+ - rsync [options] source destination - Replication of Files and Directories (a fast, versatile, remote (and local) file-copying tool)
+  - note: this is not a bidirectional syncronization. For bidirectional syncronization use command unision
+  - rsync -avzb -e ssh pronix.de:/ /home/you/backups/ -> synchronizing pronix.de with /home/you/backups/
+   - -a: archive mode   -b: make backup   -v: verbose   -z compression   -e ssh: specify the shell to use (here ssh)
+   - The slash '/' at the end of the source means: Do not copy the directory it self, but only copy its content
+   - -n dry-run: perform a trial run with no changes made (dont write, only simulate process)
+   - --delete/--delete-excluded/--force (deletinf non-empty dirs): delete files/directories in destination, which does not (longer) exist in source
+   - --partial keep partially transferred files (in case of a connectionloss, in order to complete rsyncing partial files next time we connect)
+   - --exclude=pattern do not rsync files matching pattern (can be regulare expression)
+ - traceroute - print the route packets trace to network host
+  
