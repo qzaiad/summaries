@@ -1341,4 +1341,10 @@ e9106.dscb.akamaiedge.net. 19	IN	A	104.96.9.65
    - --partial keep partially transferred files (in case of a connectionloss, in order to complete rsyncing partial files next time we connect)
    - --exclude=pattern do not rsync files matching pattern (can be regulare expression)
  - traceroute - print the route packets trace to network host
-  
+- 14.13) User Communication
+ - wall [-n] [-t timeout] [-g group] [message | file] - write a message to all users. take input from stdin until CTRL+D
+  - receives should allow receiving messages from others by: mesg yes -> deactivating with mesg no
+ - write user [tty] - send a message to another user -> similar to wall
+ - mesg [option] [n|y] - display (or do not display) messages from other users
+  - mesg yes (or -y); mesg no (or -n); mesg -> output=mesg is y
+ - 
