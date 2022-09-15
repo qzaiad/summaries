@@ -1360,3 +1360,18 @@ e9106.dscb.akamaiedge.net. 19	IN	A	104.96.9.65
   - tty -s; echo $? -> 0 stdin is terminal   1 stdin is not a terminal   2 unknown error
    - useful in scripts to known if script whats to know if stdin has a terminal. a background process has no stdin for input
  - tput, reset - initialize a terminal or query terminfo database -> see 5.2.4
+14.15) Online Help
+ - makewhatis - index UNIX manuals -> necessary for apropos to work
+ - apropos/man -k - search the manual page names and descriptions.
+  - apropos compress\nbunzip2 (1)          - a block-sorting file compressor, v1.0.8\nbzcat (1)            - decompresses files to stdout...
+ - info - read Info documents
+ - man - an interface to the system reference manuals
+  - man categories: 1. User Commands.  2. System Calls  3. C-Library-Functions  4. description of device files  5. file formats  6.	Games
+                    7. Makropakete für die Textformatierer  8.	Kommandos für die Systemverwalterin  9. Kernelroutinen
+  - Search order of manual pages is defined in /etc/man.config or /etc/manpath.config. The user can changes search order MANSEC or SECTION section
+  - /etc/manpath.config defines also folders where to search for manual pages. Since only admin can change this file, the user can change the set of folders by defining the variable MANPATH=pathes of man folders
+  - man -a sleep: show man 1 sleep. when exiting it will as us if we want to see mansleep of another category
+  - man -f == apropos
+  - man -f == whatis
+ - whatis - display one-line manual page descriptions
+  
