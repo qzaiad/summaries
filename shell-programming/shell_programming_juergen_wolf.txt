@@ -1347,4 +1347,16 @@ e9106.dscb.akamaiedge.net. 19	IN	A	104.96.9.65
  - write user [tty] - send a message to another user -> similar to wall
  - mesg [option] [n|y] - display (or do not display) messages from other users
   - mesg yes (or -y); mesg no (or -n); mesg -> output=mesg is y
- - 
+- 14.14) Screen and Terminal Commands
+ - clear/clear -x==CTRL+L
+ - reset or setterm -reset: reset a virtual terminal -> bring it in a defined state
+ - setterm [options] - set terminal attributes e.g. backgroud/foreground colour
+  - you can use settern intreactive (setterm -bold on) or writing settings in ~/.profile
+  - setterm -clear/reset/blank 1(s)/foreground colour/background colour...
+ - stty - change and print terminal line settings (e.g. line speed)
+  - stty [-F DEVICE | --file=DEVICE] [SETTING] / stty [-F DEVICE | --file=DEVICE] [-a|--all] / stty [-F DEVICE | --file=DEVICE] [-g|--save]
+  - stty [-]echo: echo input characters. stty -echo -> input characters will not be shown. ssty echo -> input characters will be shown
+ - tty - print the file name of the terminal connected to standard input (e.g. /dev/pts/26)
+  - tty -s; echo $? -> 0 stdin is terminal   1 stdin is not a terminal   2 unknown error
+   - useful in scripts to known if script whats to know if stdin has a terminal. a background process has no stdin for input
+ - tput, reset - initialize a terminal or query terminfo database -> see 5.2.4
