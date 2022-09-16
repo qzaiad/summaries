@@ -1374,4 +1374,20 @@ e9106.dscb.akamaiedge.net. 19	IN	A	104.96.9.65
   - man -f == apropos
   - man -f == whatis
  - whatis - display one-line manual page descriptions
-  
+14.16) PostScript Comands
+  a2ps	Textdatei umwandeln nach Postscript
+  dvips	DVI-Dateien umwandeln nach Postscript
+  enscript	Textdatei umwandeln nach Postscript
+  gs	PostScript- und PDF-Dateien konvertieren
+  html2ps	Umwandeln von HTML-Dateien nach PostScript
+  pdf2ps	Umwandeln von PDF nach PostScript
+  ps2ascii	Umwandeln von PostScript nach ASCII
+  ps2pdf	Umwandeln von PostScript nach PDF
+  psutils	Paket zur Bearbeitung von PostScript-Dateien
+14.17) Mixed Commands
+ - alias/unalias
+ - bc: calculator
+ - printenv/env - print all or part of environment: prints all variables and their values
+  - printenv/env VAR: prints value of $VAR
+ - env [OPTION]... [-] [NAME=VALUE]... [COMMAND [ARG]...] - run a program in a modified environment
+  - Set each NAME to VALUE in the environment and run COMMAND.
