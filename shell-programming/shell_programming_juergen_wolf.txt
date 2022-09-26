@@ -1391,3 +1391,275 @@ e9106.dscb.akamaiedge.net. 19	IN	A	104.96.9.65
   - printenv/env VAR: prints value of $VAR
  - env [OPTION]... [-] [NAME=VALUE]... [COMMAND [ARG]...] - run a program in a modified environment
   - Set each NAME to VALUE in the environment and run COMMAND.
+15.1) Praxis: Daily Solutions
+- Check for alpha nummeric characters: 
+#!/bin/sh
+# checkInput() : Überprüft, dass eine richtige Eingabe aus
+# alphabetischen und numerischen Zeichen besteht
+# Gibt 0 (=OK) zurück, wenn alle Zeichen aus
+# Groß- und Kleinbuchstaben und Zahlen bestehen,
+# ansonsten wird 1 zurückgegeben.
+#
+checkInput() {
+  if [ -z "$eingabe" ]
+  then
+     echo "Es wurde nichts eingegeben"
+     exit 1
+  fi
+  # Alle unerwünschten Zeichen entfernen ...
+  eingabeTmp="`echo $1 | sed -e 's/[^[:alnum:]]//g'`"
+  # ... und dann vergleichen
+  if [ "$eingabeTmp" != "$eingabe" ]
+  then
+     return 1
+  else
+     return 0
+  fi
+}
+# Ein Beispiel zum Testen der Funktion checkInput
+echo -n "Eingabe machen: "
+read eingabe
+if ! checkInput "$eingabe"
+then
+   echo "Die Eingabe muss aus Buchstaben und Zahlen bestehen!"
+   exit 1
+else
+   echo "Die Eingabe ist Ok."
+fi
+
+- Integer Check
+#!/bin/sh
+# checkInt() : Überprüft, ob ein echter
+# Integerwert eingegeben wurde
+# Gibt 0 (== OK) zurück, wenn es sich um einen gültigen
+# Integerwert handelt, ansonsten 1
+#
+checkInt() {
+    number="$1"
+    # Mindestwert für einen Integer (ggf. anpassen)
+    min=-2147483648
+    # maximaler Wert für einen Integer (ggf. anpassen)
+    max=2147483647
+   if [ -z $number ]
+   then
+      echo "Es wurde nichts eingegeben"
+      exit 1
+   fi
+   # Es könnte ein negativer Wert sein ...
+   if [ "${number%${number#?}}" = "-" ]
+   then  # es ist ein negativer Wert – erstes Zeichen ein "-"
+      # das erste Zeichen nicht übergeben
+      testinteger="${number#?}"
+   else
+      testinteger="$number"
+   fi
+   # Alle unerwünschten Zeichen außer Zahlen entfernen ...
+   extract_nodigits="`echo $testinteger | \
+                      sed 's/[[:digit:]]//g'`"
+   # Ist jetzt noch was vorhanden
+  if [ ! -z $extract_nodigits ]
+  then
+     echo "Kein numerisches Format!"
+     return 1
+  fi
+  # Mindestgrenze eingehalten ...
+  if [ "$number" -lt "$min" ]
+  then
+     echo "Der Wert ist unter dem erlaubten Mindestwert : $min"
+     return 1
+  fi
+  # max. Grenze eingehalten
+  if [ "$number" -gt "$max" ]
+  then
+     echo "Der Wert ist über dem erlaubten Maximalwert : $max"
+     return 1
+  fi
+  return 0 # Ok, es ist ein Integer
+}
+# Ein Beispiel zum Testen der Funktion checkInput
+#
+echo -n "Eingabe machen: "
+read eingabe
+if ! checkInt "$eingabe"
+then
+   echo "Falsche Eingabe – Kein Integer"
+   exit 1
+else
+   echo "Die Eingabe ist Ok."
+fi
+
+- echo mit oder ohne -n (same as echo -n text; OR echo -e "TEXT\c"
+#!/bin/sh
+# myecho() : Portables echo ohne Zeilenumbruch
+myecho() {
+   # Weg mit dem Newline, falls vorhanden
+   echo "$*" | tr -d '\n'
+} 
+
+15.2) File Utilities
+- Replacing Spaces in File Names
+  #! /bin/sh
+  # Name: replaceSpace
+  # Ersetzt Leerzeichen in Datei- bzw. Verzeichnisnamen durch '_'
+  space=' '
+  replace='_' # Ersetzungszeichen
+  # Ersetzt alle Datei- und Verzeichnisnamen im
+  # aktuellen Verzeichnis
+  for source in *
+  do
+     case "$source" in
+     # Ist ein Leerzeichen im Namen vorhanden ...
+        *"$space"*)
+           # Erst mal den Namen in dest speichern ...
+           dest=`echo "$source" | sed "s/$space/$replace/g"`
+           # ... überprüfen, ob bereits eine Datei bzw.
+           # ein Verzeichnis mit gleichem Namen existiert
+           if test -f "$dest"
+           then
+              echo "Achtung: "$dest" existiert bereits ... \
+                    (Überspringen)" 1>&2
+              continue
+           fi
+           # Vorgang auf der Standardausgabe mitschreiben
+           echo mv "$source" "$dest"
+           # Jetzt ersetzen ...
+           mv "$source" "$dest"
+           ;;
+     esac
+  done
+  
+- Replacing File Ends , e.g. from .txt into .log
+  #!/bin/sh
+  # renExtension – Alle Dateiendungen eines speziellen
+  # Verzeichnisses ändern
+  # Verwendung : renExtension directory ext1 ext2
+  # Beispiel: renExt mydir .abc .xyz – "ändert '.abc' nach '.xyz'
+  renExtension() {
+     if [ $# -lt 3 ]
+     then
+        echo "usage: $0 Verzeichnis ext1 ext2"
+        echo "ex: $0 mydir .abc .xyz   (ändert .abc zu .xyz)"
+        return 1
+     fi
+     # Erstes Argument muss ein Verzeichnis sein
+     if [ -d "$1" ]
+     then :
+     else
+        echo "Argument $1 ist kein Verzeichnis!"
+        return 1
+     fi
+     # Nach allen Dateien mit der Endung $2 in $1 suchen
+     for i in `find . $1 -name "*$2"`
+     do
+        # Suffix $2 vom Dateinamen entfernen
+        base=`basename $i $2`
+        echo "Verändert: $1/$i Nach: $1/${base}$3"
+        # Umbenennen mit Suffix $3
+        mv $i $1/${base}$3
+     done
+     return 0
+  }
+  # Zum Testen
+  #
+  renExtension $1 $2 $3
+  
+- Find Differencsies between two Folders
+ - euqivalent oneliner: rsync -avnx --numeric-ids --delete $1/ $2
+  #!/bin/sh
+  # diffDir() vergleicht zwei Verzeichnisse mit einfachen
+  # Dateien miteinander
+  diffDir() {
+     if [ -d "$1" -a -d "$2" ]
+     then :
+     else
+        echo "usage: $0 dir1 dir2"
+        return 1
+     fi
+     count1=0; count2=0
+     echo
+     echo "Unterschiedliche Dateien : "
+     for i in $1/*
+     do
+        count1=`expr $count1 + 1`
+        base=`basename $i`
+        diff -b $1/$base $2/$base > /dev/null
+        if [ "$?" -gt 0 ]
+        then
+           echo "    $1/$base $2/$base"
+           count2=`expr $count2 + 1`
+        fi
+     done
+     echo "-------------------------------"
+     echo "$count2 von $count1 Dateien sind unterschiedlich \
+           in $1 und $2"
+     return 0
+  }
+  # Zum Testen ...
+  diffDir $1 $2
+
+15.3) System Administration
+- User Management
+ - Space Limit for Users
+  - Program called quota: 
+   - soflimit: user/group is allowed for some time (Grace Period) to exceed the space limit
+   - hardlimit: user/group is not allowed to exceed the space limit
+
+  #!/bin/sh
+  # DiskQuota = Das Tool analysiert den Plattenplatzverbrauch
+  # einzelner Benutzer
+  # Limit der Speicherplatzbenutzung pro User in MB
+  maxUsage=100
+  # temporäre Log-Datei -> besser wäre in /tmp
+  logfile="loghogs.$$"
+  # Verzeichnis(se), das/die pro User erfasst werden sollen
+  dirs="/home"
+  # uid_start: Alle User-IDs unter 100 sind gewöhnlich dem root
+  # und anderen Diensten vorbehalten. Echte User beginnen
+  # gewöhnlich ab 100 oder manchmal gar ab 1000
+  uid_start=99
+  # Beim ordentlichen Beenden logfile wieder löschen
+  trap "/bin/rm -f $logfile" EXIT
+  for name in `cut -d: -f1,3 /etc/passwd | \
+               awk -F: '$2 > $uid_start { print $1 }'`
+  do
+    echo -n "$name "
+    find $dirs -user $name -xdev -type f -ls | \
+        awk '{ sum += $7 } END { print sum / (1024*1024) }'
+  done | awk "\$2 > $maxUsage { print \$0 }" > $logfile
+  # Wenn vorhanden, haben wir einen "Übertreter"
+  # gefunden, ansonsten ...
+  if [ ! -s $logfile ]  # file is not zero size
+  then
+    echo "Kein User hat das Limit ${maxUsage}MB überzogen"
+    exit 0
+  fi
+  while read user diskspace
+  do
+     cat <<MARKE | mail -s "Achtung Limit überzogen" $user
+  Hallo $user,
+  Soeben `date "+%Y-%h-%d %H:%M:%S "` wurde festgestellt, dass Sie
+  Ihr Limit von ${maxUsage}MB überzogen haben. Derzeit beträgt Ihr
+  verwendeter Speicher ${diskspace}MB. Bitte beheben Sie den
+  Umstand sobald wie möglich. Vielen Dank für das Verständnis.
+  MARKE
+     echo "User $user hat den Account überzogen\
+           (Ist:${diskspace}MB Soll:${maxUsage}MB)"
+  done < $logfile
+  Das Script bei der Ausführung:
+
+  # ./DiskQuota
+  User tot hat den Account überzogen (Ist:543,72MB Soll:100MB)
+  ---- Inzwischen beim User tot ----
+  tot@host > mail
+   ... ... ...
+   N 14 tot@linux.site  Mon May  2 15:14  22/786  Limit überzogen
+   ... ... ...
+  ? 14
+  Message 14:
+  From: you@host.site (J.Wolf)
+  Hallo tot,
+  Soeben 2005-Mai-02 15:14:47 wurde festgestellt, dass Sie Ihr
+  Limit von 100MB überzogen haben. Derzeit beträgt Ihr verwendeter
+  Speicher 543,72MB. Bitte beheben Sie den Umstand sobald wie
+  möglich.
+  Vielen Dank für das Verständnis.
