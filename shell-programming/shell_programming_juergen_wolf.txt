@@ -1662,4 +1662,121 @@ myecho() {
   Limit von 100MB überzogen haben. Derzeit beträgt Ihr verwendeter
   Speicher 543,72MB. Bitte beheben Sie den Umstand sobald wie
   möglich.
-  Vielen Dank für das Verständnis.
+  Vielen Dank für das Verständnis.7
+
+- System Monitoring
+ - Warn uses if filesystem size exceeds a limit by evaluating the fifth column of df -k
+    #!/bin/sh
+    # Name: chcklimit
+    # Dieses Script verschickt eine Mail, wenn der Plattenverbrauch
+    # eines Filesystems an ein bestimmtes Limit stösst.
+    # Ab wie viel Prozent soll ein Warnung verschickt werden
+    WARN_CAPACITY=80
+    # Wohin soll eine Mail verschickt werden
+    TOUSER=user@host.de
+    call_mail_fn() {
+       servername=`hostname`
+       msg_subject="$servername – Dateisystem(${FILESYSTEM}) "\
+                   "verwendet ${FN_VAR1}% – festgestellt am: `date`"
+       echo $msg_subject | mail -s "${servername}:Warnung" $TOUSER
+    }
+    if [ $# -lt 1 ]
+    then
+       echo "usage: $0 FILESYSTEM"
+       echo "Bpsw.: $0 /dev/hda6"
+    fi
+    # Format von df -k:
+    # Dateisystem   1K-Blöcke   Benutzt Verfügbar Ben% Eingehängt auf
+    # /dev/hda4     15528224    2610376 12917848  17  %  /
+    # Den fünften Wert wollen wir haben: 'Ben%'
+    #
+    VAR1=`df -k ${1} | /usr/bin/tail –1 | \
+         /usr/bin/awk '{print $5}' `
+    # Prozentzeichen herausschneiden
+    VAR2=`echo $VAR1 | \
+          /usr/bin/awk '{ print substr($1,1,length($1)-1) }' `
+    # Wurde die Warnschwelle erreicht ... ?
+    if [ $VAR2 -ge ${WARN_CAPACITY} ]
+    then
+       FN_VAR1=$VAR2
+       call_mail_fn
+    fi
+
+- Execute Commands on a remote pc: ssh username@hostname "command1; command2; ... script..." -> see 14.12.12 for using SSH-key instead of PSK
+ - Script for executing commands/script on multiple remote pcs
+  - cat hostlist.txt -> us10129@myhoster.de\njwolf@192.135.147.2
+    #!/bin/sh
+    # Name: sshell
+    # Kommandos bzw. Scripts auf entfernten Rechnern ausführen
+    # ggf. den Pfad zur Datei anpassen
+    HOSTS="hostlist.txt"
+    usage() {
+       echo "usage: progname [-option] [Verzeichnis] "\
+            " Kommando_oder_Script"
+       echo
+       echo "Option:"
+       echo "-d :in ein bestimmtes Verzeichnis auf dem Host wechseln"
+       echo "-s :Script in ein bestimmtes Verzeichnis hochladen und"\
+            " Ausführen"
+       echo
+       echo "Syntax der Host-Liste: "
+       echo "Username@hostname1"
+       echo "Username@hostname2"
+       echo "..."
+       exit 1
+    }
+    if [ $# -eq 0 ]
+    then
+       usage
+    fi
+    # Datei 'hostlist.txt' überprüfen
+    if [ -e $HOSTS ]
+    then :
+    else
+       echo "Datei $HOSTS existiert nicht ..."
+       touch hostlist.txt
+       if [ $? -ne 0 ]
+       then
+          echo "Konnte $HOSTS nicht anlegen ...!"
+          exit 1
+       else
+          echo "Datei $HOSTS erzeugt, aber noch leer ...!"
+          usage
+          exit 1
+       fi
+    fi
+    # Optionen überprüfen ...
+    case $1 in
+       -d)
+          if [ $# -lt 3 ]
+          then
+             usage
+          fi
+          DIR=$2
+          shift; shift  ;;
+       -s)
+          if [ $# -lt 3 ]
+          then
+             usage
+          fi
+          DIR=$2
+          SCRIPT="yes"
+          shift; shift  ;;
+       -*)
+          usage ;;
+    esac
+    # Die einzelnen Hosts durchlaufen ...
+    for host in `cat $HOSTS`
+    do
+       echo "$host : "
+       CMD=$*
+       if [ "$SCRIPT" = "yes" ]
+       then
+          scp $CMD ${host}:${DIR}
+       fi
+       ret=`ssh $host "cd $DIR; $CMD"`
+       echo "$ret"
+    done
+
+15.4) Backup Strategies:
+
