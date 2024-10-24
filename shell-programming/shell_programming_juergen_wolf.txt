@@ -421,6 +421,7 @@ esac
   - tput dl1/il1 -> delete current line/add a new line at current line; tput dch1 -> delete one character at current position
 - xxd: make a hexdump or do the reverse: echo ABCD | xxd -> "00000000: 4142 4344 0a                             ABCD."
 - od: dump files in octal and other formats:
+ - !WARNING!: result is in hosr order, i.e. it migt be in big or in little endian
  - echo ABCD | od -> 0000000 041101 042103 000012
  - echo ABCD | od -c -> 0000000   A   B   C   D  \n
  - echo ABCD | od -x -> 0000000 4241 4443 (alignment?)
@@ -1662,7 +1663,8 @@ myecho() {
   Limit von 100MB überzogen haben. Derzeit beträgt Ihr verwendeter
   Speicher 543,72MB. Bitte beheben Sie den Umstand sobald wie
   möglich.
-  Vielen Dank für das Verständnis.7
+
+  Vielen Dank für das Verständnis.
 
 - System Monitoring
  - Warn uses if filesystem size exceeds a limit by evaluating the fifth column of df -k
@@ -1779,4 +1781,8 @@ myecho() {
     done
 
 15.4) Backup Strategies:
+
+
+- Uselful Apps:
+ - meld: comparing (diff) till 3 Files
 
