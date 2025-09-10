@@ -1,0 +1,33 @@
+Layouts:
+- 1) Titelfolien: 
+- 2) Inhaltsfolien: 7 unterschiedliche Layouts
+- 3) 
+
+- Layouts bestehen aus Objektrahmen
+
+- CTRL+Enter: bringt mich zum nächsten Objectrahmen
+
+- Bei der Aufzählung:
+ - SHIIFT + ENTER: Zeilenumbruch direct unter dem Aufzählungsbegin
+ 
+- Ausserhalb eines Objektrahmen -> Start -> Zurücksetzen
+
+- Format -> Freistellen -> kleier automatischer Bilverarbeitung. Z.b. scheinde alles (wie Hintergrund) außer dem Pferd aus
+
+- Auf Form (Quadrat): CTRL + rechte Maustase -> Form Duplizieren
+- Auf Form (Quadrat): CTRL + SHIFT + rechte Maustase -> Form Duplizieren auf derselben Ebene
+
+- SmartArts: Verwendung vordefinierte Schemata
+ - Einfügen -> SmartArt
+ - Teil vom SmartArt entfernen: Beschreibung löschen und danach mit Backspace das Symbpl (e.g. Kreis) löschen -> SmartArt pass sich an
+
+
+- Ansicht -> Folienmaster
+ - MAstersnsicht schließen -> übernehme Änderungen in der aktuellen Datei
+ 
+- Kopf und Fußzeile immer in Masterfolie machen
+
+potx: Endung für Powerpointvorlage
+
+Animation: Ohne/Erscheinen: mit jedem Mausklick eird ein Punkt angezeigt (Bullet-Block wird mit einem klick auf einmal angezeigt -> s. nächster Punkt)/...
+ - Animationsbereich: Rechtenmaustaste bei klicken beginnen.

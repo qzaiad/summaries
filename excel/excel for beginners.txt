@@ -1,0 +1,26 @@
+- Spalte hinzufügen/löschen: CTRL +/-
+- Functions:
+ - =heute() , =jetzt()
+ - CTRL+. : like heute() but hard coded, i.e. will not be updated each day
+- mark cells -> write a value -> CTRL+Enter -> fill all cells with this value
+Prozentrechnung:
+- B2:B7 -> Decimal -> click symbol %. Problem: relative Bezueg does not work
+- B2:$B$7 (or cursor at begin or end of B7 and then click with F4)
+- Better choice is: B2:B7$
+
+- Formeln -> formel anzeigen: shows the formels in all cells
+
+- Formatieren
+ - Start -> choose Standard/Währung... from the list
+ - or right mouse click -> format -> all posible format options
+ - Pinsel -> transforms format to other cells
+  - one mouse click:
+  - double mouse click
+ - Zellenformatierung -> Ausrichtung -> Textsteuerung -> Zeilenumbruch markieren
+ - ALT+Enter: insert an Enter
+ - Zellenformatierung -> Rahmen (einer Zelle)
+ - NIE komplette Zeilen/Spalten formatieren ->Dateigröße wird richtig gross und beim Ausdrücken werden viele Blätter für die Formatierung
+ - Die Taste DEL löscht nut den Inhalt einer Zelle aber nicht die Format
+  - Inhalt und Format löschen: Start -> Löschen (unter Autosumme)
+ - Datum wird intern als Zahl dargestellt
+

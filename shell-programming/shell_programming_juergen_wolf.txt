@@ -1781,8 +1781,153 @@ myecho() {
     done
 
 15.4) Backup Strategies:
+ - Tools for backup of files    : tar, afio, cpio (compressing by gzip oder bzip2)
+ - Tools for backup of file tree: tar, afio, cpio (compressing by gzip oder bzip2). 
+                                 - Synchronization Tools: rsync/unison
+                                 - Backup on CD/DVD: mkisofs, (or with GUI) xcdroast, K3b or gtoaster
+ - Hard disc: amanda (Advanced Maryland Automatic Network Disk Archiver) http://www.amanda.org
+ - Filesystem:
+  - dd:
+   - source and destination partitions must have the same size, should not be mounted (at least dst.)
+   - note that dd do not check for defekt blocks in fs (badblocks does this). dd_rescue is failure tolerant
+  - partimage http://www.partimage.org: low level program similar to dd
+   - backup ext2/ext3; reiserfs, xfs, UFS (Unix), HFS (MAC), NTFS/FAT16/FAT32 (Win32)...
+  - rsync, unision, WebDAV 
 
-
-- Uselful Apps:
- - meld: comparing (diff) till 3 Files
+15.4.5) Backup with ssh and tar
+ - scp some-archive.tgz user@host:/home/backups
+ - scp -r directory user@host:/home/backups: bad because scp is called for each file + inflexible compression
+ - tar zcvf - /home | ssh user@host "cat > homes.tgz (or /dev/tape)": the minus in tar for printing output to stdout. stdout is piped to ssh.cat
+ - cd /home/us10129/www.pronix.de ; tar zcf - html/ | ssh user@host "cd /home/us10129/www.pronix.de; mv html html.bak; tar zpxvf -":
+  - /home/us10129/www.pronix.de is compressed and archived and printed in stdout. stdout is piped to "ssh.tar zpxvf -" which unarchive stdin and creates html directory. -p=extract information about file permissions (default for superuser)
+ - restoring by: ssh user@host "cd /home/us10129/www.pronix.de; tar zpvxf -" < big-archive.tgz 
+ -
+    #!/bin/sh
+    # Name: ssh_tar
+    # Backups mit tar über ssh
+    # Konfiguration, entsprechend anpassen
+    #
+    SSH_OPT="-l"
+    SSH_HOST="192.135.147.2"
+    SSH_USER="jwolf"
+    # Default-Angaben
+    #
+    LOCAL_DIR="/home/tot/backups"
+    REMOTE_DIR="/home/jwolf/backups"
+    stamp=`date +%d_%m_%Y`
+    BACKUP_FILE="backup_${stamp}.tgz"
+    usage() {
+       echo "usage: star [-ph] [-pl] [-sh] [-sl] [-r] [-l] ..."
+       echo
+       echo "Optionen : "
+       echo " –ph : (lokales) Verzeichnis packen und hochladen " \
+            " (remote) in 'REMOTE_DIR'"
+       echo "     Beispiel:   star -ph lokalesVerzeichnis "
+       echo " -pl = (remote) Verzeichnis packen und runterladen"\
+            " (lokal) in 'LOCAL_DIR'"
+       echo "     Beispiel:   star -pl remoteVerzeichnis "
+       echo " -sh = Synchronisiert ein Host-Verzeichnis mit einem "\
+            "lokalen Verzeichnis"
+       echo "     Beispiel:   star -sh lokalesVerzeichnis "\
+            "remoteVerzeichnis syncVerzeichnis "
+       echo " -sl = Synchronisiert ein lokales Verzeichnis mit "\
+            "einem Host-Verzeichnis"
+       echo "     Beispiel:   star -sl remoteVerzeichnis "\
+            "lokalesVerzeichnis syncVerzeichnis "
+       echo " -r  = (remote) Wiederherstellen eines"\
+            " Host-Verzeichnisses"
+       echo "     Beispiel:   star -r remoteVerzeichnis "\
+            "lokalTarArchiv.tgz"
+       echo " -l  = (lokal)  Wiederherstellen eines lokalen "\
+            "Verzeichnisses"
+       echo "     Beispiel:   star -l lokalesVerzeichnis "\
+            "remoteTarArchiv.tgz"
+       # ...
+       exit 1
+    }
+    case "$1" in
+        -ph)
+           if [ $# -ne 2 ]
+           then
+              usage
+           else
+              cd $2; tar zcvf – "." | \
+              ssh $SSH_OPT $SSH_USER $SSH_HOST \
+              "cat > ${REMOTE_DIR}/${BACKUP_FILE}"
+              echo "Verzeichnis '$2' nach "\
+                   "${SSH_HOST}:${REMOTE_DIR}/${BACKUP_FILE} "\
+                   "gesichert"
+           fi ;;
+        -pl)
+           if [ $# -ne 2 ]
+           then
+              usage
+           else
+              ssh $SSH_OPT $SSH_USER $SSH_HOST \
+              "cd $2; tar zcvf – ." | \
+              cat > ${LOCAL_DIR}/${BACKUP_FILE}
+              echo "Verzeichnis ${SSH_HOST}:${2} nach "\
+                   "${LOCAL_DIR}/${BACKUP_FILE} gesichert"
+           fi ;;
+        -sh)
+           if [ $# -ne 4 ]
+           then
+              usage
+           else
+              cd $2
+              tar zcf – $4/ |
+              ssh $SSH_OPT $SSH_USER $SSH_HOST \
+              "cd $3; mv $4 ${4}.bak; tar zpxvf -"
+              echo "Verzeichnis ${2}/${4} mit"\
+                   " ${SSH_HOST}:${3}/${4} synchronisiert"
+           fi ;;
+        -sl)
+           if [ $# -ne 4 ]
+           then
+              usage
+           else
+              cd $3; mv $4 ${4}.bak
+         ssh $SSH_OPT $SSH_USER $SSH_HOST "cd ${2}; tar zcvf – ${4}"\
+         | tar zpvxf -
+              echo "Verzeichnis ${SSH_HOST}:${2}/${4} mit"\
+                   " ${3}/${4} synchronisiert"
+           fi ;;
+        -r)
+           if [ $# -ne 3 ]
+           then
+              usage
+           else
+              ssh $SSH_OPT $SSH_USER $SSH_HOST \
+              "cd ${2}; tar zpvxf -" < $3
+              echo "${SSH_HOST}:$2 mit dem Archiv $3 "\
+                   "Wiederhergestellt"
+           fi ;;
+        -l)
+           if [ $# -ne 3 ]
+           then
+              usage
+           else
+              cd $2
+              ssh $SSH_OPT $SSH_USER $SSH_HOST "cat $3" | \
+              tar zpvxf -
+              echo "$2 mit dem Archiv ${SSH_HOST}:${3} "\
+                   "Wiederhergestellt"
+           fi ;;
+        -*)   usage;;
+         *)   usage;;
+    esac
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Linux-Programs:
+ - meld: compare between three files
 

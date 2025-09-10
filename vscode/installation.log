@@ -1,0 +1,58 @@
+- download deb package from https://code.visualstudio.com/docs/setup/linux
+- install extensions:
+ - Remote - SSH (Microsoft) #  this might auto install the next two extensions
+ - Remote - SSH: Editing Configuration Files (Microsoft)
+ - Remote Explorer (Microsoft)
+ - C++ (Microsoft)
+ - Eclipse Keymap
+ - Gitless (maattdd) 
+- Snippets
+ - File > Preferences > Configure Snippets
+  - choose cpp.json (or cpp)
+ - example:
+	{
+	  "For Loop": {
+	    "prefix": "forloop",
+	    "body": [
+	      "for (int ${1:i} = 0; $1 < ${2:count}; $1++) {",
+	      "\t$0",
+	      "}"
+	    ]
+	  }
+	}
+  - $1, $2, ... - Tab stops (cursor positions)
+  - $0 - Final cursor position
+  - Typing foorloop will generate 3 lines. You will be asked at ${1} to edit the variable name i. Pressing Tab jumps to ${2}, i.e. to
+    cariable count. Pressing another Tab will jump to ${0}
+ - "isFileTemplate": false // snippet is intended to populate or replace a file's contents -> run the Snippets: Populate File from Snippet command in a new or existing file.
+ - Language snippet scope:
+  - cpp.json, javascript.json, ... -> or see Snippets: Configure Snippets
+  - A snippet is only accessible when editing the language for which it is defined.
+ - Multi-language and global user-defined snippets:
+  - defined in "global" snippet files (JSON with the file suffix .code-snippets)
+  - -> accessible through Snippets: Configure Snippets.
+  - "scope": "javascript,typescript",
+ - Project snippet scope:
+  - JSON with file suffix .code-snippets in .vscode directory in the project's root directory
+  - or New Snippets file for ''... option in the Snippets: Configure Snippets dropdown menu and are located at the root of the project in a .vscode folder
+ - Placeholders:
+  - ${1:DEFAULT_VALUE}
+  - Nested: ${1:another ${2:placeholder}}
+ - Choice: ${1|one,two,three|}
+  - When the snippet is inserted and the placeholder selected, choices will prompt the user to pick one of the values.
+ - Variable transforms:
+  - e.g. ${TM_FILENAME/(.*)\\..+$/$1/}
+ - keyboard shortcuts:
+  - keybindings.json (Preferences: Open Keyboard Shortcuts File), which defines all your keyboard shortcuts
+	{
+	  "key": "cmd+k 1",
+	  "command": "editor.action.insertSnippet",
+	  "when": "editorTextFocus",
+	  "args": {
+	    "snippet": "console.log($1)$0" <--- OR by referencing a predefined snippet
+	    "langId": "csharp",
+	    "name": "myFavSnippet"
+
+	  }
+	}
+

@@ -1,0 +1,9 @@
+- download deb package from https://code.visualstudio.com/docs/setup/linux
+- install extensions:
+ - Remote - SSH (Microsoft) #  this might auto install the next two extensions
+ - Remote - SSH: Editing Configuration Files (Microsoft)
+ - Remote Explorer (Microsoft)
+ - C++ (Microsoft)
+ - Eclipse Keymap
+ 
+
