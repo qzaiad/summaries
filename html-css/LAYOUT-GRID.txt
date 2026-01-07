@@ -1,0 +1,77 @@
+Grid:
+.grid-container {
+  display: grid;
+  grid-template-columns: 200px 150px 200px 150px; # row axis
+  grid-template-rows: 300px 200px;                # column axis
+  /* gap: 30px; */
+  column-gap: 30px;
+  row-gap: 60px;
+  justify-content: center; /* horizontal: start center end space-between... */
+  align-content: center; /* vertical: start center end space-between... */
+  justify-items: end; /* horizontal inside track: start center end stretch (default)... */
+  align-items: end; /* vertical inside track: start center end stretch (default)... */
+}
+
+.grid-item {
+  justify-self: center;
+  align-self: center;
+}
+
+Grid Lines:
+- Grid lines are the invisible lines that define the structure of a CSS Grid.
+- They form the boundaries of rows and columns and are what you use to place items.
+- There are #columns+1 vertical grid lines and #rows+1 horizontal grid lines
+
+Grid Cell:
+- A grid cell is the smallest unit in a CSS Grid.
+- What a grid cell is:
+ - It’s the box formed between two vertical grid lines and two horizontal grid lines.
+- How grid cells relate to other grid parts
+ - Grid lines → borders of the cell
+ - Grid tracks → rows or columns (made of cells)
+ - Grid area → one or more cells combined
+- A grid cell can be filled or left empty
+
+A grid track is a single row or a single column in a CSS Grid.
+
+What a grid track is
+- Column track → space between two vertical grid lines
+- Row track → space between two horizontal grid lines
+- So:
+ - Tracks are lines → space → lines
+ - Cells are track × track
+
+Gap: also called Gutters: Distance between grid cells
+ - Properties: gap/column-gap/row-gap
+
+Sizing Grid Columns and Rows
+- fr (Fraction Unit): is a new unit
+- grid-template-columns: 1fr 1fr 1fr 1fr; -> same as
+  grid-template-columns: repeat(4, 1fr);
+ - 4 equal columns share the entire container width
+- grid-template-columns: 2fr 1fr 1fr 1fr;
+ - first column's width is twice as much as others column width
+- grid-template-columns: 1fr 1fr 1fr auto;
+ - last column takes only the width what its content needs
+
+Positioning learned so far
+- Normal flow
+- Position absolute
+- Property: order
+
+  .grid-item {      # coordinates of grid-item is (row=2, column=1)
+    grid-row: 2;    # same as 2/3 or 2/span 1
+    grid-column: 1; # same as 1/2 or 1/span 1
+  }
+
+
+  .grid-item {      # coordinates of grid-item is (row=2+3, column=1+2)
+    grid-row: 2/span 2;
+    grid-column: 1/span 2;
+  }
+
+  .grid-item {      # coordinates of grid-item is (row=1, column=all-columns)
+    grid-row: 1/-1;
+    grid-column: 1/-1;
+  }
+

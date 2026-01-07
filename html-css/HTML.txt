@@ -1,0 +1,251 @@
+- Online Editors: Useful for sharing code segments with users
+ - https://codepen.io/
+ - https://codesandbox.io/
+
+
+- <h1> element should only have only one primary heading h1:
+ - The web browser can handle multiple h1 elements
+ - Good Practice to have only one h1 element
+ - It is a rule for Search Engine Optimization (SEO) which helps
+   showing you website in google results and get a good result (tarteeb)
+- <b> element is not a good practice and should not be used in html5 (replaced by <strong>)
+  because html5 cares more about Semantic HTML
+- Semantic HTML:
+ - Writing a code which has a meaning (or DALAALAH)
+ - Using semantic html gives your website a higher ranking for Search Engine Optimization (SEO)
+- <i> element: italic -> replaced by <em> element
+
+- <strong> should replace <b>
+- <em> (emphasize) should replace <i>
+- <img src="" alt="" width="" height="" /> self closing element/tag>
+ - attribute alt := alternative text
+  1) Allows search engines to know the content of the image
+     Helps to better website index the website and give it a better ranking
+  2) SCREEN READER use it to describe the img content for blind people
+  3) If for some reason the image could not be loaded -> the alt text will be displayed
+
+
+
+يشير مصطلح Metadata إلى البيانات التي تصف بيانات أخرى.
+بمعنى آخر، هي معلومات تُستخدم لشرح محتوى أو خصائص شيء ما دون أن تكون جزءًا من المحتوى نفسه.
+أمثلة للتوضيح:
+في صورة: الميتاداتا قد تحتوي على نوع الكاميرا، التاريخ، الدقّة.
+في ملف موسيقي: قد تتضمن اسم الفنان، الألبوم، مدة المقطع.
+في صفحة ويب: يمكن أن تشمل العنوان، الكلمات المفتاحية، ووصف الصفحة.
+باختصار: الميتاداتا تُسهّل فهم، تنظيم، وإيجاد البيانات الأساسية.
+
+
+- <meta charset="UTF-8" />
+- <meta name="description" content="share tech news and information with the community" />
+ - Search engines like Google use this metadata to adjust the appearance of a webpage in search results
+- <meta name="keywords"  Content="almdrasa, programming"/>
+ - Words relevant to the page's content separated by commas
+
+
+- <a href="www.almdrasa.com" target="_self (default)/_blank"> Text </a>: anker element/tag
+ - when you hover on the link with mouse, you will see the link at the bottom.
+ - target=_self: open target in same tab
+ - target=_blank: open target in a new tab/window
+ - <a>Text</a>: the browser does not show it as a link (not underlined) because href is missing
+  - href="#": the browser will show it as a link which does nothing
+
+- Page Structure: USEFUL FOR PEOPLE WITH
+ - header: <header></header> usually contains main title & search/browser tools/links
+  - page navigation: <nav></nav> usually contains links in the same page
+   - it logically group elements
+    - all elements in a group can be treated e.g. in CSS as a group
+ - footer: <footer></footer> usually contains additional info as links
+ - We might have multiple <nav> elements in one section. To make is
+   helpfull for people with accessibilities define a text which should be read
+   by the Screen Reader by the attribute aria-label. For Example:
+   <nav aria-label="primary navigation">
+   <a>Courses...</a>
+   </nav>
+   <nav aria-label="language navigation">
+   <a>Arabic</a>
+   <a>English</a>
+   </nav>
+
+ - article: <article></article> inside body. Sematically describes content as an article
+  - An article might again contain a header element
+يُستخدم لعرض محتوى مستقل يمكن قراءته وفهمه بمفرده، مثل مقال، منشور مدونة، خبر، تعليق، أو بطاقة منتج.
+يُفترض أن يكون هذا الجزء قابلاً للاستخدام حتى لو عُرض خارج الصفحة الأصلية.
+    <article>
+    <h2>عنوان المقال</h2>
+    <p>هذا نص قصير يشرح مضمون المقال.</p>
+    </article>
+
+
+- HTML entities: Reserved symbols start with &entity_name; or &#entity_number;
+ - Example: &copy; for Copyright symbol
+ - search for "HTML entities"
+
+- Web Accessibility (غالبًا تُختصر إلى a11y)
+وهي عملية تصميم وبناء صفحات الويب بحيث يمكن للجميع استخدامها — بما في ذلك ذوو الإعاقات البصرية، السمعية، الحركية، أو الإدراكية.
+في HTML تظهر إمكانيات الوصول من خلال:
+استخدام الوسوم الدلالية (Semantic HTML) مثل: <header>, <nav>, <main>, <footer>
+إضافة نص بديل للصور عبر alt
+استخدام ARIA attributes مثل: aria-label, role
+ضمان إمكانية استخدام الصفحة عبر لوحة المفاتيح
+
+- Semantic = Dalaalah lafthiyyah or ma3na
+- Semantic HTML:
+ - Useful for SEO (Search Engine Optimization)
+  - Help SEOs to understand the meaning of your website and analyze it
+    This gives a better ranking for your webpage.
+  - Search engine can nowadays find the exact matches inside your page and show it
+    in search results. Page semantics helps engines doing this
+ - Useful for People for Accessibilities
+
+- More VSCode Extensions
+ - Image preview (Kiss Tama's)
+ - Color Highlight (Sergii N): shows colors in CSS code
+ - Auto Rename Tag (Jun Han): ranme starting/closing tags automatically when changing one of them
+ - Live Server (Ritwick Dey): At the bottom see "Go Live"
+  - One Clink on "Go Live" will refresh the page automatically after any change
+  - Another Click will disable the extension
+
+Multilingual Websites: There are two ways to do it:
+- By using JavaScript (used in Single Page Applications SPA)
+- For each language create an HTML file with a meaningfull name such as index-ar.html
+ - By replacing the english content with arabic content the page will show the arabic text
+   for left to right (ltr) instead of right to left (rtl) -> user attribute html.dir
+  - <html lang="ar" dir="rtl/ltr/auto"
+  - attribute dir can be given to any element in the body
+   - e.g. in index-ar.html we write a paragraph in english: <p dir="ltr">Hello World!</p>
+
+- <aside>:
+يُستخدم لعرض محتوى جانبي أو ثانوي مرتبط بالمحتوى الرئيسي، مثل الملاحظات، الروابط الإضافية، الإعلانات، أو مربعات المعلومات
+بمعنى آخر، هو مساحة لعرض معلومات مساعدة أو مكملة وليست جزءًا أساسيًا من النص الرئيسي.
+    <main>
+    <h1>مقال عن الصحة</h1>
+    <p>هذا هو المحتوى الرئيسي للمقال الذي يتحدث عن نصائح للحفاظ على الصحة.</p>
+    </main>
+
+    <aside>
+    <h2>معلومة جانبية</h2>
+    <p>شرب الماء بانتظام يساعد على تحسين التركيز وصحة الجسم.</p>
+    </aside>
+
+- <section>
+يُستخدم لتقسيم الصفحة إلى أجزاء مستقلة تحتوي على موضوع محدد، مثل قسم الأخبار، قسم المقالات، أو جزء معيّن من الصفحة يحمل فكرة واحدة.
+بمعنى آخر: هو عنصر يُنظّم المحتوى في وحدات منطقية داخل الصفحة.
+    <section>
+    <h2>الأخبار</h2>
+    <p>هنا نعرض أحدث الأخبار والمستجدات.</p>
+    </section>
+
+    <section>
+    <h2>مقالات مميزة</h2>
+    <p>هذا القسم يحتوي على مقالات مختارة.</p>
+    </section>
+
+- <main>
+يُستخدم لاحتواء المحتوى الرئيسي للصفحة — أي الجزء الأهم الذي يعبّر عن هدف الصفحة، ويكون فريدًا ولا يتكرر في كل صفحة مثل الترويسة أو التذييل.
+باختصار: <main> يجمع أهم محتوى يريد المستخدم رؤيته.
+    <main>
+    <h1>مرحبًا بكم في موقعي</h1>
+    <p>هذا هو المحتوى الرئيسي الذي يقدّم فكرة الموقع.</p>
+    </main>
+
+
+HTML Tables:
+- has also been used earlier in page layout for dividing the page into
+  header, body, footer and side -> NOT RECOMMENDED NOW (OLD FASHION)
+- <table border="1" cellspacing="10" cellpadding="10" summary="table summary"></table>
+ - attrbiute border is deprecated -> use CSS instead
+ - attribute cellspacing: distance between adjacent cells
+ - attribute cellpadding: internal distance between words and border
+ - attribute summary: for SEO and better accessibility (used by SCREEN READER)
+- <caption>Table Title</caption>
+- <tr></tr>: table row
+- <th id="id1"></th>: table head
+ - attribute id: used to connect <td>s (cells) with headers (by using <td headers="th.id">) (SEO)
+- <td headers="id1" width="100%" valign="top"></td>: table data
+ - attribute headers: connects cell to header (SEO)
+ - attribute width:
+ - attribute valign: align content vertically top
+ - attribute rowspan:
+ - attribute colspan:
+- Semantic HTML: For optimizing SEO and better ranking
+ - <thead></thead>
+ - <tbody></tbody>
+ - <tfoot></tfoot>
+ - The browser add automatically sematic elements if missing or not given.
+  - if there are semantic headers -> browser adds <tbody>
+
+- Example for 2x2 table:
+    <table border="1">
+    <caption>Table Title</caption>
+      <thead>
+        <tr>
+          <th id="header1">Head1</th>
+          <th id="header2">Head2</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td headers="header1">Data1</td>
+          <td headers="header2">Data2</td>
+        </tr>
+        <tr>
+          <td colspan="2"></td> <!-- cell spans for two columns -> merging 2 horizontal cells -->
+        </tr>
+        <tr>
+          <td rowspan="2"></td> <!-- cell spans for two rows -> merging 2 vertical cells -->
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="2">This is a footer</td>
+        </tr>
+      </tfoot>
+    </table>
+
+Forms:
+- <form></form>
+- <input type="text/password/date/tel/checkbox/radio/file/number" />
+- <textarea/>: multiple line input
+
+- Form Validation:
+ - Attributes:
+  - required
+  - min/max/step: min=18, max=100, step=2 -> 19 is not accepted -> accept onyl 18, 20, 22,...,100
+  - minLength/maxLength
+  - pattern="\d{5}": Regular Expression
+
+<form action="url" method="get (default)/post"> # url which should process the form data
+ # method=get has a limit -> max url length is 2048
+ # method=post: data sent in HTTP-Request and is encrypted if HTTPs and has no length limit
+ <fieldset> # groups all elements logically (surrounded by a line)
+  <legend>Your Information</legend>
+  <label for="name" minlength="5">Name:</label> # clicking on the text "Name:" focus on the corresponding input
+  <input id="name" type="text" [required] />
+  <label for="email">Email:</label>
+  <input id="email" type="email" placeholder="example@gmail.com" />
+  <label for="reason">Reason for contact:</label>
+  <select id="reason" type="text" [required]>
+    <option value="">Select a reason</option>           # no value
+    <option value="general">General Inquiry</option>    # only value is sent with form to backend
+    <option value="admission">Admission Information</option>
+  </select>
+  <label for="message">Your Message:</label>
+  <textarea id="message" rows="4" cols="30">Default Text</textarea>
+  <br/>
+  # both radio buttons are connected by name -> selecting one radio will unselect the rest
+  <input type="radio" name="contact_method" id="contact_email" />
+  <label for="contact_email">Email</label>
+  <input type="radio" name="contact_method" id="contact_phone" />
+  <label for="contact_phone">Phone</label>
+
+  <input type="checkbox" id="newsletter"/>
+  <label for="newsletter">Subscribe to our newsletter</label>
+
+  <button type="submit (default)">Send Message (can also be an img)</button>
+  - -> ALSO CALLED: CALL-TO-ACTION
+  <!--Submitting a form will send name=value of each element. if no name exists, nothing is sent -->
+  <button type="reset">Reset Form</button>
+
+ </fieldset>
+</form>
+

@@ -1,0 +1,152 @@
+                            CSS Units:
+     ___________________________|_____________________________
+    |                           |                             |
+Percentage                  Font-based                  Viewport-based
+                              em-rem                      vh-vw
+
+
+- all units are converted to pixel
+
+Conversion Rules:
+- % (font): relative to the parent's font-size
+- % (length e.g. margin/padding): depends on parent's width
+- Font-Based: depends only on font-size
+ - em:          depends on font-size of the parent element
+   em (length): depends on font-size of the current element
+   rem:         depends only on root's (html element) font-size (mostly used)
+- Viewport-Based:
+ - vh (viewport height):
+ - vw (viewport width): 1vw = 1% of viewport
+Example:
+
+html, body {
+  font-size: 16px;
+  width: 80vw;  # 80% of viewport's width
+}
+
+header {
+  font-size: 150%; # relative to parent (body) -> 1.5*16px = 24px
+  padding: 2em;    # relative to current element's font-size, i.e. 2 * 24px = 48px
+  margin-bottom: 10rem; # 10 * 16px = 160px
+  height: 90vh;         # 90% of viewport's height
+  width: 1000px;
+}
+
+.header-child {
+  font-size: 3em; # of parent's font-size, i.e. 3 * 24px = 72px
+  padding: 10%; # 10% * 1000px = 100px
+}
+
+
+CSS Variables:
+- start with -- (double dash)
+- accessed by function var(--variable-name)
+- can be changed in javascript
+- some websites write style guides in a file called style-guide.md
+ - such as font family/wights
+ - paragraph font size...
+
+              CSS Variables
+   __________________|__________________
+  |                                     |
+:root (pseudo class)                  class (variables only visible in a specific class)
+-> visible in the entire html file
+
+
+Componentization: Divide project into components
++ Better Code Maintenance
++ Scalability
++ Reusability
+
+- Container element should contains the whole page (class="container") (emmet: .container)
+- google for "emmer css" -> docs.emmet.io/cheat-sheet
+
+------------------------------------------------------------------------------------------------------
+
+margin-left: auto; tells the browser to use all available space on the left side of an element.
+
+What it does (simple)
+
+The left margin expands
+
+The element is pushed to the right
+
+Commonly used inside flex layouts
+
+Classic flexbox example
+.container {
+  display: flex;
+}
+
+.item-right {
+  margin-left: auto;
+}
+
+| item | item |        item-right |
+
+
+item-right is pushed all the way to the right.
+
+------------------------------------------------------------------------------------------------------
+
+CSS Siblings: https://www.w3schools.com/css/css_combinators.asp
+- There are four different combinators in CSS:
+ - Descendant combinator (space): matches all elements that are descendants (children, grandchildren, etc.) of a specified element.
+ - Child combinator (>): selects all elements that are direct children of a specified element
+ - Next sibling combinator (+): select an element that is directly after a specific element
+ - Subsequent-sibling combinator (~): selects all elements that are next siblings of a specified element.
+
+------------------------------------------------------------------------------------------------------
+
+BEM stands for Block, Element, Modifier — a CSS naming methodology.
+
+It helps you write clear, predictable, and scalable class names.
+
+- block: is an independent component.
+- element: part of a block and depends on it
+- modifier: changes appearance or behavior (of block or element)
+
+Example:
+- Block__Element--Modifier
+- <label class="toggle__label toggle__label--dark toggle__label--light" for="toggle"> </label>
+
+Why use BEM
+- No naming conflicts
+- Easy to read
+- Predictable specificity
+- Scales well for large projects
+
+BEM makes CSS class names self-explanatory and maintainable.
+
+MORE INFO: google for "css be vs" -> results such as vs oocss
+
+------------------------------------------------------------------------------------------------------
+
+h1 element should be unique in the entire page
+
+------------------------------------------------------------------------------------------------------
+
+
+------------------------------------------------------------------------------------------------------
+
+
+------------------------------------------------------------------------------------------------------
+
+
+------------------------------------------------------------------------------------------------------
+
+
+------------------------------------------------------------------------------------------------------
+
+
+------------------------------------------------------------------------------------------------------
+
+
+------------------------------------------------------------------------------------------------------
+
+
+------------------------------------------------------------------------------------------------------
+
+
+------------------------------------------------------------------------------------------------------
+

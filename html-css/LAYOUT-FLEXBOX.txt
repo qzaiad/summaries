@@ -1,0 +1,184 @@
+Flexbox
+- display: flex; # One Dimensional Layouts -> puts elements either in rows or columns
+ - directions:
+  - Main Axis (ROW)
+  - Cross Axis (COLUMN)
+ - Main Propoerties of Flex Container:
+  - gap: int -> create space between items, without using margin
+  - justify-content: flex-start | flex-end | center | space-between space-around | space-evenly
+   - align items along main axis (horizontally, by default)
+  - align-items: stretch | flex-start | flex-end | center | baseline
+   - align items along cross axis (vertically, by default)
+ - controls the empty space between elements (automatically)
+ - makes vertical centering easy
+ - Flex Container makes child elements be inline-blocks
+  - takes only needed width (specified by the content)
+  - has properties like width/height/margin/padding
+  - Additional Propoerties:
+   - takes full height of the parent element
+   - .container { align-items: center/baseline; } (vertically/?)
+   - .container { align-items: felx-start/end; } (vertically at the beginning/end)
+   - .container { align-items: stretch; } (full vertically length)
+   - .container { justify-content: center; } (horizontal center)
+   - .container { justify-content: space-between; } (equally share horizontal width)
+   - .container { justify-content: space-around;
+   - .container { justify-content: space-evenly; }
+   - .container { gap: 0 | <length>; }
+- Flex-Items: Elements inside a flex element (container)
+- Flex items behave like inline-blocks and are located beside each other
+
+Spacing and Aligning Flex Items
+- align-items: center;     -> vertically
+- justify-content: center; -> horizontally
+- Chrome DevTools::Styles -> beside display: flex; click on the squere symbol to try different properties
+- A child element can override the align-items property by align-self:
+ - .child-class { align-self: flex-start / stretch; }
+  - only child-element with class="child-class" will be alignd vertically at the beginning
+- order: useful for responsive design (one design for diffrent size of view ports such as pc/cellular/tablet)
+         0 (default): natural order of elements
+         negative value: smaller values are more aligned to the left
+         positive value: higher values are more aligned to the right
+- gap: 10px;  distance between flex items
+
+The flex Property (in child element)
+- Defaults:
+ flex-grow: 0 (default);     # how to partition parent's unused space between child elements
+            1;     # unused space is partitioned equally between child elements. This does not mean that all
+                   # child elements have the same width, only the addional width for each child element is equal
+                   # putting fley-grow only in one child element -> only this element takes the addtional unused space
+                   # if parent.flex-grow=1 & child.flex-grow=2 -> child takes the double unused space as the rest childs
+ flex-shrink: 1;
+ flex-basis: auto; # similar to width but it might shrink if width exceeds parent's width (flex-shrink=1)
+                   # if flex-shrink = 0 -> width might exceed parent's width
+- Example:
+ flex-shrink: 1;
+ flex-basis: 500px; # might shrink
+
+- Flex Property is a shorthand for all three properties
+ flex: 1 ( same as 1 1 0%); -> grow=1 & shrink=1 & basis=0%
+  -> all flex items might be shrinked. They all have the same width, no matter how broad the content is
+- flex: 1; is mostly used
+
+-------------------------------------------------------------------------------------------
+
+flex-basis → the item’s starting size
+flex-grow → how much it can grow to fill extra space
+flex-shrink → how much it can shrink when space is tight
+
+-------------------------------------------------------------------------------------------
+Is flex-basis: 0; the same as flex-basis: auto; ?
+
+No — they are not the same, and the difference is important.
+
+flex-basis: auto
+
+The base size comes from the item’s content size or its width / height.
+
+Items can start at different sizes before free space is distributed.
+
+Common default behavior.
+
+flex-basis: 0
+
+The item starts with a base size of 0.
+Content size is ignored when calculating layout.
+All flex items start equal, and space is distributed purely by flex-grow.
+Why this matters
+
+Example:
+
+.item {
+  flex-grow: 1;
+}
+
+
+With flex-basis: auto → larger content gets more space.
+With flex-basis: 0 → all items become equal width, regardless of content.
+
+Common shorthand comparison
+flex: 1;        /* = flex: 1 1 0; */
+flex: auto;     /* = flex: 1 1 auto; */
+
+Rule of thumb:
+- Use flex-basis: 0 when you want equal-sized columns
+- Use flex-basis: auto when content size should influence layout
+
+-------------------------------------------------------------------------------------------
+
+justify-content: space-between; controls how extra space is distributed along the main axis of a flex or grid container.
+
+What it does
+
+Places the first item at the start
+
+Places the last item at the end
+
+Distributes all remaining space evenly between the items
+
+No space is added before the first item or after the last item
+
+Visual idea
+
+If you have 3 items in a row:
+
+|item1|      |item2|      |item3|
+
+
+The gaps between items are equal, but the outer edges touch the container.
+
+-------------------------------------------------------------------------------------------
+
+- CSS logical properties and values:
+ - e.g. flex-start & flex-end are logical values and work even for different attributes such as dir=rtl
+ - New attributes should be logical
+  - margin/padding left -> "margin/padding-inline-start"
+  - margin/padding right -> "margin/padding-inline-end"
+  - css-tricks.com/css-logical-properties-and-values
+
+
+https://codepen.io/Qassem-Abu-Ahmad/pen/vEGwpdj
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+  <div class="container">
+    <div class="item item1">ITEM1</div>
+    <div class="item item2">ITEM2</div>
+    <div class="item item3">ITEM3</div>
+  </div>
+
+</body>
+</html>
+
+
+.container {
+  width: 300px;
+  border: 1px solid;
+  display: flex;
+  gap: 15px;
+}
+
+.item {
+  font-size: 20px;
+}
+
+
+.item1 {
+  background-color: red;
+}
+
+.item2 {
+  background-color: green;
+}
+
+.item3 {
+  background-color: blue;
+}
+

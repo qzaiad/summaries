@@ -1,0 +1,74 @@
+ 
+Floats:
+- Element does not follow the normal flow
+- Adjacent inline elements will wrap arround the flow element
+- PARENT element does not consider flow element when computing height property
+ - To enforce PARENT element considering flow elements when calculating height,
+   there are among others two workarounds:
+  1- define div element in the parent element (should be last child element)
+    and give it property clear: left/right/both;
+    -> <div class="clear" style="clear:both"></div>
+  2- define a pseudo element with clear:both; & display:block;
+    .main-header::after {
+    content: "";
+    clear: both;
+    display: block;
+    }
+
+- In CSS, clear: both; means:
+
+➡️ Don’t allow any floating elements (floats) on the left or right side of this element.
+أي: لا تسمح بوجود عناصر عائمة (float) على اليسار أو اليمين بجانب هذا العنصر.
+
+So the element with clear: both; will move down below any floating elements.
+
+It is used to fix layout issues when elements with float: left; or float: right; cause overlapping or strange alignment.
+
+Typically, developers use it to:
+
+stop text or images from wrapping around a floated element
+
+start a new section under floated elements
+
+fix layout "breaking" in older designs that used floats
+
+
+- we should avoid using floats because they are hard to understand and sometimes
+  are not logical -> use grid or flex instead
+
+- box-sizing: border-box; (default content-box)
+ - content-box (default): width/height property is content-width (without padding/border/margin)
+ - border-box: width/height property is from margin-left/top to margin-right/down
+
+- Fix aside and should not exceed 10px when scrolling up
+ - position: sticky;
+   top: 10px;
+
+    position: sticky; lets an element switch between relative and fixed positioning depending on the user’s scroll position.
+
+    How it behaves
+
+    Before you scroll far enough → it behaves like position: relative;
+
+    After it reaches a defined scroll threshold (like top: 0) → it “sticks” in place like position: fixed;
+
+    When scrolling back up → it returns to normal flow.
+
+    Key requirement
+
+    You must specify at least one inset value:
+    top, right, bottom, or left — usually top.
+
+    Example:
+
+Using ARABIC Fonts:
+- goto fonts.google.com
+- filter: Language = Arabic
+- choose a font
+- select a font
+- get a link to import the font (html or css method)
+- apply the new font in the css file
+  [dir=rtl] body {
+    font-family: "Redex Pro", sans-serif
+  }
+)

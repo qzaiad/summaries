@@ -1,0 +1,16 @@
+Settings:
+- Format On Save: check box
+- Search for Auto Save:
+ - Files Auto Save -> onFocusChange (when I change file beeing edited)
+
+VSCode Extensions:
+- Prettier - Code formatter
+ - search for default formatter
+  - Editor: Default Formatter (Also modified elsewhere) = Prettiert - default formatter
+   - Was (CMake Formatter)
+- Material Theme (Equinusocio or Microsoft)
+ - -> Set Color Theme
+ - Settings: Theme -> Color Theme...choose what you like
+- vscode-icons: Icons for Visual Studio Code (for files in File Explorer)
+ - Settings: search for icons -> in User Workbench: icon Theme = VSCode icons
+
