@@ -1,0 +1,220 @@
+Window:
+- contains global variables, e.g. x or window.x
+
+-- location: status bar info
+--- host/hostname/port/protocol/pathname...
+
+-- navigator: contains device info
+--- appVersion: "Chrome..."
+--- Clipboard
+--- connection: NetworkInformation{4g, rtt, downlink...}
+--- language: ['en-US', 'en']
+--- platform: "MacIntel"
+
+- Methods:
+-- scrollTo()
+
+DOM: Document Object Model
+                 Document
+                    |
+                   Root
+                    |
+        -------------------------------------------------------
+        |                           |
+    Element <head>                       Element <body>
+        |                           |
+        |                        --------------
+                              |       |
+    Element <title>      Element <Attribute href>----Element <a>  Element <h1>
+        |                        |       |
+    Text "My Title"                    Text "My Link" Text "My Header"
+
+- document.write("xyz"); replaces the entire html content by "xyz"
+- Node := Element | Element-Content
+-- <title> is an Element & Node
+-- Text "My Title" is not an Element but is a Node
+
+- script file should be located at the end of the html file
+-- if located at the beginning -> use workaround (bad practice)
+  document.addEventListener("DOMContentLoaded", () => {
+   const bioHeading = document.querySelector(".bio__heading");
+   console.log(bioHeading)
+  })
+--- querySelector() is executed when the entire HTML file is loaded
+
+- document.querySelector("h1") -> object
+- const skillColumn = document.querySelector(".skills__column") # selects first element
+- const skillColumns = document.querySelectorAll(".skills__column") # selects all elements
+-- NodeList(6) [li.skills__column, li.skills__column, li.skills__column, li.skills__column, li.skills__column, li.skills__column]
+
+- const element0 = skillColumns[0].querySelector("h2")
+
+
+- Methods used before querySelector*():
+-- document.getElementById() # without prefix "#"
+-- document.getElementByClassName("skills__column") # without prefix "."
+--- HTMLCollection(6) [li.skills__column, li.skills__column, li.skills__column, li.skills__column, li.skills__column, li.skills__column]
+-- document.getElementByName()
+...
+
+
+- Element Properties and Methods
+-- InnerHTML: Using innerHTML allows you to see exactly what’s in the HTML markup contained within a string, including elements like spacing, line breaks and HTML tags.
+-- InnerText: This returns the “rendered” text content of a node and is aware of styling and CSS. It’s most effective when you only need to see what’s in the element without HTML markup.
+-- TextContent: This retrieves and sets the content of the tag as plain text. It’s most effective when you want to see what’s in an element, including hidden text.
+
+    <div id='blog test'>
+
+    This element is <strong>strong</strong> and     has some super fun <code>code</code>!
+
+    </div>
+
+    const getValue = document.getElementById('blog-test');
+
+    getValue.innerHTML
+
+    This element is <strong>strong</strong> and has    some super fun <code>code</code>!
+
+
+    getValue.innerText
+
+    This element is strong and has some super fun code!
+
+
+    getValue.textContent
+
+    This element is strong and     has some super fun code!
+
+- element.insertAdjacentText(position, text)
+-- afterbegin: After the beginning of the element (first child)
+-- afterend: After the element
+-- beforebegin: Before the element
+-- beforeend: Before the end of the element (last child)
+
+- Working with Classes
+-- document.querySelector("body").classList: shows all class names of the body element
+-- document.querySelector("body").add(class1, class2, ...)
+-- document.querySelector("body").remove(class1, class2, ...)
+-- document.querySelector("body").contains(class)
+-- document.querySelector("body").toggle(class):
+--- add if not contained, otherwise remove
+
+
+Built in and Custom Data Attributes:
+- Builtin Attributes
+-- element.attribute (getter & setter)
+--- document.querySelector("img").width -> 100
+--- document.querySelector("img").getAttribute("width") -> 100 (same as .width)
+--- document.querySelector("img").width = 200
+--- document.querySelector("img").setAttribute("width", 200) (same as .width = 200)
+-- console.dir(elementName): shows all properties of the element, such as width/height...
+
+- Custom Attributes:
+-- It is valid in HTML to add custom attributes in html elements, e.g. <img name="myimg">
+-- Problem is that after a JS update the element might get a new standard attribute with the name
+-- Solution: Custom-Attributes should start with the prefix "data-" -> <img data-name="myimg">
+-- element.dataset: has all custom attributes as a DOMStringMap
+--- e.g. img.dataset -> DOMStringMap {name: 'myimg'} (without the prefix "data-")
+-- const htmlColumn = document.querySelector('[data-name="HTML"]');
+--- get first element that has an attribute data-name with value "HTML"
+
+    htmlColumn.addEventListener('click', () => { htmlColumn.classList.toggle('bg-red')})
+
+- Creating HTML
+    const li = document.createElement('li')
+    li.classList.add('skills__column')
+    li.dataset.name = "typescript"
+
+    const h2 = document.createElement('h2')
+    h2.classList.add('skills__title')
+    h2.innerText = "Typescript"
+
+    const span = document.createElement('span')
+    h2.classList.add('skills__years')
+    h2.innerText = "2 years"
+
+    const skillsList = document.querySelector('.skills__list');
+    # next 3 lines will touch DOM 3 times -> performance issue because DOM will recalculate everything after each write access
+    skillsList?.appendChild(li);
+    li.appendChild(h2)
+    li.appendChild(span)
+
+    # better solution
+    li.appendChild(h2)
+    li.appendChild(span)
+    skillsList?.appendChild(li);
+
+    # DRY: Don't repeat yourself
+    const createNewElement = (tag, className, text, dataName) => {
+      const newElement = document.createElement(tag);
+      newElement.classList.add(className);
+      if(text) { newElement.innerText = text; }
+      if(dataName) { newElement.dataset.name = dataName; }
+      return newElement;
+    }
+
+    const li = createNewElement('li', 'skills__column', undefined, 'typescript');
+    const h2 = createNewElement('h2', 'skills__title', 'Typescript'); # last argument is undefined by default
+    const span = createNewElement('span', 'skills__years', '2 years');
+
+    li.appendChild(h2)
+    li.appendChild(span)
+    # skillsList?.appendChild(li);
+    # insert after element javascript
+    const jsElement = document.querySelector('[data-name="Javascript"]); # data-name is case sensitive
+    skillsList?.insertAdjacentElement('afterend', li);
+
+- HTML from Strings and XSS
+-- better war to insert HTML elements
+    const skill = 'Typescript';
+    const liElement = `
+<li data-name="Typescript" class="skills__item">
+  <h2 class="skills__title">${skill}</h2>
+  <span class="skills__years">2 years</span>
+</li>;
+    `
+    const skillsList = document.querySelector('.skills__list');
+    # skillsList.innerHTML += liElement
+    skillsList?.insertAdjacentHTML("beforeend", liElement) # insert before </ul>
+
+--- one disadvantage is that string html code are not extensible, e.g. we cannot add a new attribute
+--- solution:
+
+    const liElement2 = document.createRange().createContextualFragment(liElement); # converts string to actual elements
+    # typeof liElement2 -> document-fragment
+    liElement2.querySelector('h2');
+
+-- security issue XSS (Cross-Site Scripting)
+--- if an attacker can change variable skill, then he cann inject html/cs/js code and createContextualFragment will execute it after adding it to DOM.
+  e.g. <style>*{display:none}</style>
+
+- Traversing and Removing Nodes
+-- element.children -> HTMLCollection
+--- lists all children elements
+-- element.firstElementChild
+-- element.lastElementChild
+-- element.previousElementSibling
+-- element.nextElementSibling
+-- element.parentElement
+
+- In DOM (see diagram)
+-- Node := Element | Element-Content
+--- <title> is an Element & Node
+--- Text "My Title" is not an Element but is a Node
+
+-- element.firstChild: first child node (element or text)
+-- element.lastChild
+-- element.previousSibling
+-- element.nextSibling
+
+Example:
+- $0.parentElement.nextElementSibling.remove()
+
+- Challenge:
+- MERN stack developer
+-- MERN := MongoDB-Express-React-Node
+--- Expresss: Express.JS
+--- Node.JS
+
+
+

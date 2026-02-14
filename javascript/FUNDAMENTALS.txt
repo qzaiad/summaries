@@ -1,0 +1,61 @@
+ASI: Automatic Semicolun Insertion
+
+Variables are declared by:
+- var (outdated)    : scope function
+- let               : scope block
+- const             : scope block
+
+Name Convension:
+- Allowed Characters: [$_A-Za-z0-9]
+- camelCase (preferred in js)
+- snake_case
+- kebab-case: NOT ALLOWED in js
+
+Formatting & Fixing Errors:
+- Prettier:
+-- formatter only
+-- Works for multiple programming languages
+-- VSCODE: CTRL + ,
+--- look for "default formatter" -> Prettier
+--- look for Format On Save
+- Eslint (only for javascript)
+-- VSCODE plugins:
+--- ESlint
+--- Error Lens: shows warning/errors directly beside code
+-- can format, warn and fix code -> eslint.org -> try code online in playground
+-- used for code quality
+-- 3 levels of reactions on code: off, warn, error
+-- console class should only be used in development and not in production
+   -> treated as an error by default
+- Use Prettier for formatting and linters (e.g. Eslint) for catching bugs
+- Disable in code: /* eslint-disable */
+-- Alternatively, we can disable specific rules -> see documentation
+- Using in Node.js:
+-- Firstly, we should initialize the project
+--- In project folder:
+---- npm init
+----- accept all default values
+----- package.json: contains info about installed packages together with their version
+---- npm init @eslint/config@latest
+----- choose js modules + None of frameworks, not yet TypeScript, Browser because we work on client side, yes install packages, using npm.
+----- New files added:
+------ node_modules:
+------ package-lock.json: used to lock down the exact versions of every dependency in a Node.js project so installs are reproducible and consistent across machines and environments.
+------ eslint.config.mjs:
+export default [
+  pluginJs.configs.recommended,
+  {
+    rules: {  # This overrides same rules in pluginJs.configs.recommended
+        "no-console": "off",    # off/warn/error
+        "no-unused-vars": "off",
+        "semi": "error",
+    },
+  },
+];
+
+
+DevTools Shortcuts:
+CTRL + SHIFT + J: Opens javascript console
+
+VSCODE:
+- CTRL + ,: Open Settings

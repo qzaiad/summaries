@@ -1,0 +1,136 @@
+- Disable ESlint in code: write /* eslint-disable */
+-- Alternatively, we can disable specific rules -> see documentation
+
+Primitive Types:
+- String:
+-- let s = "Qassem"; // or 'Qassem'
+- Number:
+-- let n = 100; // or 100.0
+- Boolean:
+-- let b = true/false;
+- Null:
+-- let nu = null;
+- Undefined:
+-- let un; // not assigned any value
+- Symbols:
+-- let sy = Symbol(); // gives a unique identifier
+
+Non-Primitive Type:
+- Object: Collection of types
+--  let ob = {
+        "key": "xyz",
+        "name": "Qassem",
+        "age": 44
+    }
+
+--  let ar = ["Qassem", 44] // equivalent to let ar = {"0": Qassem, "1": 44};
+
+- typeof varName; -> returns the data type as string
+- Javascript has dynamic typing, i.e. variables may change also type
+- typeof null -> object
+-- You can consider it a bug in JavaScript that typeof null is an object. It should be null.
+
+
+Strings:
+const firstName = 'Qassem';             // Single Quotes (not multilined)
+const lastName = "Abu Ahmad";           // Double Quotes (not multilined)
+const position = `Software Engineer`;   // Backticks supports multiline & Interpolation (Iq7aam) using ${}
+
+let s1 = "I'm Qassem";
+let s1_1 = 'I\'m Qassem';
+let s2 = `I'm Qassem and I'm a "Software-Engineer"`
+let s3 = `I'm ${firstName} ${lastName} and I'm a "${position}"`  // interpolation
+let s4 = `
+<div>
+ <h1>${firstName} ${lastName}</h1>
+ <h2>${position}</h2>
+</div>
+`
+document.write(s4);
+
+
+Numbers:
+- let experience = 15;    // operations: experience +/-/*// 2
+- 1 + '1' -> '11' (string)
+- 1 + parseInt('1') -> 2 (number)
+- 2 - '1' -> 1 (number)
+- '2' - '1' -> 1 (number) // same happens for * and /
+- 10 % 3 -> 1
+- 2 ** 3 -> 2^3 = 8 (2 power of 3)
+- 200 ** 1000 -> Infinity
+- parseInt('x') -> Nan (Not a Number)
+
+- Useful functions: Math.*
+-- Math.round(10.5) -> 11 , Math.round(10.4) -> 10
+-- Math.floor(10.999) -> 10
+-- Math.ceil(10.001) -> 11
+-- Math.random() -> generate a random number between 0 and 1
+
+
+Boolean:
+    let hasFinishedMilitary = true;
+    console.log(hasFinishedMilitary); -> true
+    ------------------------------------
+    let militaryService;
+    if(){
+    militaryService = 'Finished';
+    } else {
+    militaryService = 'NotFinished';
+    ()
+    ------------------------------------
+    OR
+    console.log(hasFinishedMilitary ? 'Finished' : 'NotFinished'); -> true
+
+
+Null and Undefined
+- Undefined: variable is declared but not assigned a value, or user did not write anything
+- Null: has the value nothing
+
+    function calculateTakenCourses(courses){
+        let result;
+        if(courses === undefined){
+            result = "User did not answer the question";
+        }
+        else if(courses === null){
+            result = "User did not take any course";
+        }
+        else if(courses === "number"){
+            result = `User took ${courses} courses)`;
+        }
+        else if(courses === "object"){
+            result = courses.join(", ");
+        }
+        return result;
+    }
+
+
+Objects: Equivalent to C-Structs
+- Order is not important
+    let ob = {
+        key1: value1,
+        key2: value2,
+        key3: value3
+    };
+
+- if order is important -> use arrays
+    let arr = [value1, value2, value3, ...]
+
+- keys must be unique
+
+
+Naming Convention
+
+- UX: User Experience
+-- Rules that make the user familiar witht he website.
+--- Everything is in his right place such as buttons
+
+- DX: Developer Experience
+-- Rules that make your code familiar, so that others can use the code after you
+-- www.syncfusion.com -> 10 naming convensions
+-- Variable names: camelCase
+-- booleans: isGood, areIdeal, hasOwner
+-- functions: getName, setName
+-- constants: LEG, TAIL...
+-- Classes PascalCase: class DogCartoon...
+-- Components PascalCase: function DogCartoon(roles) { return (<div>...</div>); }
+

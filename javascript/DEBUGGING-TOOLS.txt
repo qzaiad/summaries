@@ -1,0 +1,49 @@
+- console: object supplies many debug functions
+-- console.log()
+-- console.info()
+-- console.warn()
+-- console.error()
+-- console.table(object): represents an object as a table with columns index & Value
+-- console.count("functionName"): logs how many times a function is called
+--- should be called inside a function
+--- creates a map key "functionName". Each time console.count() is called the
+    corresponding value is increased
+
+-- console.group/groupCollapsed("functionName");
+   console.log("1"); console.log("2"); console.log("3");
+   console.groupEnd("functionName");
+
+--- All logs until groupEnd() are grouped together in the console
+--- In case of groupCollapsed() the output is collapsed and is not shown by default.
+
+
+- Call stack (Stack Trace): Calling an undefined function will show an error
+  in the console + backtrace
+
+- Dev-tools (tips and tricks)
+-- Selecting an HTML element directly or by CTRL+SHIFT+C will put the entire element in variable $0.
+--- Previous selected elements are moved up, i.e. $0 -> $1 -> $2 ...
+
+-- document.querySelector("u"): returns the first found <u> element with its content
+-- $("u"): does the same as document.querySelector("u")
+-- $$("u"): returns an array with all <u> elements
+
+- Breakpoints:
+-- debugger;: writing keyword "debugger;" in code will stop execution & opens the debugger
+-- breakpoints: goto Tab Sources and set breakpoints
+--- breakpoints still valid as long as the DevTools is open even if we refresh the page
+--- as long as we close the DevTools all breakpoints will be removed
+
+- Network Requests (Network Tab in DevTools)
+--
+
+- Break On
+
+-- DOM changes:
+--- subtree modifications: stop for debugging on this element or any of its sub elements are modified
+--- attribute modifications: stop for debugging on this element when an attribute (id, class,...) is modified
+--- node removal: stop for debugging on this element on deleting it
+
+-- Break on XHR/fetch requests:
+-- Break on exceptions:
+-- Break on specific function:

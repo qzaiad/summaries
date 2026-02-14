@@ -1,0 +1,81 @@
+There are two types of functions custon & builtin
+- custom: function f() {}
+- builtin: such as console.log()
+
+Builin Functions:
+- isNaN():
+- parseInt()
+ - parseInt("x") -> NaN
+ - parseInt("10xxxy444") -> 10
+- parseFloat
+- Math.max(x, y)
+- window.scrollTo(x, y) or just scrollTo(x, y): Scroll the document to the horizontal/vertical position x/y
+ - x/y: The coordinate to scroll to (horizontally/vertically), in pixels
+- scrollTo(options)
+    window.scrollTo({
+    top: 100,
+    left: 100,
+    behavior: "smooth",
+    });
+
+
+- Custom Functions:
+-- function calculateArea(x, y) { return x * y; }
+-- a = calculateArea(10, 5)
+-- Devault Values:
+--- function calculateArea(x = 10, y = 20) { return x * y; }
+---- calculateArea() -> 200
+---- This is equivalent to calculateArea(undefined, undefined) -> 200
+
+- Parameters vs. Arguments
+-- function calculateArea(x, y): In function definition x/y are called parameters
+-- when calling functions: x,y,10,5 are called argumnets
+
+- Pure Function: A function that does not depend on external states,
+  i.e. it only depends on its parameters
+
+- Different Ways to Declare Functions
+-- Regular / Basic: function f(x, y) { return x * y; }
+
+-- Function Expression: const v = function (x, y) { return x * y; } // this is an anonymous function
+--- v is variable -> v(arg1, arg2) calls the anonymous function
+
+-- Arrow Function:
+--- Explicit Declaration: const v = (x, y) => { return x * y; } // this is an anonymous function
+--- Implicit Declaration: const v = (x, y) => x * y;
+---- If there is only one parameter without a default value:
+------ const v = x => x * 10;   // only works where there is only one parameter without default value
+------ With default value: v = (x = 10) => x * 10; // we have to use brackets
+---- if we want to return an object, we have to put it inside brackets
+----- const v = x => ({firstName: 'Qassem', lastName: 'Abu Ahmad'});
+
+-- IIFE: Immediately Invoked Function Expression
+--- called directly after definition
+--- old style -> should not be used
+--- (function f(x, y){
+        return x * y;
+    })(10, 20);
+
+
+-- Methods: Function belongs to an object
+ const POINT {
+    x: 1,
+    y, 2,
+    f1: function (x1, y1) { return x1 * y1; }, // or we can write it as:
+    f2(x1, y1) { return x1 * y1; },
+    f3: (x1, y1) => x1 * y1,
+ }
+
+
+-- Callback Function
+--- setTimeout(f, 2000); // Function f is called after 2000ms
+--- in browser CTRL+SHIFT+C -> choose element -> assigned in variable $0
+---- $0.addEventListener("click", () { alert("I've been clicked"); f(); });
+
+-- String Methods:
+--- String s = "String1": Javascript will wrapt it in an object that has many methods such as toLowerCase()/toUpperCase()
+
+
+VSCODE:
+- lorem + TAB: write a dummy text
+- lorem200 + TAB: write the same dummy text 200 times

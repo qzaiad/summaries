@@ -1,0 +1,52 @@
+- Global variables:
+- defined outide functions
+- are accessible directly by variable name
+-- let x; const x; var x;....console.log(x)
+-- var x: -> can accessed by window.x
+-- At any place we can define a new variable directly inside window object
+   e.g. window.new_var = 5
+
+- Function Scope
+-- Scope Lookup
+  let x = 1;
+  function f() {
+    let x = 2;  // shadowing or overwriting global x
+    console.log(x); // 2 scope lookup looks for variables in the nearest scope
+  }
+
+- using save variable name in diffrent scopes is a BAD PRACTICE
+
+- Block Scope
+-- inside {}
+-- only let/const respects block scope
+-- var -> has function scope even if it declared inside a block
+
+
+Hoisting (Alraf3)
+- Like C Preprocessors:
+-- Loop 1:
+--- Take all functions declared by the keyword function and move them to the top
+--- Take all variables declared by "var" and move them to the top without assigning them a value
+-- Loop 2 for execution
+-- functions can be called even they are defined later (due to Loop 1)
+-- variables declared by "var" can be READ-accessed and have undefined value until they are assigned
+
+-- Hoisting does not work with let/const/arrow-Functions
+
+Closure (Ighlaaq)
+    function counter() {
+          var count = 0;
+          function increment() {
+                count++;
+                console.log(count);
+          }
+          return increment;
+    }
+    var myCounter1 = counter();
+    var myCounter2 = counter();
+    myCounter1(); // الناتج: 1
+    myCounter1(); // الناتج: 2
+    myCounter2(); // الناتج: 1
+
+- returning an internal function closures all member variables of its parent function
+-- var count is seen as a private variable
