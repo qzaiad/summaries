@@ -1,0 +1,68 @@
+- Variables of primitive types are copied by value
+- Objects are copied by reference
+- Object.assign({}, obj) copies object by value (Objects in Objects are copied by reference)
+- Spread-Operator {...obj} copies object by value (Objects in Objects are copied by reference)
+-- {...obj, property: {...obj.property}}: property is called by value
+- In functions:
+-- variables of primitive types are passed by value
+-- objects are passed by reference
+-- library lodash (lodash.com) contains many auyilary functions such as cloneDeep()
+   which copies objects by value for all levels, i.e. considering objects in objects
+
+
+// Pass by value
+let name1 = 'mohamed';
+let name2 = 'mohamed';
+console.log(name1 === name2); -> true
+
+name2 = 'Ahmed';
+console.log(name1 === name2); -> false
+
+name2 = name1;
+name1 = 'Zaki';
+console.log(name1 === name2); -> false
+
+// Pass by reference
+
+console.log({} === {}); -> false -> different memory addresses
+
+let person1 = {
+  name: 'mohamed',
+  last: 'ahmed',
+  skills: {
+    skill1: 'HTML',
+    skill2: 'CSS',
+  },
+};
+
+let person2 = {};
+console.log(person1 === person2); -> false
+
+person1 = person2;
+console.log(person1 === person2); -> true -> same memory addresses
+
+// ... is called spread operator (similar to Object.freeze() only for the first level)
+// implement a function the deep-clones objects, i.e. normal asignment for primitive type, and use spread-operator if type is object, or use existing libraries such as lodash::cloneDeep() -> lodash.com -> search for clone
+
+person2 = { ...person1, skills: { ...person1.skills } };
+// person1 = Object.assign({}, person2) // assign person2 to a new object {} & assign address to person1
+
+
+console.log(person1 === person2);
+
+person1.name = 'zaki';
+person1.skills.skill1 = 'JS';
+
+console.log(person1);
+console.log(person2);
+
+function mutate(data) {
+  const temp = { ...data };
+  console.log(temp);
+  temp.name = 'XYZ';
+  return temp;
+}
+
+// mutate(name1);
+console.log(mutate(person1));
+console.log(person1);

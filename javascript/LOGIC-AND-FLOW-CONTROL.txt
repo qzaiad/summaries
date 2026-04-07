@@ -1,0 +1,57 @@
+- Precedence Rules: Brackets -> Exponents -> Division -> Miltiplication -> Addition -> Subtraction
+-- const x = (2 + 8) / ((4 - 2) * (2 ** 2));
+
+If statements:
+- 5 === "5" -> false: compares value and type
+-- !== is the same as !
+--- if(!isUpperCase); is identical to if(isUpperCase !== true)
+- 5 == "5" -> true: JS does implicit type conversion and then compares values
+-- bad practise and hard to detect in debugging
+- WE SHOULD USE === instead of ==
+
+
+- Coercion (Ikrah i.e. casting)
+-- Explicit: Number("5")
+-- Implicit: 5 == "5" -> true (5 is implicitly converted to string "5")
+
+- Ternary: condition ? execute_if_true : execute_if_false;
+-- (x > y) ? console.log("True") : console.log("False");
+-- (x > y) ? console.log("True") : null (or false); do nothing if x <= y
+-- (x > y) && console.log("True");  -> the same as the previous line
+
+- case-switch:
+-- equivalent to if(condition === case) (3 equals)
+switch(condition){
+  case 1:
+    ...
+    break;
+  ...
+  default:
+    ...
+    break; // (not needed because it is the last line);
+}
+
+- Intervals and Timers
+-- setTimeout(callback, time_in_msec); -> execute callback after time in ms
+-- const interval = setInterval(callback, time_in_msec); -> execute callback periodically each time msec
+--- The first execution is not done directly, but after time_in_msec
+--- If we want to execute it first:
+---- callback();
+     const interval = setInterval(callback, time_in_msec);
+-- Removing an interval by clearInterval(interface_reference)
+
+        const fnTimer = () => { console.log('Hello Word'); };
+        const fnInterval = () => { console.log('Hello World from interval'); };
+
+        console.log('Before Timer');
+        setTimeout(fnTimer, 0); // Execute after loading the entire initial scripts, i.e. the console will
+                                // show 'Before Timer' then 'After Timer' and lastly fnTimer() is executed
+        console.log('After Timer');
+        // const interval = setInterval(fnInterval, 2000);
+
+        // fnInterval();
+
+        // setTimeout(() => {
+        //   console.log('stop interval');
+        //   clearInterval(interval);
+        // }, 5000);

@@ -177,7 +177,7 @@ Built in and Custom Data Attributes:
     # skillsList.innerHTML += liElement
     skillsList?.insertAdjacentHTML("beforeend", liElement) # insert before </ul>
 
---- one disadvantage is that string html code are not extensible, e.g. we cannot add a new attribute
+--- one disadvantage is that string html code are not expandable, e.g. we cannot add a new attribute
 --- solution:
 
     const liElement2 = document.createRange().createContextualFragment(liElement); # converts string to actual elements

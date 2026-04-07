@@ -1,0 +1,73 @@
+Accessing Objects:
+- Adding/Updating new keys/properties by using dot or brackets.
+- For keys such as 'military-service' we have to use brackets
+- DOT notation:     myObject.key = value;     // for adding/modiying keys
+- Bracket notation: myObject['key'] = value;  // for adding/modiying keys
+
+
+  name = 'Mohamed';
+  const lastName = 'Ahmed';
+
+  const obj = {
+    name,                       // is equivalent to name:name (name: 'Mohamed')
+    lastName,
+    experience: 10,
+    [lastName]: 'xyz',          // is equivalent t0 Ahmed: 'xyz'
+    'military-service': true,
+    skills: {
+      skill1: 'HTML',
+      skill2: 'CSS',
+    },
+};
+
+obj.nickName = 'MA';  // called dot notation -> property/key is created here in obj
+obj.nickName = 'ME';  // property/key is modified here in obj
+obj.experience = '8';
+
+obj[name] = 'QASSEM';             // same as obj['Mohamed'] = 'QASSEM'
+obj['military-service'] = false;  // here we have to use brackets
+obj.Mohamed = 'XOXO';             // same as
+obj.nickname = false;
+
+
+delete obj.experience;            // delete property/key
+
+
+console.log(obj?.xyz?.xoxo);  // optional chaining equivalent to:
+                              // obj not true -> print obj. Otherwise if obj.xyz is false -> print obj.xyz, otherwise...
+// if (obj && obj.xyz && obj.xyz.xoxo) {
+  //   console.log(obj.xyz.xoxo);
+  // }
+
+  console.log(obj);
+
+
+  -----------------------------------------------------------------------------------------------------------
+CONST OBJECTS
+- const means -> obj can only be initialized once.
+- Another initialization is not allowed
+- Modifying the object content is allowed. e,g. obj.name = 'Q' is allowd but obj = {} is not allowed
+
+  name = 'Mohamed';
+  const lastName = 'Ahmed';
+  lastName = 'Q'; // ERROR -> second initialization on a const variable
+
+  const obj = {'a': 1, 'b': 2, 'c': 3};
+  obj = {}; // ERROR -> second initialization on a const variable
+  obj.a = 11; // OK
+
+  // use Object.freeze() to make object's content const (only first level)
+  const obj = Object.freeze(
+    {'a': 1, 'b': 2, 'c': 3, skills: {skill1: 'HTML', skill2: 'CSS'}}
+  );
+  obj.a = 11; // is executed but does not change obj at all
+  obj.skills.skill1 = 'JS'; // is modified, because freeze is only applied to the first level of obj (the address of obj)
+
+  const obj = Object.freeze(
+    {'a': 1, 'b': 2, 'c': 3,
+     Object.freeze(skills: {skill1: 'HTML', skill2: 'CSS'})
+    }
+  );
+  obj.skills.skill1 = 'JS'; // is executed but does not change obj at all
+
+-----------------------------------------------------------------------------------------------------------

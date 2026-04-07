@@ -1,0 +1,187 @@
+VSCODE:
+- Extensions: search for @builtin -> e.g. disable Typescript (this will also disable javascript autocompletion)
+-- in settings.json add: "typescript.validate.enable": false,
+
+
+const skillsH2 = document.querySelector('#skills .h2-heading');
+const bioHeading = document.querySelector('.bio__heading');
+const btnCBFunction = () => alert('You clicked me');
+
+skillsH2.addEventListener('click', btnCBFunction);
+bioHeading.addEventListener('click', btnCBFunction);
+/**
+ * In order to remove an event listener, we need the same
+ * registered callback (by reference). Therefore, we should used pre-defined
+ * callback functions
+ */
+// bioHeading?.removeEventListener('click', btnCBFunction);
+
+//---
+
+const skillsList = document.querySelectorAll('.skills__column');
+const cbFunction = (item) => {
+  const activeElement = document.querySelector('.underline');
+
+  if (activeElement) {
+    activeElement.classList.remove('underline');
+  }
+
+  item.classList.add('underline');
+};
+
+skillsList.forEach((item) => {
+  item.addEventListener('click', () => cbFunction(item));
+});
+
+--------------------------------------------------------------------------------------------
+                                        event-object.js
+--------------------------------------------------------------------------------------------
+
+- The callback function can get an event parameter
+- without event parameter: const btnCBFunction = () => alert('You clicked me');
+- with event parameter:
+                        const btnCBFunction = (e) => {
+                        console.log(e);
+                        alert('You clicked me');
+                        };
+
+- with event parameter and another parameter
+                        const cbFunction = (event, item) => {
+                            console.log(e.target);
+                            console.log(e.currentTarget);
+                        }
+                        // registering callback
+                        skillsList.forEach((item) => {
+                        item.addEventListener('click', (event) => cbFunction(event, item));
+                        });
+
+- event e is of type PointerEvent
+-- event.type: 'click'
+-- event.target: The element that has been clicked
+-- event.currentTarget: The element that fires the event (for which the event/callback is registered)
+
+--------------------------------------------------------------------------------------------
+                                    Bubbling and Capture (RASADA YARSUDU)
+--------------------------------------------------------------------------------------------
+
+const windowCBFunction = (event, msg) => {
+  console.log(event.currentTarget);
+  console.log(msg);
+};
+
+skillsH2.addEventListener('click', (event) => h2CBFunction(event, 'You clicked H2 inside Skills section'));
+window.addEventListener('click', (event) => windowCBFunction(event, 'You clicked Window'));
+
+- Clicking the window any where will call windowCBFunction()
+- Clicking the element skillsH2 will call h2CBFunction() and windowCBFunction()
+-- Cliking the mouse will click the window first and then skillsH2
+-- But why h2CBFunction() is fired first and the windowCBFunction()? -> Bubbling & Capture
+
+- Bubbling:
+عند حدوث حدث في عنصر فرعي (child element) يتم تنفيذ الحدث في العنصر الفرعي أولاً ثم ينتقل لتنفيذ الأحداث في العناصر الأعلى  (أي العنصر الأب والعنصر الجد وهكذا). هذا هو السلوك الافتراضي للأحداث في JavaScript.
+
+- Capture:
+يعمل بالاتجاه المعاكس لـ Bubbling. عند حدوث حدث في عنصر فرعي يتم تنفيذ الحدث في العنصر الأعلى أولاً ثم ينتقل لتنفيذ الحدث في العنصر الفرعي. وهو يتيح لك التحكم في تنفيذ الأحداث في العناصر الأعلى قبل تنفيذها في العناصر الفرعية.
+
+- To prevent bubbling use event.stopPropagation(). In this case only h2CBFunction() is called. windowCBFunction() is NOT called
+stopPropagation
+هو طريقة تُستخدم لمنع انتشار (Propagation) الحدث (سواء كان Bubbling أو Capture) بعد تنفيذه في العنصر الحالي. عند استخدام هذه الطريقة لا يتم تنفيذ الأحدث في العناصر الأعلى أو الأدنى بعد تنفيذه في العنصر الحالي.
+    const h2CBFunction = (event, msg) => {
+        event.stopPropagation();
+        console.log(event.currentTarget);
+        console.log(msg);
+    };
+
+capture: true:
+عند تعيين capture=true يتم تنفيذ الحدث باستخدام النمط capture بدلاً من النمط bubbling. يعني ذلك أن الحدث سينتقل من العنصر الأعلى إلى العنصر الأدنى. بمعنى آخر سيتم تنفيذ الحدث الموجود في العنصر الأعلى مثل الـ Window قبل أن يتم تنفيذه في العنصر الأدني مثل h2.
+
+مع استخدام stopPropagation و capture: true يُمكنك التحكم بدقة في تنفيذ الأحداث.
+
+window.addEventListener('click', (event) => windowCBFunction(event, 'You clicked Window'),
+{   // 3rd parameter of addEventListener is optional
+  capture: true,
+});
+
+- in this case windowCBFunction() is called first and then h2CBFunction()
+
+--------------------------------------------------------------------------------------------
+                                    Prevent Default and Form Events_1
+--------------------------------------------------------------------------------------------
+
+const submitButton = document.querySelector('.contact__button');
+
+- IMPORTANT .contact__input[name="name"]: select element with class .contact__input which has attribute name="name"
+const inputName = document.querySelector('.contact__input[name="name"]');
+
+// submitButton?.addEventListener('click', (event) => {
+// //   const shouldSumbit = confirm('Are you sure you want to submit');    // popup window with msg and YES/NO
+
+//   if (shouldSumbit === false) {
+//     console.log('Submit button did not run');
+//     // event.preventDefault();   // prevent default click action of element submitButton
+//   }
+// });
+
+- event 'keydown': before writing the letter
+- event 'keyup': after writing the letter
+- event 'focus': on entering an input element
+- even 'blur': on leaving an input element
+
+inputName?.addEventListener('keydown', (event) => {
+  console.log(event.key);
+  if (event.key === '_') {  '_' is not allowed in inputName
+    console.log('xyz');
+    // return false;
+    event.preventDefault();
+  }
+});
+
+inputName?.addEventListener('focus', () => {
+  inputName.classList.remove('border-red');
+  inputName.classList.add('border-blue');
+});
+
+inputName?.addEventListener('blur', () => {
+  inputName.classList.remove('border-blue');
+  inputName.classList.add('border-red');
+});
+
+--------------------------------------------------------------------------------------------
+                            Prevent Default and Form Events – Accessibility
+--------------------------------------------------------------------------------------------
+
+In index.html: add to .toggle__label
+- role="button": act like a button
+- tabindex="0"
+
+    <label class="toggle__label" for="toggle" role="button" tabindex="0"></label>
+
+
+const toggleLabel = document.querySelector('.toggle__label');
+
+toggleLabel?.addEventListener('keyup', (event) => {
+  if (event.key === 'Enter') {
+    event.currentTarget.click();
+  }
+});
+
+
+role="button" is an ARIA (Accessible Rich Internet Applications) role you can add to an HTML element to tell assistive technologies (screen readers, etc.) that the element should be treated like a button. It does not by itself provide native button behavior (focus, keyboard activation, pressed state) — you must add those behaviors.
+
+What it does
+
+Announces the element to assistive tech as a "button".
+Does not automatically give keyboard support, focusability, or disabled semantics.
+When to use
+
+Use role="button" only when you cannot use a native <button> (for example, a complex custom widget, SVG, or third‑party markup you cannot change).
+Prefer native <button> whenever possible — it already supports accessibility, keyboard, focus, and form behaviors.
+What you must add when using role="button"
+
+Make it focusable: add tabindex="0" so it is reachable by Tab.
+Implement keyboard activation:
+Enter should activate immediately (keydown).
+Space should activate on keyup (ARIA authoring practices) and often you should prevent default on keydown to stop the page from scrolling.
+Provide an accessible name: visible text, aria-label, or aria-labelledby.
+For toggle buttons, include aria-pressed="true|false".
+For disabled state, use aria-disabled="true" and prevent activation.
