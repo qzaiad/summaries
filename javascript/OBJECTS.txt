@@ -1,4 +1,7 @@
 Accessing Objects:
+- Creating an object:
+-- const obj = {}; or
+-- const obj = new Object(); // new Object({name: 'Q',...})
 - Adding/Updating new keys/properties by using dot or brackets.
 - For keys such as 'military-service' we have to use brackets
 - DOT notation:     myObject.key = value;     // for adding/modiying keys

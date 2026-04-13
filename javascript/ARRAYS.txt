@@ -1,0 +1,136 @@
+Arrays:
+- index start from 0
+- accessing useing [0], ..., [array.length - 1], or
+- accessing by method .at()
+-- accessing last element by .at(-1)
+- note: typeof myArray -> object
+-- Checking if an object is an array by: Array.isArray()
+- arr.push() push backs an element
+
+Immutable-Methods:
+- slice(start, ?end=last-elemet-default) (QIT3AH): [1, 2, 3, 4, 5].slice(1, 4) -> [2, 3, 4]
+
+Mutable-Methods:
+- skillsArr[2] = 'Javascript'; // Mutable
+-- Immutable-Variant: [...skillsArr.slice(0, 2), 'Javascript', ...skillsArr.slice(3)]; // Immutable
+
+- reverse():        [1, 2, 3].reverse() -> [3, 2, 1]
+-- Immutable-Variant: [...numArr].reverse();
+
+- push(e):          [1, 2, 3].push(4, 5) -> [1, 2, 3, 4, 5]
+-- Immutable-Variant: [...skillsArr, 'Typescript'];
+
+- pop();            [1, 2, 3].pop() -> [1, 2] and returns 3
+-- Immutable-Variant:
+
+- unshift(0, 1):    [1, 2, 3].unshift(0, 1) -> [0, 1, 1, 2, 3]
+-- Immutable-Variant: ['Typescript', ...skillsArr];
+
+- shift():          [1, 2, 3].shift() -> [2, 3] and returns 1
+-- Immutable-Variant:
+
+- splice(start, ?length): remove elements [1, 2, 3, 4, 5].(1,2) -> [1, 4, 5]
+-- Immutable-Variant: [...skillsArr.slice(0, 1), ...skillsArr.slice(3)];
+
+We should use immutable methods. This is useful in React to keep object states
+
+Static-Methods in Arrays class from global scope:
+- Array.of(): creates an array
+-- const arr = Array.of(1, 2, 3, 4, 5); // -> [1, 2, 3, 4, 5]
+- Array.from(iterable, mapFunction,):
+-- let ids = Array.from({ length: 10 }, (item, indx) => console.log(indx); ) // -> [0, 1, ..., 9]
+-- let ids = Array.from({ length: 10 }, (item, indx) => console.log(indx); ) // -> [0, 1, ..., 9]
+--- creates an array of length 10 (by dfault 10 undefined elements)
+--- map function takes in an item (value=undefined) and element-index indx
+- Array.isArray(arr) <-> true iff arr is an array
+
+- const [key, value] = [1, 2, 3, ...]; // key = 1, value = 2
+  console.log({key, value}); // same as {key:key, value:value}
+- Object.entries(obj).forEach(([key, value]) => console.log(key));
+
+
+Instance-Methods
+  const fruits = ['apple', 'banana', 'orange', 'avocado'];
+- join array elements with a default separtor = ','
+-- fruits.join(' - '); // Immutable
+- convert a string into array
+-- joinedFruits.split(' - '); // Immutable
+
+
+Callback-Methods:
+  const candidates = [
+    {
+      id: 1,
+      firstName: 'Mohamed',
+      lastName: 'Ahmed',
+      isGraduated: true,
+      graduationYear: 2012,
+    },
+    {
+      id: 2,
+      firstName: 'Ahmed',
+      lastName: 'Mohamed',
+      isGraduated: true,
+      graduationYear: 2010,
+    },
+    {
+      id: 3,
+      firstName: 'Mohamed',
+      lastName: 'Zaki',
+      isGraduated: true,
+      graduationYear: 2009,
+    },
+    {
+      id: 4,
+      firstName: 'Mahmoud',
+      lastName: 'Sayed',
+      isGraduated: false,
+    },
+    {
+      id: 5,
+      firstName: 'Ahmed',
+      lastName: 'Ragab',
+      isGraduated: true,
+      graduationYear: 2017,
+    }];
+
+- Find person with id=1
+-- candidates.find((item) => (item.id === 1)); // -> return element 0. return undefined if not found
+-- candidates.findIndex((item) => item.id === 1); // -> 0. return -1 if not found
+
+- Get all graduated people (before 2015) (find all matching elements)
+- candidates.filter((item) => item.isGraduated && item.graduationYear <= 2015);
+
+- Check if anyone graduated before 2005
+-- candidates.some((item) => item.graduationYear <= 2005); // -> true if any item exists with graduationYear <= 2005
+
+- Check if all the candidates are graduated
+-- candidates.every((item) => item.graduationYear <= 2005);
+
+- sort(): Mutable -> by default sorts alphabetically
+-- [1, 5, 3, 9, 12].sort() -> [1, 12, 3, 5, 9]
+
+- Sort people by graduation year
+-- const shallowCandidates = [...candidates];  // shallow copy = flache Kopie
+   shallowCandidates.sort((a, b) => a.graduationYear - b.graduationYear); // mutable
+--- if compareFn returns:
+---- negative number (a<b) -> a should become before b
+---- positive number (a>b) -> b should become before a
+---- 0 (a==b) -> order does not matter
+--- Problem: a/b.graduationYear might be undefined -> result might not be sorted correctly
+----
+      shallowCandidates.sort((a, b) => { // mutable
+        if (!a.graduationYear) {
+          return 1; // i.e. a > b
+          // a.graduationYear = Infinity;
+        }
+        if (!b.graduationYear) {
+          return -1; i.e. a < b
+          // b.graduationYear = Infinity;
+        }
+        return a.graduationYear - b.graduationYear;
+      });
+
+- Sort people alphapitically
+-- const shallowCandidates2 = [...candidates];
+   shallowCandidates2.sort((a, b) => a.firstName.localeCompare(b.firstName));

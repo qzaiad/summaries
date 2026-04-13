@@ -1,0 +1,30 @@
+- Objects elments are not ordered
+- Creating objects:
+-- const myObject = {};
+-- const myObject = new Object();
+- Object Functions:
+-- Object.keys(object): [key_1, key_2, ..., key_n]
+-- Object.values(object): [value_1, value_2, ..., value_n]
+-- Object.entries(object): [ [key_1, value_1], [key_2, value_2], ..., [key_n, value_n] ]
+-- Iterating over object entreis:
+-- Object.keys(object).forEach(entry => console.log(entry))
+-- Object.values(object).forEach(entry => console.log(entry))
+-- Object.entries(object).forEach(entry => console.log(entry))
+
+- Map elments are ordered
+- Creating Maps:
+-- const myMap = new Map();
+-- Methods: set/get/delete
+--- myMap.set("key1", "value1");
+--- console.log(myMap.get("key1"));
+--- myMap.delete(key)
+- Map Functions:
+-- Map.keys(map): [key_1, key_2, ..., key_n]
+-- Map.values(map): [value_1, value_2, ..., value_n]
+-- Map.entries(map): [ [key_1, value_1], [key_2, value_2], ..., [key_n, value_n] ]
+-- Iterating over map entreis:
+--- m.forEach((value, key) => {console.log(`${key} -> ${value}`)})
+--- for (const [key, value] of myMap) {                             // for of
+        console.log(`Key: ${key}, Value: ${value}`);
+    }
+
