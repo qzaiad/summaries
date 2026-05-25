@@ -1,4 +1,4 @@
-- Precedence Rules: Brackets -> Exponents -> Division -> Miltiplication -> Addition -> Subtraction
+- Precedence Rules: Brackets -> Exponents -> Division -> Multiplication -> Addition -> Subtraction
 -- const x = (2 + 8) / ((4 - 2) * (2 ** 2));
 
 If statements:

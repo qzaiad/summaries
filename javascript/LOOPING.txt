@@ -1,0 +1,76 @@
+- (C syntax)
+-- for(let i = i; i < len; i++) {}   // or i += 2
+
+- for(const key in obj { obj[k]...; }
+-- equivalent to Object.keys(obj).map( (key) => obj[key]...; ) // immutable -> map each element and return a new object
+
+- for of (used with iterables such as Array, String, TypedArray, Map, Set, NodeList... (but not objects))
+-- for (const item of array) {}
+-- equivalent to array.forEach( (item) => ... )
+
+- while(condition) {}
+
+- do {} while(condition);
+
+-----------------------------------------------------------------------------------------------------
+
+- forEach
+-- array.forEach((currentValue, index, array)=>{});
+-- Example Oneliner: (!arr[index - 1]) ? console.log('Hi') : console.log(`Next Fruit is: ${arr[index - 1]}`);
+
+
+-----------------------------------------------------------------------------------------------------
+
+- Map, Find, Filter
+
+- map(currentValue, index, array) -> immutable -> return an array with mapped values
+-- const newNames = people.map((item) => `${item} Basha`);
+-- const capitalizedNames = newNames.map((name) => `${name[0].toUpperCase()}${name.slice(1)}`); // capitalizes first character
+-- const empolyeesObject = capitalizedNames.map((name, index) => ({ id: index, name, birthdate: 2000 + index }));  // ({}) is mandatory, otherwise {} are considered the brackets of a code block
+-- all in one version
+    // Combine previous solutions (Refactoring)
+    const newEmployeesArray = people.map((name, index) => {
+    const currentYear = new Date().getFullYear();
+    const year = 1995;
+
+    return {
+        id: index,
+        name: `${name[0].toUpperCase()}${name.slice(1)} Basha`,
+        birthdate: year + index,
+        age: currentYear - year + index,
+    };
+    });
+
+-- find()
+// Find an employee with specific Id
+const findEmployee = (id) => {
+  const result = newEmployeesArray.find((employee) => employee.id === id);
+
+  if (!result) {
+    return 'There is no employee with this Id';
+  }
+
+  return result;
+};
+
+// Filter people with age more than 29
+- const employeesOlderThan29 = newEmployeesArray.filter((employee) => employee.age >= 29);
+
+
+-----------------------------------------------------------------------------------------------------
+
+- reduce(callbackfn, initialValueOfAccumulator)
+-- callbackfn: (accumlator, currentValue, currentIndex, array) => return new value of accumulator
+-- callbackfn should be a pure function which does not depent on an external variable -> best practice -> better than using forEach
+
+const numbers = [1, 2, 3, 4, 5];
+const sum = numbers.reduce((accumlator, currentValue) => {
+    return accumlator + currentValue;
+}, 0)
+-> sum = 0 (initial value of accumulator) + 1 + 2 + 3 + 4 + 5
+
+
+// Find the longest word
+const fruits = ['apple', 'banana', 'avocado', 'orange'];
+const longestWord = fruits.reduce((accumlator,currentValue) => return accumlator.length > currentValue.length ? accumlator : currentValue}, '')
+

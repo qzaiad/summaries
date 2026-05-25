@@ -1,0 +1,38 @@
+- Arrow functions have no this
+قيمة "this" تعتمد على سياق تنفيذ الكود وكيف تم استدعاء الدالة التي يتم تنفيذها. كما أنها لا تأخذ قيمتها من المكان الذي تم تعريف الدالة (Function) فيه بل المكان الذي تم استدعاء الدالة (Function) فيه.
+
+
+bind
+هي دالة مدمجة في JavaScript تُستخدم لربط دالة بكائن معين كقيمة "this".
+
+تُستخدم عادةً لحل مشكلة فقدان قيمة "this" داخل الدوال في سياقات معينة. تُستخدم bind عندما تريد ان تحدد الكائن (Object) الذي تريد ربط this به.
+
+n = {
+  firstName: "Ali",
+  lastName: "Fathy",
+  fullName: function() {
+    console.log(this.firstName + " " + this.lastName);
+  }
+};
+
+var printFullName = person.fullName;
+printFullName();    // سيُظهر undefined
+
+في المثال أعلاه عند استدعاء ()printFullName، يتم فقدان قيمة "this" داخل الدالة ويتم تفسيرها على أنها "undefined". لحل هذه المشكلة، يمكن استخدام "bind" كما يلي:
+var printFullName = person.fullName.bind(person);
+printFullName(); // سيطبع: "John Doe"
+
+
+- ES6 classes:
+    class Person {
+    constructor(firstName, lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+
+    getFullName() {
+        return `${this.firstName} ${this.lastName}`;
+    }
+    }
+
+

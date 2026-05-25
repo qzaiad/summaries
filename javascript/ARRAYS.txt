@@ -29,7 +29,7 @@ Mutable-Methods:
 - shift():          [1, 2, 3].shift() -> [2, 3] and returns 1
 -- Immutable-Variant:
 
-- splice(start, ?length): remove elements [1, 2, 3, 4, 5].(1,2) -> [1, 4, 5]
+- splice(start, ?length): remove elements [1, 2, 3, 4, 5].(1,2) -> [1, 4, 5] (mutable)
 -- Immutable-Variant: [...skillsArr.slice(0, 1), ...skillsArr.slice(3)];
 
 We should use immutable methods. This is useful in React to keep object states
@@ -38,7 +38,6 @@ Static-Methods in Arrays class from global scope:
 - Array.of(): creates an array
 -- const arr = Array.of(1, 2, 3, 4, 5); // -> [1, 2, 3, 4, 5]
 - Array.from(iterable, mapFunction,):
--- let ids = Array.from({ length: 10 }, (item, indx) => console.log(indx); ) // -> [0, 1, ..., 9]
 -- let ids = Array.from({ length: 10 }, (item, indx) => console.log(indx); ) // -> [0, 1, ..., 9]
 --- creates an array of length 10 (by dfault 10 undefined elements)
 --- map function takes in an item (value=undefined) and element-index indx

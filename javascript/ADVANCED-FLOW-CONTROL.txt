@@ -1,0 +1,328 @@
+- sync VS async
+- Code:
+    console.log("Hi 🤝🏻");
+    setTimeout(() => console.log("Hello from timeout after 20ms"), 20);
+    setTimeout(() => console.log("Hello from timeout after 0ms"), 0);
+    console.log("Bye 👋🏻");
+- Output
+    Hi 🤝🏻
+    sync-async.js:4 Bye 👋🏻 // ----> why is it printed before setTimeout(, 0)!
+    sync-async.js:3 Hello from timeout after 0ms
+    sync-async.js:2 Hello from timeout after 20ms
+
+- JAVASCRIPT = SINGLE THREADED PROGRAMMING LANGUAGE
+
+- Call Stack: هيكل بيانات يتم استخدامه لتتبع ترتيب تنفيذ الدوال (Functions) في الجافا سكريبت
+- Web API:
+واجهة برمجة تطبيقات الويب هي مجموعة من الوظائف والأدوات التي توفرها المتصفحات للجافا سكريبت للتفاعل مع الواجهة الرسومية للمستخدم (UI) والمزيد.
+تشمل Web API أشياء مثل DOM API (للتلاعب بعناصر الصفحة والأحداث) و XMLHttpRequest و Fetch API وغيرها.
+يتم ارسال الكود الغير متزامن مثل setTimeout إلى الـ Web API.
+- Callback Queue = Task Queue:
+هو هيكل بيانات يُستخدم لتخزين وظائف الرد (callbacks) التي يجب تنفيذها بعد اكتمال الأحداث أو الاستجابات.
+عادةً ما تُستخدم وظائف الرد (callbacks) في سياق الأحداث المؤجلة، مثل استجابة الخادم لطلب HTTP أو انتهاء تنفيذ وظيفة زمنية (setTimeout).
+عندما تتم إضافة وظيفة رد إلى Callback Queue، يجب استدعاؤها بواسطة Event Loop عندما تكون الـ Call Stack فارغة.
+- Event Loop:
+هي جزء أساسي من تنفيذ الجافا سكريبت في المتصفح.
+تعمل Event Loop على مراقبة الـ Call Stack و Callback Queue.
+إذا كانت الـ Call Stack فارغة، يتم استدعاء callback التالية من Callback Queue وتنفيذها.
+
+Callback Hell: Multiple level of a Callback in a Callback
+
+Promises:
+- does the same as Callbacks
+- but better syntax, more readable
+
+Prmoises:
+- can be created out of an callback
+- can be available and can be used
+
+- There are two states for promises:
+-- Pending state (waiting): give a promise to web api and wait for execution
+-- Setteled state (completed/Erledigt, i.e. resolved or rejected):
+--- Resolved state: promise is successfully executed (using keyword  then)
+--- Rejected state: There was a problem (using keyword catch)
+
+ال Promise يُستخدم لإدارة العمليات الغير متزامنة أو العمليات التي تحتاج إلى وقت للإنتهاء مثل استدعاء البيانات من الخادم (Server). ال Promise يُساعدك على تنظيم تنفيذ العمليات والتعامل مع النتائج بشكل فعال دون تداخل مع السياق الرئيسي لتطبيقك.
+
+الفكرة الأساسية لـ Promise هي توفير وسيلة للتعامل مع العمليات الغير متزامنة بطريقة تجعل الكود أكثر قراءةً وفهمًا وصيانةً. يتيح لك Promise تنفيذ الأكواد بشكل متسلسل وتحديد ما إذا تم الانتهاء بنجاح أم لا وكيفية التعامل مع الأخطاء إذا حدثت.
+
+ال Promise تتيح لك استخدام الدوال مثل then و catch و finally للتحكم في سير العملية والتعامل مع النتائج والأخطاء. يمكنك استخدام then لتحديد ما يجب القيام به بعد انتهاء الوعد بنجاح، و catch للتعامل مع الأخطاء في حالة فشل الوعد، و finally لتحديد الأكواد التي يجب تنفيذها بغض النظر عن نجاح أو فشل الوعد.
+
+
+Promises in Action
+في لغة JavaScript الـ Promise هو عبارة عن نوع من الكائنات الذي يمثل قيمة مستقبلية (Future value) تمثل إتمام أو رفض عملية غير متزامنة. يساعد الـ Promise في التعامل مع الأكواد الغير متزامنة بشكل فعال.
+الأساليب الأساسية المستخدمة مع الـ Promise هي then و catch و resolve و reject.
+then: تُستخدم للتعامل مع قيمة ال Promise عندما يتم حلها (fulfilled). تستقبل دالة callback وتُنفذ عندما يتم حل الـ Promise بنجاح. يمكن أن يكون هناك عدة then متسلسلة لتنفيذ الأكواد بشكل متسلسل.
+catch: تُستخدم للتعامل مع حالة الرفض (rejected) لـ Promise. تستقبل دالة callback وتُنفذ عندما يتم رفض الـ Promise.
+
+resolve: تُستخدم لتغيير حالة الـ Promise من Pending إلى تم القبول. يتم استخدامها عادة داخل الدوال التي تقوم بالعمليات الغير متزامنة عند الانتهاء منها بنجاح.
+
+reject: تُستخدم لتغيير حالة الـ Promise من Pending إلى تم الرفض. يتم استخدامها عادة داخل الدوال التي تقوم بالعمليات الغير متزامنة عند حدوث خطأ أو فشل.
+
+مثال:
+
+const myPromise = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    resolve('تم القبول');
+  }, 1000);
+});
+myPromise
+  .then((result) => {
+    console.log(result);
+  })
+  .catch((error) => {
+    console.error(error);
+  });
+
+Return Value of Prmoise.resolve()
+A Promise that is resolved with the given value, or the promise passed as value, if the value was a promise object. A resolved promise can be in any of the states — fulfilled, rejected, or pending. For example, resolving a rejected promise will still result in a rejected promise.
+
+
+Promise – all, allSettled, any, race:
+
+في لغة JavaScript تُستخدم الوعود (Promises) لإدارة العمليات الغير متزامنة. الوعد هو كائن يمثل قيمة ليتم حسابها في المستقبل ويتميز بقدرته على التعامل مع العمليات الغير متزامنة بشكل فعال. توفر الوعود (Promises) العديد من الدوال (Functions) المفيدة للتحكم في سير تنفيذ الوعود، ومن بينها:
+
+- Promise.all()
+تُستخدم لانتظار اكتمال مصفوفة (Array) من الوعود و ارجاع قيمها مجتمعة كنتيجة واحدة. إذا فشل أي من الوعود، سيتم رفض الوعد الناتج.
+مثال:
+const promise1 = Promise.resolve(1);
+const promise2 = Promise.resolve(2);
+const promise3 = Promise.resolve(3);
+Promise.all([promise1, promise2, promise3])
+  .then((values) => {
+    console.log(values); // [1, 2, 3]
+  })
+  .catch((error) => {
+    console.error(error);
+  });
+-Promise.any()
+تُستخدم لانتظار اكتمال مصفوفة (Array) من الوعود وإرجاع قيمة أي وعد نجح أولاً. إذا فشلت جميع الوعود، سيتم رفض الوعد الناتج.
+مثال:
+const promise1 = new Promise((resolve, reject) => setTimeout(reject, 1000, "Rejected"));
+const promise2 = new Promise((resolve) => setTimeout(resolve, 2000, "Resolved"));
+const promise3 = new Promise((resolve) => setTimeout(resolve, 3000, "Resolved"));
+Promise.any([promise1, promise2, promise3])
+  .then((value) => {
+    console.log(value); // "Resolved" after 2000ms
+  })
+  .catch((error) => {
+    console.error(error); // "All promises were rejected"
+  });
+
+-Promise.allSettled()
+تُستخدم لانتظار اكتمال مصفوفة (Array) من الوعود وإرجاع نتائجها بغض النظر عما إذا كان أي منها قد نجح أو فشل.
+مثال:
+const promise1 = Promise.resolve(1);
+const promise2 = Promise.reject("Error");
+const promise3 = Promise.resolve(3);
+Promise.allSettled([promise1, promise2, promise3])
+  .then((results) => {
+    console.log(results);
+    /*
+    [
+      { status: "fulfilled", value: 1 },
+      { status: "rejected", reason: "Error" },
+      { status: "fulfilled", value: 3 }
+    ]
+    */
+  });
+
+-Promise.race()
+تُستخدم لانتظار الوعد الذي يتم حسابه أولاً من بين مصفوفة (Array) من الوعود. سيتم إرجاع نتيجة الوعد الذي تم حسابه أولاً، سواء نجح أو فشل.
+
+مثال:
+const promise1 = new Promise((resolve) => setTimeout(resolve, 100, "Promise 1"));
+const promise2 = new Promise((resolve) => setTimeout(resolve, 200, "Promise 2"));
+Promise.race([promise1, promise2])
+  .then((value) => {
+    console.log(value); // "Promise 1"
+  });
+
+
+
+async-await
+في لغة الجافا سكريبت، async و await هما جزء من ميزة معالجة الوعود (Promises) والتي تساعد في إدارة العمليات غير المتزامنة بشكل أفضل. تُستخدم async لتعريف دالة تعمل بشكل غير متزامن، بينما يُستخدم await داخل دالة async للانتظار حتى اكتمال وعد (Promise) والمضمون الذي يتم إعادته من هذا الوعد.
+
+الفكرة الأساسية هي أنك تستخدم ال async لتحديد الدوال التي تنفذ بشكل غير متزامن، وبالتالي، يمكنك استخدام await داخل هذه الدوال للانتظار حتى تنتهي العمليات غير المتزامنة ويمكن الاستفادة من نتائجها بسهولة.
+
+مثال:
+// دالة تنفذ بشكل غير متزامن تقوم بالانتظار لمدة محدده ومن ثم تعيد رسالة.
+setTimeout(resolve, 2000, "Resolved")	resolve
+setTimeout(() => { resolve(...) }, 2000)	the arrow function
+
+The arrow function version is useful when:
+
+you need multiple lines
+extra logic
+conditions
+more than one statement
+
+Example:
+
+setTimeout(() => {
+  console.log('before resolve');
+  resolve('done');
+}, 2000);
+
+
+
+function waitForTwoSeconds() {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {              // Equivalent shorter form: setTimeout(resolve, 2000, 'تم انتهاء الانتظار لمدة ثانية');
+      resolve('تم انتهاء الانتظار لمدة ثانية');
+    }, 2000);
+  });
+}
+// دالة تستخدم async و await للانتظار حتى اكتمال دالة waitForTwoSeconds ومن ثم تقوم بعرض النتيجة.
+
+async function main() {
+  console.log('بدء التنفيذ');
+  try {
+    const result = await waitForTwoSeconds();   // returns a promise
+    console.log(result);                        // => if promise is resolved
+  } catch (error) {                             // if promise is rejected
+    console.error('حدث خطأ: ', error);
+  }
+  console.log('انتهاء التنفيذ');
+}
+
+main();
+في هذا المثال، تم إنشاء دالة waitForTwoSeconds التي تعيد وعد (Promise) بعد انتظار لمدة ثانيتين. ثم تم إنشاء دالة main التي تستخدم async و await للانتظار حتى انتهاء العملية غير المتزامنة في waitForTwoSeconds، ومن ثم تقوم بعرض النتيجة.
+
+async-await – HOF (High Order Function)
+- HOF: function takes another function as a parameter and returns a value or function
+- Here: HOF returns a function
+
+    function makeSafe(fn, errorHandler = (err) => console.log(err)){
+        return fn().catch(errorHandler)
+    }
+
+
+    makeSafe(delayMessage);
+    makeSafe(delayMessage);
+    makeSafe(delayMessage);
+    makeSafe(delayMessage);
+    // looks better that the follwing 4 lines
+    delayMessage().catch( (err) => console.log(err) );
+    delayMessage().catch( (err) => console.log(err) );
+    delayMessage().catch( (err) => console.log(err) );
+    delayMessage().catch( (err) => console.log(err) );
+
+
+
+- Fetch-json-api
+- dummyjson.com/
+- url query: usually used on filtering e.g. dummyjson.com/users/search?q=John
+- prototype = nuskhah awwaliyyah
+
+fetch
+هي دالة مدمجة في لغة الجافا سكريبت تُستخدم لجلب البيانات (Data) من الخوادم (Servers). تُستخدم عادة لجلب ملفات أو بيانات من خوادم الويب أو الـ APIs. تعمل دالة "fetch" بشكل غير متزامن، مما يعني أنها لا تعلق تنفيذ البرنامج أثناء انتظار البيانات. كما أنها تقوم بإرجاع وعد (Promise).
+
+JSON
+هو اختصار لـ "JavaScript Object Notation"، وهو تنسيق نصي يُستخدم لتبادل البيانات بين الخوادم (Servers) والمتصفحات والتطبيقات. يُتيح JSON للبيانات أن تكون في شكل نصي مقروء وسهل الفهم وفي الوقت نفسه يمكن تحويلها بسهولة إلى كائنات JavaScript. وهو واحدة من الطرق المستخدمة لنقل ال Objects من خادم (Server) إلى خادم (Server) أو من خادم (Server) الي مستخدم.
+
+API
+اختصار ل "Application programming interface". وهي طريقة تسمح للتطبيقات (Applications) أو ال Softwares بالتواصل. تشير عادة "API" إلى واجهة برمجة التطبيقات عبر الإنترنت التي تتيح للمطورين الوصول إلى الخدمات والبيانات من خوادم الويب.
+
+
+Fetch API
+تستخدم لجلب الموارد من الخوادم عبر الشبكة، وتسمح بإرسال طلبات مختلفة مثل GET و POST و PUT و DELETE إلى الخوادم ومعالجة الاستجابات بشكل مرن.
+
+
+
+fetch('https://api.example.com/data')
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    return response.json();  // return value is also a promise
+  })
+  .then(data => {
+    // يمكنك استخدام البيانات هنا
+    console.log(data);
+  })
+  .catch(error => {
+    console.error('There was a problem with the fetch operation:', error);
+  });
+
+            Step-by-step of your code
+            fetch('https://api.example.com/data')
+
+            👉 fetch() returns a Promise that resolves to a Response object (not the actual data yet).
+
+            First .then(...)
+            .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+            })
+
+            👉 This .then() handles the HTTP response
+
+            response = the raw response from the server
+            You check if it’s OK (status 200–299)
+            Then you call response.json()
+
+            ⚠️ Important:
+
+            response.json() also returns a Promise, not the actual JSON yet
+            Second .then(...)
+            .then(data => {
+            console.log(data);
+            })
+
+            👉 This .then() handles the parsed JSON data
+
+            data = the final JavaScript object
+            This runs after response.json() finishes
+            Why two .then() calls?
+
+            Because there are two asynchronous steps:
+
+            Fetch the response → fetch()
+            Parse the response body → response.json()
+
+            Each step returns a Promise, so each needs its own .then().
+
+            Mental model
+
+            Think of it like a pipeline:
+
+            fetch() → response → response.json() → actual data
+                    ↓            ↓
+                    then #1      then #2
+            Could you write it differently?
+
+            Yes, with async/await (same logic, cleaner):
+
+            try {
+            const response = await fetch('https://api.example.com/data');
+
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+
+            const data = await response.json();
+            console.log(data);
+            } catch (error) {
+            console.error(error);
+            }
+
+
+في لغة الجافا سكريبت، هناك مفاهيم تسمى "Task Queue" و "Microtask Queue" أو "Promise Queue" تلعب دورًا مهمًا في تنظيم تنفيذ الأكواد الغير متزامنة. تلك المفاهيم تساعد في تحديد أي جزء من الكود يجب تنفيذه أولاً عندما تكون هناك أكواد متعددة تنتظر التنفيذ.
+
+Task Queue
+هي قائمة تخزينية تحتوي على المهام (tasks) التي يجب تنفيذها بعد انتهاء تنفيذ الأكواد الحالية في السياق الرئيسي (main execution context) للبرنامج مثل console.log.
+
+عندما تنتهي الأكواد الحالية من التنفيذ، يتم فحص Task Queue للتحقق من وجود مهام جديدة للتنفيذ. في ال Task Queue يتم تخزين setTimeout و setIntervals و Events.
+
+Microtask Queue (Promise Queue)
+هي قائمة تخزينية أخرى تُستخدم لتنظيم تنفيذ المهام الدقيقة (microtasks). المهام التي يتم تخزينها في Microtask Queue هي مهام ذات أولوية أعلى من المهام العادية في Task Queue، وعادة ما تكون مهام تمثل استجابة ل Promises والدوال الجاهزة (resolved promises)، مثل
+
+.then() و .catch() و .finally().
+
+ال Microtask Queue تُنفذ قبل Task Queue، مما يعني أن المهام الدقيقة تأخذ الأسبقية على المهام العادية.
+
+لمعرفة كيف تعمل هذه المفاهيم معًا، يمكنك أن تفكر في Event Loop كمراقب للـ Task Queue وال Microtask Queue. عندما ينتهي التنفيذ الحالي يتحقق Event Loop من وجود مهام في Microtask Queue ويقوم بتنفيذها جميعًا قبل أن يتحقق من وجود مهام في Task Queue ويقوم بتنفيذها بالترتيب.
+

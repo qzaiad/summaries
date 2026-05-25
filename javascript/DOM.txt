@@ -37,6 +37,7 @@ DOM: Document Object Model
 - script file should be located at the end of the html file
 -- if located at the beginning -> use workaround (bad practice)
   document.addEventListener("DOMContentLoaded", () => {
+   // This script is executed after loading the entire DOM content
    const bioHeading = document.querySelector(".bio__heading");
    console.log(bioHeading)
   })
@@ -102,7 +103,7 @@ DOM: Document Object Model
 
 Built in and Custom Data Attributes:
 - Builtin Attributes
--- element.attribute (getter & setter)
+-- element.attribute (getter & setter) (in the html element, and not in the CSS file. CSS hat a higher priority)
 --- document.querySelector("img").width -> 100
 --- document.querySelector("img").getAttribute("width") -> 100 (same as .width)
 --- document.querySelector("img").width = 200
@@ -165,7 +166,7 @@ Built in and Custom Data Attributes:
     skillsList?.insertAdjacentElement('afterend', li);
 
 - HTML from Strings and XSS
--- better war to insert HTML elements
+-- better was to insert HTML elements
     const skill = 'Typescript';
     const liElement = `
 <li data-name="Typescript" class="skills__item">
@@ -185,7 +186,7 @@ Built in and Custom Data Attributes:
     liElement2.querySelector('h2');
 
 -- security issue XSS (Cross-Site Scripting)
---- if an attacker can change variable skill, then he cann inject html/cs/js code and createContextualFragment will execute it after adding it to DOM.
+--- if an attacker can change variable skill, then he can inject html/cs/js code and createContextualFragment will execute it after adding it to DOM.
   e.g. <style>*{display:none}</style>
 
 - Traversing and Removing Nodes

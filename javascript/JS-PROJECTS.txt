@@ -1,0 +1,19 @@
+Project1: Age-Calculator
+- cssgradient.io: website for beautiful background colors
+-- Lineal: left color = first color. right color = the second color
+-- Radial: left/right colors = first color. In the middle = the second color
+
+
+Project2: Calculator
+- Planning Phase: search for "flowchart maker"
+-- app.diagrams.net
+- Think Twice, Code Once
+
+Porject3: Tic-Tac-Toe
+- Destructing assignment:
+-- [a, b] = [1, 2]; // -> a = 1, b = 2
+-- [a, b, ...rest] = [1, 2, 3, 4, 5]; // -> a = 1, b = 2, rest = [3, 4, 5]
+
+
+
+

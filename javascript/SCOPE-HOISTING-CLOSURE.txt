@@ -11,10 +11,10 @@
   let x = 1;
   function f() {
     let x = 2;  // shadowing or overwriting global x
-    console.log(x); // 2 scope lookup looks for variables in the nearest scope
+    console.log(x); // 2 scope lookup lookups for variables in the nearest scope
   }
 
-- using save variable name in diffrent scopes is a BAD PRACTICE
+- using same variable name in diffrent scopes is a BAD PRACTICE
 
 - Block Scope
 -- inside {}

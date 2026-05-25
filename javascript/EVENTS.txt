@@ -60,6 +60,19 @@ skillsList.forEach((item) => {
 -- event.target: The element that has been clicked
 -- event.currentTarget: The element that fires the event (for which the event/callback is registered)
 
+Imagine this HTML:
+
+<li class="item">
+  <span>Click me</span>
+</li>
+
+And your JS attaches the listener to <li>.
+
+If the user clicks on the <span>:
+
+event.target → <span> (the real clicked element)
+event.currentTarget → <li> (where the listener is attached)
+
 --------------------------------------------------------------------------------------------
                                     Bubbling and Capture (RASADA YARSUDU)
 --------------------------------------------------------------------------------------------
@@ -75,7 +88,7 @@ window.addEventListener('click', (event) => windowCBFunction(event, 'You clicked
 - Clicking the window any where will call windowCBFunction()
 - Clicking the element skillsH2 will call h2CBFunction() and windowCBFunction()
 -- Cliking the mouse will click the window first and then skillsH2
--- But why h2CBFunction() is fired first and the windowCBFunction()? -> Bubbling & Capture
+-- But why h2CBFunction() is fired first and then windowCBFunction()? -> Bubbling & Capture
 
 - Bubbling:
 عند حدوث حدث في عنصر فرعي (child element) يتم تنفيذ الحدث في العنصر الفرعي أولاً ثم ينتقل لتنفيذ الأحداث في العناصر الأعلى  (أي العنصر الأب والعنصر الجد وهكذا). هذا هو السلوك الافتراضي للأحداث في JavaScript.

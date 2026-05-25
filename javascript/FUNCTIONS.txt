@@ -22,7 +22,7 @@ Builin Functions:
 - Custom Functions:
 -- function calculateArea(x, y) { return x * y; }
 -- a = calculateArea(10, 5)
--- Devault Values:
+-- Default Values:
 --- function calculateArea(x = 10, y = 20) { return x * y; }
 ---- calculateArea() -> 200
 ---- This is equivalent to calculateArea(undefined, undefined) -> 200
@@ -58,22 +58,22 @@ Builin Functions:
 
 
 -- Methods: Function belongs to an object
- const POINT {
+ const POINT = {
     x: 1,
-    y, 2,
+    y: 2,
     f1: function (x1, y1) { return x1 * y1; }, // or we can write it as:
-    f2(x1, y1) { return x1 * y1; },
+    f2(x1, y1) { return x1 * y1; }, // same as f2: f2(x1, y1) { return x1 * y1; }
     f3: (x1, y1) => x1 * y1,
  }
-
+-- POINT -> {x: 1, y: 2, f1: ƒ, f2: ƒ, f3: ƒ}
 
 -- Callback Function
 --- setTimeout(f, 2000); // Function f is called after 2000ms
 --- in browser CTRL+SHIFT+C -> choose element -> assigned in variable $0
----- $0.addEventListener("click", () { alert("I've been clicked"); f(); });
+---- $0.addEventListener("click", () => { alert("I've been clicked"); f(); });
 
 -- String Methods:
---- String s = "String1": Javascript will wrapt it in an object that has many methods such as toLowerCase()/toUpperCase()
+--- s = "String1": Javascript will wrap it in an object that has many methods such as toLowerCase()/toUpperCase()
 
 
 VSCODE:

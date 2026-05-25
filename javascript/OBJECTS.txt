@@ -15,7 +15,7 @@ Accessing Objects:
     name,                       // is equivalent to name:name (name: 'Mohamed')
     lastName,
     experience: 10,
-    [lastName]: 'xyz',          // is equivalent t0 Ahmed: 'xyz'
+    [lastName]: 'xyz',          // is equivalent to Ahmed: 'xyz'
     'military-service': true,
     skills: {
       skill1: 'HTML',

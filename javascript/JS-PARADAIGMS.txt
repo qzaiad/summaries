@@ -1,0 +1,59 @@
+ال Paradigms هو أسلوب لكتابة الكود (Style of code) لتحقيق أعلى كفاءة ممكنة.
+-- read like PARADAIM
+- We should use:
+-- Pure Functions: equivalent to const functions in C/C++ -> depends only on parameters and DOES NOT modify them
+-- Composition Functions: like lego -> compsite functions to build bigger functions
+-- Higher Order Functions:
+--- input: function & parameters
+--- output value or array/object
+
+- Arrow functions have no this
+قيمة "this" تعتمد على سياق تنفيذ الكود وكيف تم استدعاء الدالة التي يتم تنفيذها. كما أنها لا تأخذ قيمتها من المكان الذي تم تعريف الدالة (Function) فيه بل المكان الذي تم استدعاء الدالة (Function) فيه.
+
+
+bind
+هي دالة مدمجة في JavaScript تُستخدم لربط دالة بكائن معين كقيمة "this".
+
+تُستخدم عادةً لحل مشكلة فقدان قيمة "this" داخل الدوال في سياقات معينة. تُستخدم bind عندما تريد ان تحدد الكائن (Object) الذي تريد ربط this به.
+
+n = {
+  firstName: "Ali",
+  lastName: "Fathy",
+  fullName: function() {
+    console.log(this.firstName + " " + this.lastName);
+  }
+};
+
+var printFullName = person.fullName;
+printFullName();    // سيُظهر undefined
+
+في المثال أعلاه عند استدعاء ()printFullName، يتم فقدان قيمة "this" داخل الدالة ويتم تفسيرها على أنها "undefined". لحل هذه المشكلة، يمكن استخدام "bind" كما يلي:
+var printFullName = person.fullName.bind(person);
+printFullName(); // سيطبع: "John Doe"
+
+
+var person = {
+  name: "Ali",
+  sayName: function() {
+    console.log(this.name);
+  }
+};
+var func = person.sayName.bind({ name: "Ahmed" });
+func(); -> prints Ahmed
+
+
+
+
+- ES6 classes:
+    class Person {
+    constructor(firstName, lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+
+    getFullName() {
+        return `${this.firstName} ${this.lastName}`;
+    }
+    }
+
+

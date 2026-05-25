@@ -6,7 +6,7 @@
 - In functions:
 -- variables of primitive types are passed by value
 -- objects are passed by reference
--- library lodash (lodash.com) contains many auyilary functions such as cloneDeep()
+-- library lodash (lodash.com) contains many auxilary functions such as cloneDeep()
    which copies objects by value for all levels, i.e. considering objects in objects
 
 
@@ -42,11 +42,23 @@ person1 = person2;
 console.log(person1 === person2); -> true -> same memory addresses
 
 // ... is called spread operator (similar to Object.freeze() only for the first level)
-// implement a function the deep-clones objects, i.e. normal asignment for primitive type, and use spread-operator if type is object, or use existing libraries such as lodash::cloneDeep() -> lodash.com -> search for clone
+// implement a function that deep-clones objects, i.e. normal assignment for primitive type, and use spread-operator if type is object, or use existing libraries such as lodash::cloneDeep() -> lodash.com -> search for clone
 
 person2 = { ...person1, skills: { ...person1.skills } };
 // person1 = Object.assign({}, person2) // assign person2 to a new object {} & assign address to person1
+// person2.skills is copied by reference so that person1.skills === person2.skills
+------------------------------------------------------
+const target = { a: 1, b: 2 };
+const source = { b: 4, c: 5 };
 
+const returnedTarget = Object.assign(target, source);
+
+console.log(target);
+// Expected output: Object { a: 1, b: 4, c: 5 }
+
+console.log(returnedTarget === target);
+// Expected output: true
+------------------------------------------------------
 
 console.log(person1 === person2);
 
