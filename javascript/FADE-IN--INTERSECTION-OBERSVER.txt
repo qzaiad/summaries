@@ -1,0 +1,13 @@
+- Intersection Observer API
+-- it observes DOM elements, when they
+--- enter the viewport
+--- leave the viewport
+
+const options = {
+  root: document.querySelector("#scrollArea"),  // if not given -> default is viewport
+  rootMargin: "0px",
+  scrollMargin: "0px",
+  threshold: 1.0,   // only if 100% of the observed object is visible -> call callback
+};
+
+const observer = new IntersectionObserver(callback, options);

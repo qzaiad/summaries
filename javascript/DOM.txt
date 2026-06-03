@@ -65,25 +65,17 @@ DOM: Document Object Model
 -- TextContent: This retrieves and sets the content of the tag as plain text. It’s most effective when you want to see what’s in an element, including hidden text.
 
     <div id='blog test'>
-
     This element is <strong>strong</strong> and     has some super fun <code>code</code>!
-
     </div>
 
     const getValue = document.getElementById('blog-test');
-
     getValue.innerHTML
-
     This element is <strong>strong</strong> and has    some super fun <code>code</code>!
 
-
     getValue.innerText
-
     This element is strong and has some super fun code!
 
-
     getValue.textContent
-
     This element is strong and     has some super fun code!
 
 - element.insertAdjacentText(position, text)

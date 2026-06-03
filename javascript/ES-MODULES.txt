@@ -1,0 +1,184 @@
+الوحدات (Modules) في لغة الجافا سكريبت (JavaScript) هي طريقة لتنظيم وتجزئة الكود إلى ملفات منفصلة بهدف جعل الكود أكثر تنظيمًا وإعادة استخدام. حيث أنها تساعدك على مشاركة الكود بين الملفات المختلفة. ولكي تصل للبيانات (Data) الخاصة بالوحدات (Modules) نستخدم import و export.
+
+- caniuse.com: checks which browser support which feature
+-- for example search for ES Modules
+
+- scripts that use modules should have type="module"
+    <script type="module" src="module.js"></script>
+
+- Code which should be imported by others MUST be marked for export.
+- How to export code:
+
+-- Default Export: يمكنك تصدير وحدة واحدة كافتراضي من كل ملف. عند استيراد الوحدة، يمكنك إعطاء اسم مختلف لها. مثال:
+--- math.js: export default function add(a, b) { return a + b; }
+--- main.js: import customAdd from './math.js';   console.log(customAdd(2, 3)); // ستطبع 5
+---- In default export you can give another name for the imported function/variable
+
+-- Named Exports: يمكنك تصدير متغيرات أو دوال معينة باستخدام الكلمة الرئيسية export. عند استيراد الوحدة، يجب استخدام نفس الاسم الذي تم تصديره.
+--- utils.js: export function multiply(a, b) { return a * b; }
+              export const PI = 3.14159;
+--- main.js: import { multiply, PI } from './utils.js';
+             export { multiply } from './utils.js'; // -> Reexporting function
+
+- This is the cleanest for to export
+--- math.js: function add(a, b) { return a + b; }
+             function mul(a, b) { return a * b; }
+             const PI = 3.14159;
+             export {
+             add,
+             mul,
+             PI,
+             };
+
+- we can mix default and named exports:
+             export {
+             add,
+             mul,
+             };
+
+             export default PI;
+
+             import PI, {add, mul} from ''./utils.js; // here PI can by any name, because it is variable here
+
+
+    import PI, {add as addMethod, mul as mulMethod} from ''./utils.js; // here PI can by any name, because it is variable here
+
+    import * as util from ''./utils.js; // here PI can by any name, because it is variable here
+    util.add(4, 5);
+    util.default; // is the default export, here util.PI
+
+
+- On Demand Import
+في ال ES Modules في الجافا سكريبت، يمكنك استخدام "On Demand Import" أو "Dynamic Import" لاستيراد وقت الحاجة فقط أي استيراد وحده تحتاجها في وقت تنفيذ البرنامج بدلاً من استيرادها مسبقًا في بداية البرنامج. هذا يتيح لك تحميل الوحدات حسب الحاجة، مما يقلل من وقت التحميل الأولي واستهلاك الموارد ويساعد في تحسين أداء التطبيقات.
+
+Example: There is a button with cals="say-hi-link"
+    const sayHiLinkButton = document.querySelector('.say-hi-link');
+    sayHiLinkButton.addEventListener('click', async (event) => {
+      const {add:addMethod, mul:mulMethod, default:INITIAL} = await import('./utils.js'); // import add from utils and rename it to addMethod...
+
+      or
+
+      const util = await import('./utils.js');
+      util.add()...
+    }
+    )
+
+-----------------------------------------------------------------------------
+
+Bundlers
+ال Bundlers في الجافا سكريبت هي أدوات تستخدم لجمع وإدارة والمكتبات (libraries) المختلفة التي يحتاجها تطبيق الويب الخاص بك. تعتبر عملية bundling مهمة في تطوير الويب حيث تقوم بجمع ملفات الجافا سكريبت والأنماط (CSS) والصور والمكتبات وتحويلها إلى ملف واحد أو عدة ملفات صغيرة يمكن تضمينها في صفحة الويب الخاصة بك.
+
+ما هي مميزات ال Bundlers؟
+تُساعد في تقسيم الكود على شكل Modules.
+تُساعد عمل دعم للميزات (Features) الجديدة.
+تُساعد في تحويل ال Preprocessors مثل Sass إلى CSS.
+إزالة الكود الغير مستخدم (Dead code elimination).
+تقوم بعمل تصغير الكود (Minification)، وتقوم بتغيير أسماء المتغيرات (Variables) الي اسماء أصغر وهذه العملية تسمى Uglify.
+تقليل حجم الصور لكي تناسب الموقع.
+من أشهر ال Bundlers هي:
+Webpack
+Parcel
+Rollup
+Vite.js
+
+-----------------------------------------------------------------------------
+
+- parceljs.org
+-- Get Started -> Building a web app with parcel -> follow instructions to install it
+--- create a new Git repository, install dependencies, and setup a few source files you can modify.
+  npm create parcel vanilla my-parcel-app
+  cd my-parcel-app
+  npm start
+
+--- in the project directory execute:
+      npm install --save-dev parcel -> this did not work on my notebook until i shutdown VPN
+--- this will add node_modules/ folder with many modules in your project
+--- node_modules/* modules/libraries are not sent to client -> project size will not increase
+--- open root_directory/package.json
+---- "devDependencies" contains parcel -> means that it is used only in development. files will not be sent to client
+----- --save-dev: Add the package to the devDependencies section of package.json.
+----- --save-dev: Add the package to the dependencies section of package.json.
+---- "dependencies" contains everything needed for the production (sent to client)
+
+--- parcel has a development server built in, which will automatically rebuild your app as you make changes.
+    To start it, run the parcel CLI pointing to your entry file:
+
+---- npx parcel entry_file (such as src/index.html) -> this builds the final project (sent to client)
+----- in unexplainable errors (normally after bug fixes) -> delete .parcel-cache directory from the root directory
+
+- There is a better way than executing parcel by "npx parcel entry_file":
+-- open package.json
+  {
+    "name": "starter",
+    "version": "1.0.0",
+    "description": "",
+    "source": "index.html", // -> entry point -> see "scripts.start"
+    "scripts": {
+      "start": "parcel", // starts dev environment (e.g. starts server on localhost) -> on terminal: npm run start OR nom start
+                         // assure that entry point it correctly configured -> see "source"
+      "build": "parcel build" // makes final project for production -> on terminal: npm run build
+    },
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+      "eslint": "^8.35.0",
+      "eslint-config-airbnb-base": "^15.0.0",
+      "eslint-plugin-import": "^2.27.5",
+      "parcel": "^2.9.3"
+    },
+    "dependencies": {
+      "isomorphic-dompurify": "^1.7.0",
+      "lodash": "^4.17.21"
+    }
+    "browserslist": "> 0.5%, last 2 versions, not dead",
+  }
+
+- npm run build:
+-- before running command remove dist folder
+-- create a folder called dist, which contains the final project with all files (.html/.css/.js/.map/images...)
+-- each filename contains some hash information
+-- there is a npm library called serve -> executing serve dist executes the final project
+
+-- browserslist: use it to decide which browsers your app should support
+--- not dead: exclude dead browsers such as IE
+--- > 0.5%: Support browsers with more than 0.5% global market share
+--- last 2 versions: This helps ensure users on recently updated browsers are covered.
+
+-----------------------------------------------------------------------------
+
+Bundlers – Unique Identifiers
+
+- npm i -g serve (or http-server): -> this did not work on my notebook until i shutdown VPN
+-- i: shortcut for install
+-- -g: global -> level of the entire device
+
+- the final product contains hashes (unique ids) in filenames.
+  each time the file's content changes -> after building the project,
+  some files are cached & not reloaded every time.
+  the filename will get a new hash. On loading website, the browser see that
+  the filename has been changed and will invalidate cache & will reload the
+  website
+
+-----------------------------------------------------------------------------
+
+- lodash.com:  modern JavaScript utility library delivering modularity, performance & extras.
+-- a library contains auxilary modules such as Math/Array/Collection/Date/....
+
+
+How Node resolves:
+
+import * as ld from "lodash";
+
+Node (or your bundler like Parcel/Webpack) follows this process:
+Looks for "lodash" in your node_modules folder
+
+Finds:
+  node_modules/lodash/package.json
+  Reads the "main" field inside it, usually:
+
+{
+  "main": "lodash.js"
+}
+
+Loads the actual file:
+node_modules/lodash/lodash.js

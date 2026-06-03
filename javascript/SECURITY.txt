@@ -1,0 +1,85 @@
+- Don't trust client side: Don't publish sensitive info
+-- imagine a website contains Products with prices. The user can modify the price from the browser
+   and buy the products cheaper
+-- Solution 1: take prices from server -> bad UX because it is slow
+-- Solution 2: verify order on the server. If a modification is detected -> use server prices
+
+- Don't use auth. info such as password directly in code
+
+---------------------------------------------------------------------
+
+Don't trust user input:
+- user give html code in input. If .innerHTML = input is used -> html code will be executed
+-- e.g. <style> * {display:none} </style>
+
+-- <script> alert('XXXX') </script>
+--- browser can catch it and will not execute code, BUT user can exedcute it by
+--- <img src="" ... onload="alert('XXXX')">
+--- <img src="" ... onload="localStorage.clear()">
+
+- This is called XSS attack -> Cross Site Scripting
+- See also SQL injection
+
+- Protection: Avoid using innerHTML -> user innerText
+
+- purify = يُنقّي
+- sanitize = عقم
+- If the user still wants to write html code -> use dompurify library
+-- https://www.npmjs.com/package/dompurify
+--
+
+
+---------------------------------------------------------------------
+
+localStorage is a built-in Web Storage API in JavaScript that lets a website store small amounts of data directly in the user's browser.
+
+Key Characteristics
+Persists after browser restarts (unlike sessionStorage).
+Stores data as key-value pairs.
+Values are stored as strings.
+Data is specific to a website's origin (protocol + domain + port).
+Typically allows around 5–10 MB of storage per origin (varies by browser).
+
+    localStorage.setItem("username", "Alice");
+
+    const username = localStorage.getItem("username");
+    console.log(username); // Alice
+
+    localStorage.removeItem("username");
+
+    localStorage.clear();   // clear everything
+
+- Store an Object:
+    const user = {
+        name: "Alice",
+        age: 25
+    };
+
+    localStorage.setItem("user", JSON.stringify(user));
+
+- Retrieve an Object
+    const user = JSON.parse(localStorage.getItem("user"));
+    console.log(user.name); // Alice
+
+- Listening for Changes Across Tabs
+    window.addEventListener("storage", (event) => {
+    console.log(event.key);
+    console.log(event.oldValue);
+    console.log(event.newValue);
+    });
+
+    This event fires in other tabs of the same website when localStorage changes.
+
+- Modern Example
+    const settings = {
+    theme: "dark",
+    language: "en"
+    };
+
+    localStorage.setItem("settings", JSON.stringify(settings));
+
+    const savedSettings =
+    JSON.parse(localStorage.getItem("settings")) || {};
+
+    console.log(savedSettings.theme);
+

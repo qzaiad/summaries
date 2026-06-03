@@ -1,0 +1,35 @@
+
+- sudo apt upgrade nodejs // update nodejs
+- npm init
+- npm i vite -D // or --save-dev
+
+    {
+    "name": "qurantab-landing-page",
+    "version": "1.0.0",
+    "description": "",
+    "main": "script.js",
+    "scripts": {
+      "start": "vite",
+      "build": "vite build"
+    },
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "vite": "^8.0.16"
+    }
+    }
+
+- I could not start vite on my notebook:
+
+You are using Node.js 18.19.1. Vite requires Node.js version 20.19+ or 22.12+. Please upgrade your Node.js version.
+file:///home/abuahmad/git/almdrasa/qurantab-landing-page/node_modules/vite/dist/node/cli.js:541
+                                this.dispatchEvent(new CustomEvent("command:!", { detail: command }));
+                                                       ^
+
+ReferenceError: CustomEvent is not defined
+    at CAC.parse (file:///home/abuahmad/git/almdrasa/qurantab-landing-page/node_modules/vite/dist/node/cli.js:541:28)
+    at file:///home/abuahmad/git/almdrasa/qurantab-landing-page/node_modules/vite/dist/node/cli.js:834:5
+    at ModuleJob.run (node:internal/modules/esm/module_job:195:25)
+    at async ModuleLoader.import (node:internal/modules/esm/loader:336:24)
+
+Node.js v18.19.1 ----> I could not update Node.js on my notebook
