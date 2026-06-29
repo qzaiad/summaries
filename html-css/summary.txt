@@ -1,0 +1,145 @@
+Block elements designed to structure pages vertically
+- display: block;
+-- Starts on a new line
+-- Takes up the full available width of its parent (by default)
+-- Respects width and height
+-- Allows margin and padding on all sides
+
+Inline elements flow horizontally with the surrounding content rather than starting on a new line.
+- display: inline;
+- Width and height are ignored
+- vertical margin does not push other elements
+
+Inline-Block elements: Sits next to other elements (like inline)
+- display: inline;
+- Allows width and height (like block)
+- Respects padding and margin fully
+
+
+- margin: 0 auto; -> add margin from left & right so that the content is centered
+- margin-top: -6rem; -> negative margin -> position myself 6rem towards top
+
+- text-align controls how inline content is horizontally aligned inside a block-level container.
+- It does not move the container itself - only the text (and inline elements like span, img, inline-block elements) inside it.
+-- it affects inline text, <span>, <a>, inline images, inline-block elements
+-- it does not affect Block positioning (div, layout boxes), Flexbox alignment
+   (use justify-content, align-items) and Grid positioning (use grid alignment properties)
+-- text-align: center; -> center content
+-- text-align: justify; -> This spreads words so both left and right edges align:
+--- Hello     world     this     is
+
+overflow property controls what happens when the content inside an element is bigger than the element's box (width/height).
+- Think of it as: What should the browser do if content doesn't fit?
+- Values:
+-- visible
+-- hidden
+-- scroll
+-- auto: Scrollbars appear only if needed
+
+---------------------------------------------------------------
+
+display: none; -> when you want the element gone from the page layout.
+
+opacity: 0; visibility: hidden; -> when you want the element hidden but still present, especially if you're creating fade animations.
+
+| Property                         | Visible?  | Takes Space? | Clickable? | Animatable?   |
+| -------------------------------- | --------  | ------------ | ---------- | ------------- |
+| `display: none`                  | ❌        | ❌            | ❌          | ❌             |
+| `opacity: 0`                     | ❌        | ✅            | ✅          | ✅             |
+| `visibility: hidden`             | ❌        | ✅            | ❌          | Limited       |
+| `opacity: 0; visibility: hidden` | ❌        | ✅            | ❌          | ✅ (`opacity`) |
+
+
+margin    : 0 auto; -> Centers a block element itself inside its parent.
+text-align: center; -> Centers inline content inside a container.
+
+
+position: absolute removes an element from the normal page layout
+          and lets you place it at an exact position using top, right,
+          bottom, and left relative to its nearest positioned ancestor سلف.
+          A positioned ancestor is an ancestor whose position is:
+          relative, absolute, fixed, or sticky.
+          - If no positioned parent exists -> relative to the page (viewport) -> top-left corner
+          - Usually used with parent.position: relative -> creates a positioning reference
+            for the absolute child
+
+| Position Value | Behavior                                               |
+| -------------- | ------------------------------------------------------ |
+| `static`       | Default positioning                                    |
+| `relative`     | Stays in place but can act as a reference for children |
+| `absolute`     | Removed from normal flow and positioned precisely      |
+| `fixed`        | Positioned relative to the viewport                    |
+| `sticky`       | Switches between relative and fixed behavior           |
+
+---------------------------------------------------------------
+
+CSS Combinators:
+
+- Descendant أحفاد combinator (space):
+-- matches all elements that are descendants (children, grandchildren, etc.) of a specified element.
+-- div p { background-color: yellow; } -> selects all <p> elements inside <div> elements
+
+- Child combinator (>)
+-- selects all elements that are direct children of a specified element
+-- div > p { background-color: yellow; } -> selects all <p> elements that are direct children of <div>
+
+- Next sibling combinator (+)
+-- select an element that is directly after a specific element.
+-- Sibling elements must have the same parent element.
+-- div + p { background-color: yellow; } -> selects the first <p> element that immediately follows a <div>, and share the same parent
+
+- Subsequent-sibling combinator (~)
+-- selects ALL elements that are next siblings of a specified element
+-- div ~ p { background-color: yellow; } -> selects all <p> elements that are next siblings of <div>, and share the same parent
+-- like +, but it selects all siblings
+
+---------------------------------------------------------------
+
+Pseudo-class vs Pseudo-element in CSS
+
+Both start with a colon, but they serve different purposes.
+
+Feature	Pseudo-class	Pseudo-element
+Purpose	Selects a special state of an existing element	Selects or creates a part of an element
+Syntax	:hover, :focus, :first-child	::before, ::after, ::first-line
+Changes	Which element is selected	Which part of the element is styled
+Creates content?	No	Some can (::before, ::after)
+
+---------------------------------------------------------------
+
+CSS Selectors:
++ := adjacent sibling combinator
+
+.lights-input:checked + .lights-label: if .lights-input is checked -> select adjacent sibling .lights-label
+
+.lights-input:checked + .lights-label:after
+
+.column:nth-child(2): Select any element with class column if it is the 2nd child of its parent.
+- Important: nth-child() Counts ALL Children. If second child has not class=column -> nothing is selected
+- That is select elementS that satisfy both conditions:
+-- Have class column
+-- Are the second child of their parent
+
+- .column:nth-child(odd) -> Every odd child    -> 1, 3, 5...
+- .column:nth-child(even) -> Every even child  -> 2, 4, 6...
+- .column:nth-child(3n) -> Every even child    -> 3, 6, 9...
+- .column:nth-child(n + 2) -> Every even child -> 2, 3, 4...
+
+
+:nth-of-type(): The CSS pseudo-class matches elements based on their position among siblings of the same type (tag name).
+
+.column:nth-of-type(2) -> selects to elements
+    <section>
+        <p class="column">1. Absatz (Typ: p)</p>
+        <p class="column">2. Absatz (Typ: p) ➔ GELBER HINTERGRUND</p>
+        <aside class="column">1. Infobox (Typ: aside)</aside>
+        <p class="column">3. Absatz (Typ: p)</p>
+        <aside class="column">2. Infobox (Typ: aside) ➔ GELBER HINTERGRUND</aside>
+    </section>
+
+
+.container:has(.lights-input:checked)
+- Select the .container only if it contains a checked .lights-input.
+
+.container:has(.lights-input:checked) .lights
+- Find a .container that contains a checked .lights-input, then style all .lights elements inside that container.

@@ -1,6 +1,8 @@
 VSCODE:
 - Extensions: search for @builtin -> e.g. disable Typescript (this will also disable javascript autocompletion)
 -- in settings.json add: "typescript.validate.enable": false,
+-- Todo by Gruntfuggly
+-- Auto Import by steoates
 
 
 const skillsH2 = document.querySelector('#skills .h2-heading');

@@ -61,6 +61,10 @@ The flex Property (in child element)
 
 -------------------------------------------------------------------------------------------
 
+flex: 1; "Ignore my natural width, let me grow, let me shrink, and give me an equal share of the available space."
+
+-------------------------------------------------------------------------------------------
+
 flex-basis → the item’s starting size
 flex-grow → how much it can grow to fill extra space
 flex-shrink → how much it can shrink when space is tight
@@ -181,4 +185,3 @@ https://codepen.io/Qassem-Abu-Ahmad/pen/vEGwpdj
 .item3 {
   background-color: blue;
 }
-
