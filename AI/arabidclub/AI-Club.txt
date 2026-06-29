@@ -1,0 +1,844 @@
+- video #1: كيف تصنع عرض تقديمي احترافي في دقائق — Gamma
+- gamma.app
+- On registeration: 400 credits. Each slide consumes 40 credits
+
+
+- video #2: كيف تكتب برومبتات فعّالة تعطيك نتائج أفضل
+كلمة “هاك” (hack) لها أكثر من معنى حسب السياق:
+
+في المجال التقني: تعني اختراق نظام أو جهاز كمبيوتر بشكل غير مصرح به، غالبًا بهدف الوصول إلى معلومات أو التلاعب بها.
+بشكل عام: يمكن أن تعني حيلة أو طريقة ذكية وسريعة لحل مشكلة أو إنجاز شيء بطريقة غير تقليدية.
+أحيانًا تُستخدم بشكل سلبي لتعني عمل شيء بطريقة بدائية أو غير متقنة.
+
+بالتالي، المعنى قد يكون إيجابي (حيلة ذكية) أو سلبي (اختراق أو تخريب)، حسب الاستخدام.
+- vague = غامض
+
+Prompting Hacks Table:
+1- Role-Playing:
+2- Providing Context: e.g. Developing IKEv2 RFC-7296...
+3- Few-Shot Prompting: give examples
+4- Specifying Output Format: e.g. List 3 strategies... in bullet points
+5- Step By Step Solutions: Explain step-by-step how to... - useful for intructional content
+6- Using constraints: Set lemitations like wore count or style - Summerize... in under 100 words
+7- Conditional Prompt: Use if then statements
+--- If someone is interested in ..., explain...
+--- Imagine/assume..., what would be the sequences
+8- Style and Tone Control (Tone of Voice = نبرة الصوت): Write a motivational/formal speech encouraging peaply to vote
+9- Iterative Refinement (صقل): That's good. Now make it more concise
+10- Chaining Prompt: Built upon previous answers to deepen the conversation - Use the strategies you listed, draft an actio plan for the next quartet
+11- Avoid Ambiguity: This improves repsponse quality
+12- Request Analogies (التشبيهات/مقارنات) - Explaing blockchain using a simple analogy - Aids understanding of complex topics
+13- Emphasizing Key Points: Highlight the most important steps in topic/file...
+14- Using System Messages: specify role and task
+تُعتبر رسالة النظام (System Message) بمثابة "بطاقة تعريف" أو "كتيب تعليمات" يتم إعطاؤه للذكاء الاصطناعي قبل بدء الحوار، لتحديد شخصيته، أسلوبه، وحدوده.إليك أمثلة توضح كيف تغير رسالة النظام استجابة الذكاء الاصطناعي لنفس السؤال:
+🛠️ المثال الأول: المساعد التقني الجادهنا نضع قيوداً تجعل الإجابة مباشرة وعملية.رسالة النظام: "أنت خبير تقني متخصص. إجاباتك يجب أن تكون دقيقة، على شكل نقاط، وخالية من المجاملات أو التحيات."سؤال المستخدم: "كيف أحمي هاتفي من الاختراق؟"رد الذكاء الاصطناعي:تفعيل التحقق بخطوتين (2FA).تحديث نظام التشغيل فور صدوره.تجنب الضغط على الروابط مجهولة المصدر.🎨
+المثال الثاني: المعلم الصبور للأطفالهنا نغير الأسلوب ليكون مناسباً لفئة عمرية معينة.رسالة النظام: "أنت معلم لغة عربية للأطفال في عمر 6 سنوات. استخدم لغة بسيطة جداً، الكثير من الإيموجي (رموز تعبيرية)، وشجع الطفل دائماً."سؤال المستخدم: "ما هو القمر؟"رد الذكاء الاصطناعي: "أهلاً يا بطل! 🌟 القمر هو صديقنا الجميل الذي يضيء السماء في الليل 🌙. هو يشبه الكرة الكبيرة ويدور حول أرضنا ليدخل السرور على قلوبنا! أنت ذكي جداً لسؤالك هذا! 🎈"⚖️
+المثال الثالث: المترجم المحترفهنا نحدد وظيفة محددة جداً (ترجمة فقط).رسالة النظام: "أنت مترجم من الإنجليزية للعربية. لا تشرح القواعد، فقط قدم الترجمة الصحيحة في سياق رسمي."سؤال المستخدم: "Translate: The meeting has been postponed."رد الذكاء الاصطناعي: "تم تأجيل الاجتماع."💡
+لماذا نستخدم رسالة النظام؟تحديد الشخصية: تجعل الذكاء الاصطناعي يتحدث كطبيب، مبرمج، أو حتى شخصية خيالية.ضبط النبرة: هل تريد الإجابة مضحكة، رسمية، أم مختصرة؟وضع الحدود: يمكنك إخباره: "لا تجب أبداً على أسئلة خارج نطاق الطبخ".
+
+15- Multi-turn Instructions: plan a sequence of instructions in one prompt - First, list.... Then, suggest solutions
+16- Specify the Audience: e.g. for someone with no technical background
+17- Language Translation: translate to arabic but keep the following words in english
+18- Using Negative Instuctions: Summerize... without mentioning any statistics
+19- Encouraging Creativity: Brainstorm innovative solutions for...
+20- Multiple Perspectives: Request to present different viewpoints - Discuss the pros and cons of...
+
+
+
+- video #3: كيف تبني موقع إلكتروني كامل بالذكاء الاصطناعي
+- lovable.app: vibe coding -> creates code for you. you can edit it, store it in github, publish it
+-- frontend & backend with database
+-- we can take a public project and remix it -> i.e. edit & extend it
+-- Pricing:
+--- free
+---- project will be public
+---- 5 daily credits, i.e. 5 promp message and 30 msgs per month
+
+- base44: similar to lavable but backend code ist not yours
+
+
+
+- claude.ai/new
+- Models:
+-- Opus
+--- (strongest & lowest model wrting codes, physics...)
+-- Sonnet (middle, good results)
+--- daily tasks
+-- Haiku (simple fast)
+--- writing emails....
+-- Extende Thinking
+
+- Supports many human languages
+
+- Artifact
+
+- follow on X
+-- Boris Cherny @ bcherny
+
+
+- video #15: كيف تبني تطبيقات مصغّرة وأتمتة بدون كود — Google Opal
+- search for "with google": experimental google -> https://experiments.withgoogle.com/
+- Code/Low-Code/No-Code
+- No-Code: such as scratch
+- Code:
+- Low-Code:
+
+Opal opal.withgoogle.com -> No-Code
+- Block Types:
+-- User Input:
+-- Generate:
+-- Output:
+
+- Blocks can be connected with each other to create a workflow.
+جوجل أوبال (Google Opal) هو منصة تجريبية مجانية ومبتكرة من مختبرات جوجل (Google Labs) تتيح للمستخدمين بناء تطبيقات مصغرة وسير عمل ذكي يعتمد على الذكاء الاصطناعي دون الحاجة لكتابة سطر برمجى واحد (No-Code AI Platform). [1, 2]
+تعتمد المنصة بشكل كامل على الأوامر النصية باللغة الطبيعية ونماذج Gemini المتقدمة لتحويل الأفكار إلى تطبيقات عملية في دقائق معدودة. [1, 2]
+## الميزات الأساسية لأداة Google Opal
+
+* تطوير بدون كود: تتيح للمبتدئين والمحترفين إنشاء تطبيقات ويب مصغرة عبر كتابة وصف بسيط للأداة المطلوبة فقط.
+* محرر سير عمل مرئي (Visual Workflow): يقوم النظام تلقائيًا بإنشاء مخطط مرئي يوضح خطوات عمل التطبيق (مخطط النودز)، مما يسهل تعديله وإضافة شروط منطقية.
+* مدعوم بنماذج Gemini: تستخدم المنصة ذكاء جوجل الاصطناعي لمعالجة النصوص، وتوليد الصور، وتلخيص البيانات، والترجمة.
+* مشاركة فورية: يمكنك نشر التطبيق الذي قمت بإنشائه ومشاركته عبر رابط مباشر ليستخدمه أي شخص يمتلك حساب جوجل. [1, 2, 3, 4, 5, 6, 7]
+
+## أمثلة على تطبيقات يمكن إنشاؤها
+
+* أدوات تلخيص مقالات وتقارير طويلة تلقائيًا.
+* مولدات للمحتوى التسويقي والمنشورات لمواقع التواصل الاجتماعي.
+* روبوتات دردشة مخصصة (Chatbots) أو أدوات تنظيم وإدارة المهام.
+* تطبيقات لتخطيط الوجبات، أو توليد الصور، أو تحليل البيانات. [2, 5, 8, 9]
+
+يمكنك تجربة الأداة واستكشاف معرض النماذج الجاهزة مباشرة عبر [موقع Google Opal الرسمي](https://developers.google.com/opal/quickstart). [6, 10]
+
+- book genre = نوع الكتاب
+
+
+- video #16: كيف تبني أتمتة WhatsApp ذكية لخدمة العملاء — ManyChat
+-- More plattforms: Glassix, CVB...
+AI intention: The AI tries to understand what does the client mean
+
+CRM stands for Customer Relationship Management.It refers to software that helps businesses track and manage all interactions with their customers and leads in one central place [finance].Instead of using messy spreadsheets, a CRM automatically organizes communication history, contact details, and sales pipelines so teams can work together efficiently.What does a CRM do?Tracks History: Saves every email, text, phone call, and WhatsApp message exchanged with a customer.Organizes Leads: Moves potential buyers through a visual pipeline from "New Lead" to "Paying Customer."Automates Tasks: Sends automated follow-up emails, assigns tasks to sales reps, and schedules reminders.Stores Profiles: Keeps client notes, purchase history, and personal preferences handy for the support team.How it connects to WhatsApp Bots (like Glassix or ManyChat)When you connect a WhatsApp bot to a CRM:The bot talks to the customer on WhatsApp.The bot automatically saves the customer's phone number and answers into your CRM.If a human agent needs to step in, they can look at the CRM to see the customer's entire history instantly.Popular Examples of CRM SoftwareHubSpot: Highly popular, user-friendly, and offers a great free tier for growing businesses.Salesforce: The industry giant, built for massive companies needing deep customization.Zoho CRM: A budget-friendly, feature-rich option for small to medium businesses.
+
+DM := Direct Message
+
+
+
+
+
+
+
+
+- video #18: كيف تنمّي حسابك على إنستغرام بالأتمتة الذكية
+- Rate1: Follower rate who watched my video
+- Rate2: Not-Follower rate who watched my video
+- What are the things that will make instagram publish my video
+
+-- Average Watch Time (very important):
+--- e.g. Video 30s -> Average Watch Time 25s ist very good,
+--- -> users want to watch my videos and want to stay in instragram
+--- Instagram does not look at the rate (in percentage) -> ony the duration matters
+
+-- Keywords (hashtags) - not really relevant
+
+-- Description: Helps AI to understand the video content
+--- let an AI help you writing a good description
+---- Prompt: I have in IG reel about google veo 3. suggest an IG reel description with relevant SEO keywords for maximum reach. Write the description in arabic with a starting hook
+
+-- Important: how many times the video has been shared
+-- Important: Reaction on the video: likes, writing comment
+--- use CTA (Call to Action)
+---- Automation can be used and force users to follow before they get more content
+---- app.manychat.com
+
+
+
+
+
+
+- video #26 2025.11.03: كيف تستخدم Claude باحتراف — من الأساسيات للميزات المتقدمة
+- Claude Skills
+- Models:
+-- Opus
+--- (strongest & lowest model wrting codes, physics...)
+--- optimal for complicated tasks which require deep thinking
+--- best for programming and advanced analysis
+--- best choice for big projects
+--- can deal efficiently with long and complicated context
+
+-- Sonnet (middle, good results)
+--- optimal trade-off between speed, good results, and price
+--- designed for daily tasks
+--- best choice for companies and business
+--- might answer most of our daily questions
+
+-- Haiku (simple fast cheapest)
+--- writing emails....
+--- optimal for big tasks, fast response, cheapest model, suitable for apps which require fast response
+--- example: what is the capital of germany
+-- Extende Thinking
+
+- Advanced Features:
+-- Projects:
+--- Use a separate context (chat) for each project/idea -> makes AI focus on your demands & requirements
+-- Artifacts (Alqita3 Alfanniyyah):
+--- Writes code, documents, create images: Results can be edited/modifed in real time
+-- Connectors:
+--- You can connect claude with your prefered tools/apps and make claude interacts with them
+-- Skills:
+--- Repeatable Cusomizable Instructions
+---- Example: Put my logo on a picture
+--- Claude can learn new skills based on your needs
+--- can execute tasks in your own special way
+--- Learning from your own examples:
+--- deep specialization: in how to analyse data, way of writing (nabrat alkitabah)
+--- instant execution in existing projects
+--- continuious development: improves after every interaction
+
+- MCP: Protocol that connects AI with externals apps
+
+- Prompt example for analyzing a csv file:
+-- Create an interactive visualization showing monthly revenue trends from the sales data, with a clean design and key insights
+-- Create a QR generator given a URL
+--- The QR does not appear
+-- Help me create a skill, where when I will upload an image, you will add this logo on the bottom right corner.
+
+
+
+أنشئ تصورًا تفاعليًا يُظهر اتجاهات الإيرادات الشهرية من بيانات المبيعات، بتصميم أنيق ورؤى رئيسية.
+
+- Claude Project:
+-- A project can contain
+--- Instructions: e.g. goal of project
+--- Files
+-- Project-Context (chat): considers all files and instructoins
+
+- concise: mojaz/mokhtasar
+- trands: ittijahaat
+- revenue: iradaat
+- key insights: أهم الأفكار
+- insights: رؤى
+
+
+
+
+هل وكيف نثق بالذكاء الاصطناعي؟
+- video #45
+
+- Free ChatGPT: can be used for training
+- Free Gemini: used for training
+- Free Claude: Not by default!!!
+- Paid ChatGPT: No!!!
+- Paid Gemini: No!!!
+- Paid Claude: No!!!
+
+- In ChatGPT: Temporary Chat = Incongito Mode
+- Switch Off Model-Training from Chats
+  1. Turn off “Improve the model for everyone”
+  Open ChatGPT settings
+  Go to Data Controls
+  Toggle off “Improve the model for everyone”
+
+- Perprexlity.ai: give trusted results (can be used in scientific research). But it is less creative thinking
+-- take the answer of chatgpt and put it in preplexity in order to evaluate ther results and get the ressorces
+
+- NotebookLM: is designed for scientific research and rewriting text
+
+- AI should criticize AI:
+-- Prompt: You are an expert. criticize following text strictly (بصرامة)
+-- Prompt: mention 3 inaccurate or incomplete points. Don't flatter (لا تجامل)
+
+- Prompt in Custom Instructions: 
+  At the end of each answer, which includes facts or numbers, add:
+  My Trust: [number/10]
+  Check the uncertain points uncertain points.
+
+- Color system for Trust
+-- Writing/Brainstorming -> Trust
+-- Number/Fact -> Verify for 10 seconds
+-- Health/Law/Money -> An Expert Verification
+
+- Practical Methods:
+-- Ask multigle AIs
+-- Self Criticiszing Prompt
+-- Ask Preplexity: Paste the result of one AI in preplexity and ask: Is that true?
+-- AI vs AI: Criticize this text strictly
+العادي يسأل ويثق 
+المحترف يسأل ويتحقق، يتحقق ب ١٠ ثواني، ويطلع بنتيجة أفضل 10x 
+
+في سياق الذكاء الاصطناعي، **“Custom Instructions” (التعليمات المخصّصة)** تعني الإعدادات أو التوجيهات التي يقدّمها المستخدم للنظام لكي يحدد **كيف يتصرّف النموذج** و**كيف يجيب** بشكل يناسب احتياجاته.
+
+بمعنى أبسط:
+هي طريقة لإخبار الذكاء الاصطناعي *“كيف أريدك أن تتحدث معي وتساعدني”*.
+
+### ماذا تتضمن عادةً؟
+
+* **معلومات عن المستخدم**: مثل الاهتمامات، مستوى الخبرة، اللغة المفضلة
+* **أسلوب الإجابة**: رسمي أو بسيط، مختصر أو مفصّل
+* **قيود أو تفضيلات**: مثل تجنّب مصطلحات معقدة، أو إعطاء أمثلة دائمًا
+
+### مثال:
+
+إذا كتبت في التعليمات:
+
+> اشرح لي الأمور التقنية بطريقة بسيطة وكأنني مبتدئ
+
+سيقوم الذكاء الاصطناعي دائمًا بمحاولة:
+
+* تبسيط الشرح
+* استخدام أمثلة
+* تجنّب التعقيد
+
+### لماذا هي مفيدة؟
+
+* توفّر الوقت (لا تحتاج تكرار نفس الطلب كل مرة)
+* تجعل الإجابات أكثر دقة وملاءمة لك
+* تعطي تجربة أكثر “شخصية”
+
+### الخلاصة:
+
+**Custom Instructions = إعدادات تتحكم في طريقة تفاعل الذكاء الاصطناعي معك، وليس فقط في محتوى الإجابة بل في أسلوبها أيضًا.**
+
+
+
+
+
+
+كيف تستخدم Claude Cowork كوكيل ذكي ينجز مهامك — ورشة عملية
+- video #44
+- Claude Cowork: e.g. open/organizes files
+- install: sudo snap install claude-ai-desktop
+  -> run: claude-ai-desktop&
+-- browse folders
+-- open & analyze many files
+-- order & classify files
+-- create new files: csv/word/excel...
+-- writing reports in pdf/excel...
+-- cowork runs on local host
+
+-- Example:
+--- Write Task:
+---- organize folder Downloads
+---- can be accessed remotely: open VSC and fix bug...
+--- Cowork would ask more questions -> answer them
+---- rename files in form of YYYY-MM-DD
+--- Choose folder and give cowork access rights
+---- @note: SECURITY BEFORE ANYTHING
+---- @note: CHAT WITH COWORK AND BE SURE THAT HE UNDERSTAND THE TASK
+---- @note: golden rule: do not delete/move important files without my permission
+---- @note: use a backuped folder or copy of it
+---- @note: ask for a plan before execution
+---- @note: ask for a permission before each modification/deletion
+---- @note: talk with cowork and do modification step by step
+--- observe execution
+--- if something went wrong -> direct cowork how to correct behaviour
+
+- In the sidebar -> Dispatch allows remote communication from claude app with your desktop
+
+- website: rent a human. An Agent can rent a humat, pay him money and ask him for example to buy for someone
+
+
+
+
+كيف تستخدم Claude Code من الصفر — ورشة عملية للمبتدئين
+- video #46
+- AI Agent: can execute tasks. E.g. in Addition to writing emails like chatgpt, an agent can write & send emails and even analyse incoming emails and reply to them
+- Claude Chat is a subset of Claude Cowork. Claude Cowork is a subset of Claude Code
+-- Claude < Claude Cowork < Claude Code
+-- Claude Cowork was built by Claude Code -> Target audience (Zielgruppe) ppl without technical background
+
+- Using Claude Code in VSC:
+-- download claude code from https://claude.com/product/claude-code
+
+--- Get Claude Code for Visual Studio Code:
+---- Launch VS Code Quick Open (Ctrl+P), paste the following command, and press enter.
+---- ext install anthropic.claude-code
+---- or install the extension Claude Code for VS Code
+
+--- Get Claude Code for Visual Studio Code in Terminal:
+---- Execute: curl -fsSL https://claude.ai/install.sh | bash
+      Location: ~/.local/bin/claude
+      Next: Run claude --help to get started
+
+--- On the right top click on claude symbol
+--- log in: (only for Claude Max or Pro
+---- Unfortunately the free account does not work
+--- On the bottom right we  can adjust the access mode:
+---- Ask before edits:    default
+---- Edit automatically:  will take decisions automatically 
+---- Plan mode: creates a plan and ask before starting implementing the plan
+---- Effort
+
+--- Prompt 1: create a tic tac toe game I can play
+--- Prompt 2: create a full fitness app that tracks my training, help me decide its features (Plan mode)
+--- Prompt 3: (in a separate context/tab): Research what happened with AI in the last 6 months and create a presentation in arabic about it
+
+
+- video #47: Info about the club
+
+
+كيف تحقق أول $1,000 من الذكاء الاصطناعي
+- video #48
+- Examples for Prices:
+-- Posts for dental practice: 12 posts/month
+--- time spent 4h -> 300$/month
+-- website for a lawyer: 5 pages + contact form
+--- time spent 6h -> 900$/month
+-- advertissing video for a restaurant: 30s + music
+--- time spent 3h -> 200$/month
+-- Chatbot for an insurance company: auto responses in arabic
+--- time spent 8h -> 750$/month
+ ___________________________________________________________________
+|Service             |    without AI          |    with AI          |
+|                    |                        |                     |
+|webpage             |    2500$ + developer   |    6 hours + Replit |
+|                    |                        |                     |
+|advertising video   |    2000$ + studio      |    3h + Google Flow |
+|                    |                        |                     |
+|monthly content     |    800$ + writer       |    4h + ChatGPT     |
+|                    |                        |                     |
+|12 designed posts   |    500$ + designer     |    2h + ManusAI     |
+ -------------------------------------------------------------------
+
+- replit.com online platform > write/run/share code directly in browser
+
+
+How to start:
+- Beginner - designed content (posts/articles) - 200$-800$/month - ChatGPT + ManusAI
+- Middle (after 3 customers) - website/videos - 300$-1200$/project - Google-Flow/Replit
+- Advanced - Automation/ChatBot - 500$-1500$/project - CustomGPTs/ManyChat
+
+Basic Tools:
+- ManusAI: design posts + graphics        -> one session needed for learning 
+- ChatGPT: texts/articles/strategies      -> multiple sessions
+- Replit: complete webpages from scratch  -> one session of vibe coding
+
+Advanced Tools:
+- Canva
+- ManyChat
+- ElevenLabs
+- Google Flow
+
+
+Freelance Websites:
+- khamsaat (written in arabic)
+- mustaqil (written in arabic)
+- upwork
+- Fiverr
+
+
+
+- video #49: Claude Code Skills + إنشاء فيديوهات باستخدام Claude Code
+
+Remotion is a framework that allows you to create videos using React. Instead of using traditional video editing software (like Premiere Pro or After Effects), you write code to define animations, layouts, and timing.🚀 Key FeaturesWeb Tech for Video: Use HTML, CSS, JavaScript, and React components to build scenes.Programmatic Content: Easily create dynamic videos (e.g., personalized ads, data visualizations, or automated social media posts).Browser Preview: It provides a "Player" in your browser to preview your video as you code, just like a website.High-Quality Rendering: It uses a headless browser (Chromium) to render your code into an MP4 or WebM file.
+
+- Google for: Claude Code Remotion Skill -> remotion.dev/docs/a/skills
+
+- install Remotion in vscode:
+-- go to console
+-- npx skills add remotion-dev/skills
+--- we get asked if to install the skill for the current project or for all projects
+
+- Prompt:
+
+Use remotion skill to create a 9:16 15-30 seconds video in a non formal arabic Palestinian accent on this topic:
+- the topic is about listening and obeying parents (بر الوالدين)
+- the first 5 seconds should have a viral hook # (yashid alintibaah)
+- use cool motion graphics
+- use cool animated text
+- use short-form video safe zones, so text should not be located too high up or too far down
+
+-- we can extend the prompt, e.g.:
+--- you can grab more content from here: [[website]]
+    use the "AAIC logo.png" (in current directory), and use its colours for the video
+
+
+- video #50: ما هو Claude Design — لقاء جماهيري مفتوح
+- High Fidelity = دقة عالية
+- Slide deck = مجموعة شرائح = x 3ard Taqdeeme
+- tone of voice = نبرة الصوت
+- tweak = تعديل
+- sprites = الرسومات المتحركة  (sprite-based animation)
+
+Set up your design system
+- give all information about the project
+
+
+
+- video #51:  ليش تصميمك عادي؟ — أساسيات التصميم + Claude Design
+- contrast = تباين
+
+Rules for a good design:
+1- Contrast: Objects should be clearly visible
+2- Hierarchy: Altasalsul Albasari -> وجه عين القارئ - لا تجعله يتشتت
+ -- The most important should be on the top right (RTL), because vision starts from there
+ --
+3- Focal Point نقطة الارتكاز أو التركيز
+ - نجم واحد على المسرح - والباقي كورال
+ - e.g. image focuses on one element (wolf)
+
+الكورال (Choral/Choir) هو مجموعة من المغنين (جوقة) يؤدون أغاني أو مقطوعات موسيقية بشكل جماعي، وغالباً ما تكون الأصوات متنوعة ومتناغمة. يُستخدم المصطلح أيضاً لوصف الموسيقى المكتوبة لهذه المجموعات، ويرتبط بالغناء المسرحي (الأوبرا) أو الديني، وأحياناً يعني حركة رقص جماعي منشِدة.
+
+4- comfortable - مريح - غير مزدحم
+لا تحش - دعه يتنفس
+
+5- Color Balance (10-30-60 Rule)
+- only 3 colors with specific rates
+- main object 60% - secondary 30% - accent 10% = Insijaam
+- more than 3 colors -> chaos
+
+6- Balance التوازن البصري
+- وزع الثقل البصري - لا تحش جهة وتفرغ الأخرى
+7- Alignment
+- خط وهمي واحد - واقول شيء يسير عليه
+
+8- Proximity القرب
+- The distance between the elements tells the story
+- close elements - are connected - قريب المرتبط - باعد المختلف. المسافة = معنى
+-- e.g. title & logo sohuld be close to each other
+
+9- Typography - الخطوط
+- 2 Fonts - with clear different sizes
+- 2 Fonts - difference in sizes is 4x -> very good
+
+10- Consistency - تناسق
+- if you do it once -> do it always with the same way
+- e.g. all designs have the same fonts, same colors, 2d or 3d
+
+- make it super well polished = اجعله مصقولاً بإتقانٍ فائق.
+
+
+
+- video #52: كيف تصنع كاروسيلات Instagram فيروسية باستخدام Claude Code
+- Carossel: a set of pics next to each other
+- Statistics: The first 3s of virtal to hook (yastaad) users (user will wait and will not skip the video)
+- What makes a carossel viral (VIRALITY BASICS):
+-- hook in the first 3s: first slide should wakes interest
+-- actual value: user should learn something
+-- each slides should make the user wants to see the next slide: content of slides should be corelated -> this affects the instagragma algorithm
+-- consistent design
+-- slides can be shared & saved -> this affects the instagragma algorithm
+-- clear CTA (Call to Action) at the end: last slide should tell the user what to do: follow me, share and like...
+- Carossel Formula: HOOK -> PROBLEM -> VALUE * 3 (3 SLIDES) -> PROOF (numbers/screenshot/real result) -> CTA
+
+- Canva 6 Photoshop:
+-- 2-3 hours for 10 slides
+-- 10$-15$ subscription
+-- copy/paste takes time
+-- one adjustment leads to adjust all slides
+
+- Claude Caude -> only HTML -> At the end create an img from HTML:
+-- 5-10 min for all slides
+-- only claude subscription
+-- claude unterstands arabic
+-- consistent design
+-- one adjustment will automatically adjust all slides
+
+-> Clear ROI (Return on Investment = عائد الاستثمار)
+- It is a key financial metric used to measure the profitability or efficiency of an investment. In simple terms, it tells you how much profit or loss you made on a project compared to the initial money you spent.
+-- Result: 10x faster + nos extra subscriptions
+
+- 5 Steps from Idea to publish
+-- magic prompt:
+Here is the text from the image:
+------------------------------------------------------------
+بذّي كاروسيل انستجرام لافت ومميّز — مش عادي ولا ممل. تصميم يوقّف السكرول من أول سلايد.
+المواصفات:
+
+الموضوع [جملة وحدة بتختصر القصة]
+الجمهور [مين بنحكي معه؟]
+عدد السلايدز [مثلاً 8]
+النسبة 1080×1350 (4:5)     (should not be changed)
+
+البنية
+
+Hook — سؤال أو جملة بتوقف الـ scroll
+Problem — الألم اللي بحسه الجمهور
+Value ×[n] — كل سلايد فكرة وحدة بقصة قصيرة
+Proof — نتيجة، رقم، أو before/after
+CTA — "الجملة الحرفية اللي بدك إياها"
+
+الستايل
+
+الألوان خلفية [#HEX1] + accent [#HEX2]
+الخط [Cairo / Tajawal / IBM Plex Sans Arabic]
+
+Typography (مقروء على الموبايل)
+
+Title 72–96px
+Body 44–48px
+Punch 58–110px (للـ outcome lines)
+
+Spacing
+
+Padding فوق 100–130px
+Padding تحت 140–200px
+بين العنوان والنص 40–60px
+
+القواعد
+
+RTL. أرقام إنجليزية (1، 2، 3)
+أسماء البراندات بالإنجليزي
+قصص مش bullet lists
+سطر واحد لكل فكرة — ممنوع فقرات
+ممنوع نص إنجليزي زخرفة
+------------------------------------------------------------
+
+Tips 6 Pitfalls (Fallen Masyadah): Do & Don't Do
+- Do:
+-- build a template only once:
+--- specify color/font/layout...
+-- conversation & not only one command
+--- make 3 copis, I like the second variant, sammerize the result
+-- review & adjust
+-- try variations on the same topic
+--- do 3 copies of hooks/layouts
+
+- Don't do:
+-- Don't publish without review
+-- Avoid generic prompts
+-- Avoid long paragraphs: each slide should have 1-2 lines. audience browse fast
+-- Don't forget CTA
+
+- Difference between Reals & Carossel
+-- Carossels target firstly your contacts and then non-friends
+-- Reals target firstly non-friends and then your contact
+
+- Sometimes claude will export slides in different font.
+- write in prompt to assure that the right prompt is used on export
+
+
+
+- video # (25.05.2026): ChatGPT Image 2.0 — استكشاف عملي لنموذج الصور الجديد
+- merch = بضائع ترويجية
+- mockup image = صورة نموذج أولي
+
+
+- https://chromewebstore.google.com/detail/ai-toolbox-folders-prompt/jlalnhjkfiogoeonamcnngdndjbneina?utm_source=website&utm_medium=button&utm_campaign=install
+-- removes watermark from images on downloading them
+
+- video #52 2026.06.08:بناء وكلاء ذكاء اصطناعي أذكياء باستخدام Base44
+- Example for agents: Microsoft Copilot, Claude Projects, Custom GPTs, Google Gems
+- Orchestrator = المُنسِّق
+- niche = المكانة
+- mainstream = التيار السائد
+- base44.com
+-- super agents: e.g. twice a day, check flight from tlv to dus and alert me when the prices drop 10% vs the last 7 days,...
+- Question by a user: what is odysseus ai?
+أوديسيوس إيه آي (Odysseus AI) هي بيئة عمل ذكاء اصطناعي مجانية، مفتوحة المصدر، وقابلة للاستضافة الذاتية. أطلقها صانع المحتوى الشهير PewDiePie (تحت اسم pewdiepie-archdaemon على منصة GitHub) في يونيو 2026.تم تصميم هذه الأداة لتوفر للمستخدمين تحكمًا كاملًا في بياناتهم من خلال تشغيل نماذج الذكاء الاصطناعي محليًا على أجهزتهم أو على خوادمهم الخاصة.أبرز الميزات والوظائفخصوصية تامة: تظل المحادثات والملفات والبيانات على خادمك الخاص دون مشاركتها مع الشركات الخارجية.واجهة مألوفة: تصميم مستوحى من المنصات الشهيرة مثل ChatGPT و Claude لتسهيل الاستخدام.أدوات متقدمة: تدعم الأداة عملاء الذكاء الاصطناعي المستقلين (Agents)، البحث العميق، ومحرر مستندات مدمج.دعم الأنظمة: يمكن تثبيتها بسهولة عبر تقنية Docker على أنظمة ويندوز، ماك، ولينكس.التشغيل والاستضافةينصح المشروع بتشغيل الأداة على خادم افتراضي خاص (VPS) لتجنب استهلاك موارد الكمبيوتر الشخصي وضمان استمرار عملها، حيث يتوفر خيار التثبيت بضغطة زر واحدة عبر الشركات المستضيفة الشريكة. يكمن الكود المصدري للمشروع على مستودع GitHub الخاص بـ pewdiepie-archdaemon.هل تود الحصول على خطوات التثبيت باستخدام Docker، أم ترغب في معرفة المواصفات التقنية المطلوبة لتشغيلها؟
+
+- video #53 01.07.2025: كيف تبني تطبيق كامل بدون كتابة كود — Base44
+- ai-toolbox.co: ai apps (browser extentions) from muhammad alesawe
+- Stages of Building Apps:
+-- Specification of Idea and Planning
+-- Developing MVP: Minimal Valuable Product -> First Prototype
+-- Implementing it in Base44/Lovable
+-- Add advanced Features
+-- Integration with external services
+-- Testing & Continuous Improvement
+-- Itlaaq almuntaj
+
+- example prompt: An AI powered blog editing tool
+
+- What does copywriting in webpage context mean?
+كتابة النصوص الإعلانية والتسويقية (Copywriting) في سياق صفحات الويب هي فن صياغة نصوص مقنعة وموجهة لحث زوار الموقع على اتخاذ إجراء محدد (مثل الشراء، أو التسجيل، أو تحميل تطبيق). تهدف هذه النصوص إلى توجيه رحلة العميل، بناء الثقة، وتحويل الزوار إلى عملاء فعليين.تشمل العناصر الأساسية لكتابة نصوص الويب:عناوين جذابة (Headlines): لجذب انتباه الزائر فور دخوله الصفحة.نصيحة الزر (Call to Action - CTA): توجيهات واضحة مثل "اشترك الآن" أو "ابدأ تجربتك المجانية".بيان القيمة (Value Proposition): توضيح مباشر للفوائد التي سيحصل عليها المستخدم.بساطة وسهولة القراءة: نصوص مصممة لتُقرأ بسرعة عبر الشاشات وتتوافق مع قواعد محركات البحث (SEO).
+
+- landy-ai.com: landing page creator fro muhammad alesawi -> very interesting to see
+
+
+- video 2025.06.22 #: كيف تبني وكيل AI يعمل لوحده — أمثلة عملية مع Manus AI
+-- Plan
+
+
+
+- video #  2026.06.15: VSC
+-- .md files: Markdown
+--- golden rule: on file for each idea
+
+
+
+
+
+
+- video #  2026.06.22: الاستعانة بالذكاء الاصطناعي لإيجاد فرص عمل مناسبة
+-- sprint = عدو سريع
+-- Portfolio: المقصود بكلمة بورتفوليو (Portfolio) بشكل عام هو "محفظة" أو "ملف" يحتوي على مجموعة مختارة من الأعمال، الإنجازات، أو الأصول الماليّة التي تم جمعها لغرض محدد. أصل الكلمة لاتيني ويعني "حقيبة الأوراق".
+2. في المجال المهني والإبداعي (Professional Portfolio)ملف الأعمال: هو معرض أو مجلد يضم أفضل أعمال المبدعين مثل المصممين، المصورين، المهندسين المعماريين، أو المبرمجين. يستخدمونه كبديل أو كإضافة للسيرة الذاتية (CV) لإثبات مهاراتهم وخبراتهم عمليًا أمام أصحاب العمل.
+
+ If you apply online for a job -> there is a process that will auto check the cv anf filter only the matching CVs
+- keywords are very IMPORTANT for the filter process. For instance, if the job description mentions frontend, mongo DB and CSS, then my CV SHOULD INCLUDE these key words in order to increase the chance to bypass the filter process and to forward the CV to a human.
+-- if there are two jobs, one with react and the second with tailwind, then I should generate to CVs with twp different sets of keywords.
+
+- ATS system:
+نظام ATS (أو Applicant Tracking System) هو نظام إلكتروني لإدارة وتتبع المتقدمين للوظائف، وتستخدمه الشركات لتنظيم وأتمتة عملية التوظيف بالكامل.كيف يعمل نظام ATS؟جمع البيانات: يستقبل السير الذاتية ويرتبها في قاعدة بيانات موحدة.الفحص الآلي: يقرأ السير الذاتية ويبحث عن الكلمات المفتاحية المطلوبة للوظيفة.التصفية والترشيح: يستبعد الملفات غير المطابقة للشروط الأساسية تلقائياً.الترتيب والتصنيف: يمنح المتقدمين درجات توافق بناءً على مهاراتهم وخبراتهم.أهمية النظام للشركاتتوفير الوقت: يقلل الجهد المبذول في قراءة مئات السير الذاتية يدوياً.تنظيم التواصل: يرسل رسائل قبول أو رفض تلقائية للمرشحين.تخزين البيانات: يحتفظ بملفات المتقدمين للرجوع إليها في وظائف مستقبليّة.نصائح لتجاوز فحص نظام ATSالكلمات المفتاحية: استخدم مصطلحات مأخوذة مباشرة من الإعلان الوظيفي.البساطة: تجنب التصاميم المعقدة، الصور، والجداول في سيرتك الذاتية.الصيغة المناسبة: احرص على حفظ الملف بصيغة PDF أو Word القياسية.العناوين الواضحة: استخدم مسميات تقليدية مثل "الخبرات المهنية" و"التعليم".
+
+- Rules for a golden CV:
+-- Do not put your foto: This might leave a preconceived opinion (رأي مسبق)
+-- CV shold consist of only ONE PAGE.
+-- Should be readable with many spaces -> easy to read & understand by the human
+-- Simple format, black & white without decor (ديكور) -> PDF
+-- sohuld not contain tables
+-- Must contain KEYWORDs mentions in the job description
+-- Repeat and improve (interaction with AI)
+
+- DO NOT USE THE INTERACTION VOICE MODE (Chat Bubble) -> IT USES A WEAK MODEL TO GENERATE ASNWERS
+- USE THE DICTATE MODE -> it only convert speech to text
+
+
+- Don't put you age in the CV. The goal is to bypass the ATS and to get to the first interview. Imagine you wrote age 50. The ATS or human might refuse to complete reading the CV.
+
+
+
+--------------------------------------------------------------------------------------------------------------
+Prompt:
+--------------------------------------------------------------------------------------------------------------
+
+# برومبت إنشاء سيرة ذاتية احترافية
+
+## ما هو دورك؟
+
+أنت خبير محترف في كتابة السِيَر الذاتية، لديك أكثر من 20 سنة خبرة في مجال كتابة وتطوير السِيَر الذاتية، خصوصًا في مجال: **[اكتب المجال هنا]**.
+
+مهمتك هي مساعدتي في إنشاء سيرة ذاتية احترافية وقوية تساعدني على التميّز في سوق العمل، وتزيد فرصي في الحصول على وظيفة مناسبة.
+
+---
+
+## ماذا أريد منك؟
+
+أريدك أن تكتب لي سيرة ذاتية احترافية، واضحة، مرتبة، ومبنية على أفضل المعايير المتّبعة في سوق العمل.
+
+لكن قبل أن تكتب السيرة الذاتية، أريدك أن تتعرّف عليّ بشكل جيد من خلال مقابلة تفاعلية، تسألني فيها كل الأسئلة الضرورية لجمع المعلومات المطلوبة.
+
+---
+
+## طريقة العمل
+
+أريد أن تكون المقابلة واقعية وتدريجية، لذلك لا ترسل لي كل الأسئلة دفعة واحدة.
+
+بدلًا من ذلك، قسّم المقابلة إلى أقسام واضحة، مثل:
+
+1. المعلومات الشخصية الأساسية
+2. الهدف المهني أو الملخص الشخصي
+3. الخبرات العملية
+4. التعليم والمؤهلات
+5. المهارات التقنية والشخصية
+6. المشاريع أو الإنجازات
+7. الدورات والشهادات
+8. اللغات
+9. أي معلومات إضافية مهمة
+
+ابدأ أولًا بالأسئلة الأساسية مثل:
+
+- الاسم
+- البريد الإلكتروني
+- رقم الهاتف
+- المدينة
+- رابط LinkedIn أو Portfolio إن وجد
+
+---
+
+## شكل كل رسالة أثناء المقابلة
+
+في كل رسالة، التزم بهذا الشكل:
+
+1. اسألني أسئلة القسم الحالي فقط.
+2. تحت كل سؤال، أعطني أمثلة أو اقتراحات تساعدني على الإجابة بشكل أفضل.
+3. استخدم كلمات مفتاحية شائعة ومناسبة لسوق العمل عند إعطاء الأمثلة.
+4. في نهاية كل رسالة، اكتب رقم المرحلة الحالية وعدد المراحل المتبقية، مثل:
+
+> المرحلة 1 من 9
+
+---
+
+## بعد انتهاء المقابلة
+
+عندما تنتهي من طرح كل الأسئلة وجمع كل المعلومات المهمة، قم بتحليل إجاباتي، ثم اكتب لي سيرة ذاتية كاملة بصيغة احترافية وتقليدية، وبأعلى المعايير المناسبة للمجال الذي أستهدفه.
+
+يجب أن تكون السيرة الذاتية:
+
+- واضحة ومنظمة
+- مختصرة لكن قوية
+- موجهة لسوق العمل
+- مليئة بكلمات مفتاحية مناسبة للوظيفة أو المجال
+- مركزة على الإنجازات والنتائج وليس فقط المهام
+- مكتوبة بلغة مهنية وجذابة
+
+---
+
+## مرحلة التحسين والتطوير
+
+بعد أن تكتب السيرة الذاتية، اسألني إن كان هناك قسم أريد تحسينه أو تقويته.
+
+إذا أخبرتك باسم القسم الذي أريد تحسينه، اسألني 3 أسئلة إضافية تساعدك على جمع معلومات ناقصة، ثم أعطني 3 أمثلة أو اقتراحات تساعدني على تقديم إجابات أقوى.
+
+بعد أن أجيبك، أعد كتابة هذا القسم بشكل أفضل، ثم أرسل لي السيرة الذاتية الكاملة مرة أخرى مع القسم المحسّن مدمجًا في مكانه الصحيح.
+
+---
+
+## قبل أن تبدأ
+
+قبل طرح أول سؤال، اكتب لي خطوة بخطوة ما الذي فهمته من طلبي، وكيف ستنفّذ المهمة.
+
+بعدها انتظر موافقتي.
+
+إذا أكدت لك أن فهمك صحيح، ابدأ المقابلة من المرحلة الأولى.
+
+
+--------------------------------------------------------------------------------------------------------------
+
+
+- video #  2025.07.27: كيف تبسّط عملك مع المستندات والعروض — GenSpark
+-- genspark.ai
+
+- pitch deck = عرض تقديمي للمشروع
+- pitch = إعلان
+
+Genspark is an all-in-one AI workspace designed to automate real-world work and research. Rather than just acting as a conversational chatbot, it uses a network of specialized AI models and tools to generate fully finished deliverables like presentations, spreadsheets, documents, and code from a single prompt.
+
+How it Works
+
+Genspark operates using a multi-agent system rather than relying on just one AI model. It works in the following way:
+
+- The "Super Agent": When you type a prompt (e.g., "Create a 10-slide pitch deck for a new coffee startup"), the central Super Agent dissects your goal.
+- Task Delegation: It breaks down the prompt and assigns sub-tasks to a team of over a dozen specialized AI agents (e.g., Search, Creative, Data Analysis).
+- Tool Orchestration: These agents use over 80 real-world tools to browse the web, aggregate data, format documents, and build visuals.
+- Synthesizing Outputs: The platform compiles the research into completed assets you can use, such as interactive "Sparkpages," boardroom-ready slides, or automated meeting summaries.
+
+Key Features:
+- Access to Top Models: You can access multiple leading AI models (such as ChatGPT, Claude, and Gemini) in one workspace.
+- Automation: It features a cloud environment where you can delegate long-running tasks, automate routine processes, and even give the AI its own web or communication context.
+- Native Integrations: Genspark offers extensions that work directly inside standard productivity suites like Microsoft Office, so you can build out data-driven slides or documents without leaving your application.
+
+
+ArabAiClub Presentation:
+- GenSpark:
+-- Deep Research:
+-- Automation:
+-- Dana Analysis:
+-- Create proffesional CVs
+-- can deal with data bases
+-- image processing
+-- It has also an own web browser. On the right side you can use AI to ask about the current page
+
+- AI Agents in GenSpark:
+-- Call For Me: Veryinteresting -> It makes a phone call for you
+-- AI Pods: Similar to NotebookLM
+--- Prompt: Create a podcast about www.webpage.com
+---- Creates a voice podcast with the script
+---- can export audio
+
+-- AI Docs: shows templates which you can modify
+--- clicking on a template will show the template on the right side. On the left side AI which interacts with your marks on the right side.
+    ask AI to change/modify/do anything you want in the template
+
+-- example prompt: Create a CV for the following software developer: -> markdown with all infos
+--- On the left side it shows you the process of creating a CV
+--- On the right side it shows you an editor containing the CV which you can edit
+
+-- AI Slides:
+--- Prompt: Create a presentation about www.webpage.com
+--- Unlike Gamma it allows more the free 10 slides
+
+
+
+الفرق الرئيسي بين السيرة الذاتية المختصرة (Resume) والسيرة الذاتية الشاملة (CV) يكمن في الطول، والمحتوى، والهدف من الاستخدام.إليك التفاصيل بشكل مبسط ومباشر:
+- السيرة الذاتية المختصرة (Resume)الطول: صفحة واحدة غالباً، ولا تتجاوز صفحتين.التركيز: تسليط الضوء على المهارات والإنجازات المناسبة لوظيفة معينة.المحتوى: ملخص مرن ومعدل خصيصاً ليناسب الشاغر الوظيفي المستهدف.الاستخدام: التقديم على وظائف الشركات والقطاع الخاص بشكل عام.
+- السيرة الذاتية الشاملة (CV - Curriculum Vitae)الطول: صفحتان أو أكثر، وتزيد حسب خبرة الشخص.التركيز: سجل أكاديمي ومهني كامل ومفصل لجميع محطات حياتك.المحتوى: وثيقة ثابتة تشمل الأبحاث، المنشورات، الجوائز، والتاريخ التعليمي والوظيفي بالتفصيل.الاستخدام: التقديم على الوظائف الأكاديمية، والمنح الدراسية، ومجالات البحث العلمي.
+
