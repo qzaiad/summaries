@@ -1,0 +1,5 @@
+- python3 --version
+- vscode: Install extiontion pack (3 python extensions @microsoft: Pylance, Python Debugger and Python Environments)
+-- Open command palkette CTRL+SHIFT+P -> select venv & require,emts.txt for installation Click (labor glas) in the sidebar -> u should c tree of tests
+- pycharm: configure -> Python interpreter
+- uv is a python package management tool -> https://docs.astral.sh/uv/
